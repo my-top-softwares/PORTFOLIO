@@ -59,9 +59,9 @@ export default function Footer() {
                     <div>
                         <h5 className="font-black uppercase tracking-[0.3em] text-[11px] mb-10 text-white">Solutions</h5>
                         <ul className="space-y-5 text-white/60 font-bold text-[13px] tracking-wide">
-                            <li><Link href="/services" className="hover:text-white transition-all block">Brand Identity</Link></li>
-                            <li><Link href="/services" className="hover:text-white transition-all block">UI/UX Design</Link></li>
-                            <li><Link href="/services" className="hover:text-white transition-all block">Motion Graphics</Link></li>
+                            <li><Link href="/portfolio" className="hover:text-white transition-all block">Video Production</Link></li>
+                            <li><Link href="/portfolio" className="hover:text-white transition-all block">Motion Design</Link></li>
+                            <li><Link href="/portfolio" className="hover:text-white transition-all block">Voice Narration</Link></li>
                         </ul>
                     </div>
                 </div>

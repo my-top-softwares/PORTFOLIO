@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import image from "/logo.png";
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -15,10 +16,10 @@ export default function Navbar() {
 
     return (
         <nav className="fixed top-8 left-1/2 -translate-x-1/2 w-[90%] md:w-[85%] lg:w-[75%] z-[100] px-8 py-4 flex justify-between items-center glass rounded-3xl border border-white/5 shadow-2xl overflow-hidden">
-            <Link href="/" className="flex items-center gap-3 active:scale-95 transition-transform cursor-pointer group">
-                <div className="bg-accent text-black font-black w-10 h-10 flex items-center justify-center rounded-xl text-xl shadow-[0_0_20px_var(--accent-glow)] transition-all group-hover:rotate-12">A.</div>
-                <span className="text-xl font-black tracking-tighter uppercase text-white hidden sm:block">Wallace</span>
-            </Link>
+            
+            <a href="/">
+                <img src="/logo.png" alt="Logo" width={100} height={10} />
+            </a>
 
             <div className="hidden md:flex items-center gap-8 text-[11px] font-black uppercase tracking-[0.2em]">
                 {links.map((link) => (

@@ -30,12 +30,12 @@ export default function Home() {
                         </h1>
 
                         <p className="text-gray-400 max-w-xl mb-12 text-lg md:text-xl leading-relaxed font-light mx-auto lg:mx-0">
-                            I am <span className="text-white font-bold">Alex Wallace</span>, a Senior UI/UX Designer specialized in building high-conversion interfaces and premium digital products that scale.
+                            I am <span className="text-white font-bold">Alex Wallace</span>, a Senior <span className="text-accent italic">Multimedia Specialist</span> specialized in high-end video production, immersive motion design, and professional voice narration.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center gap-8 justify-center lg:justify-start">
                             <Link href="/portfolio" className="btn-primary flex items-center gap-4 group">
-                                EXPLORE WORK
+                                EXPLORE CREATIONS
                                 <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
                             </Link>
 
@@ -54,7 +54,7 @@ export default function Home() {
                         <div className="relative w-full aspect-[4/5] rounded-[48px] overflow-hidden glass p-4 animate-float">
                             <div className="relative w-full h-full rounded-[36px] overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000 group">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
+                                    src="https://images.unsplash.com/photo-1598550476439-6847785fce6b?q=80&w=1976&auto=format&fit=crop"
                                     alt="Alex Portrait"
                                     fill
                                     className="object-cover group-hover:scale-110 transition-transform duration-1000"
@@ -65,15 +65,15 @@ export default function Home() {
 
                             {/* Floating Stats */}
                             <div className="absolute -left-8 top-1/4 glass p-6 rounded-3xl animate-float [animation-delay:1s]">
-                                <h4 className="text-3xl font-black text-accent">120+</h4>
-                                <p className="text-[10px] uppercase font-black tracking-widest text-gray-400">Projects Done</p>
+                                <h4 className="text-3xl font-black text-accent">500+</h4>
+                                <p className="text-[10px] uppercase font-black tracking-widest text-gray-400">Productions</p>
                             </div>
 
                             <div className="absolute -right-8 bottom-1/4 glass p-6 rounded-3xl animate-float [animation-delay:2s]">
                                 <div className="flex -space-x-3 mb-2">
                                     {[1, 2, 3].map(i => (
                                         <div key={i} className="w-8 h-8 rounded-full border-2 border-background bg-secondary overflow-hidden">
-                                            <Image src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="client" width={32} height={32} />
+                                            <Image src={`https://i.pravatar.cc/100?img=${i + 15}`} alt="client" width={32} height={32} />
                                         </div>
                                     ))}
                                 </div>
@@ -88,7 +88,7 @@ export default function Home() {
             <section className="py-20 border-y border-white/5 bg-secondary/20 relative overflow-hidden backdrop-blur-sm">
                 <div className="flex animate-marquee whitespace-nowrap gap-20 items-center">
                     {[
-                        "SAMSUNG", "ADOBE", "SPOTIFY", "NASA", "GOOGLE", "META", "APPLE", "NETFLIX", "TESLA"
+                        "YOUTUBE", "NETFLIX", "DISNEY+", "PARAMOUNT", "BEIN SPORTS", "AL JAZEERA", "BBC", "HBO", "SONY"
                     ].map((brand, i) => (
                         <span key={i} className="text-4xl md:text-6xl font-black outline-text hover:text-white transition-colors cursor-default">
                             {brand}
@@ -96,7 +96,7 @@ export default function Home() {
                     ))}
                     {/* Repeat for seamless loop */}
                     {[
-                        "SAMSUNG", "ADOBE", "SPOTIFY", "NASA", "GOOGLE", "META", "APPLE", "NETFLIX", "TESLA"
+                        "YOUTUBE", "NETFLIX", "DISNEY+", "PARAMOUNT", "BEIN SPORTS", "AL JAZEERA", "BBC", "HBO", "SONY"
                     ].map((brand, i) => (
                         <span key={i + '2'} className="text-4xl md:text-6xl font-black outline-text hover:text-white transition-colors cursor-default">
                             {brand}
@@ -112,28 +112,29 @@ export default function Home() {
                         <div className="max-w-2xl">
                             <h4 className="text-accent text-[12px] font-black uppercase tracking-[0.4em] mb-4">My Expertise</h4>
                             <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight">
-                                WIDE RANGE OF <br /> <span className="text-accent italic">SOLUTIONS.</span>
+                                MULTIMEDIA <br /> <span className="text-accent italic">CRAFT.</span>
                             </h2>
                         </div>
                         <p className="text-gray-400 max-w-sm mb-4 font-light leading-relaxed">
-                            I leverage cutting-edge design principles and user psychology to create products that people love.
+                            Transforming raw concepts into cinematic experiences using industry-leading tools and narrative techniques.
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                         {[
-                            { title: "UI Design", icon: FaMousePointer, desc: "Modern, high-fidelity interfaces that drive engagement and retention." },
-                            { title: "UX Strategy", icon: FaRocket, desc: "Data-driven research and mapping to solve complex user problems." },
-                            { title: "Brand Identity", icon: FaAward, desc: "Distinctive visual systems that tell your brand's unique story." }
+                            { title: "Voice Over", icon: FaUsers, desc: "Professional voice narration for commercials, documentaries, and audiobooks." },
+                            { title: "Video Editing", icon: FaRocket, desc: "Seamless storytelling with high-end color grading and sound design." },
+                            { title: "Motion Design", icon: FaMousePointer, desc: "Dynamic animations that bring static graphics to life with fluid motion." },
+                            { title: "Graphic Design", icon: FaAward, desc: "Powerful visual identities and marketing assets that stand out." }
                         ].map((s, i) => (
-                            <div key={i} className="glass group p-12 rounded-[40px] hover:border-accent/40 transition-all duration-700 hover:-translate-y-4">
-                                <div className="w-20 h-20 rounded-2xl bg-accent/10 flex items-center justify-center mb-8 group-hover:bg-accent group-hover:rotate-12 transition-all">
-                                    <s.icon className="text-accent text-3xl group-hover:text-black transition-colors" />
+                            <div key={i} className="glass group p-10 rounded-[40px] hover:border-accent/40 transition-all duration-700 hover:-translate-y-4">
+                                <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-8 group-hover:bg-accent group-hover:rotate-12 transition-all">
+                                    <s.icon className="text-accent text-2xl group-hover:text-black transition-colors" />
                                 </div>
-                                <h3 className="text-3xl font-black mb-6 tracking-tighter uppercase">{s.title}</h3>
-                                <p className="text-gray-400 leading-relaxed mb-8">{s.desc}</p>
-                                <Link href="/services" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-accent group-hover:gap-4 transition-all">
-                                    Learn More <FaArrowRight />
+                                <h3 className="text-2xl font-black mb-4 tracking-tighter uppercase leading-tight">{s.title}</h3>
+                                <p className="text-gray-500 text-sm leading-relaxed mb-8">{s.desc}</p>
+                                <Link href="/portfolio" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-accent group-hover:gap-4 transition-all">
+                                    View Projects <FaArrowRight />
                                 </Link>
                             </div>
                         ))}

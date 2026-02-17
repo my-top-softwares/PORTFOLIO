@@ -3,74 +3,70 @@ import { useState } from "react";
 import Image from "next/image";
 import { FaArrowRight, FaTimes, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
-const categories = ["All", "Visual", "Product"];
+const categories = ["All", "Video", "Motion", "Graphic", "Voice"];
 
 const portfolioData = [
     {
         id: 1,
-        title: "FINTECH DASHBOARD",
-        category: "Product",
-        mainImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+        title: "Commercial Film",
+        category: "Video",
+        mainImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop",
         gallery: [
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop"
+            "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop"
         ],
-        desc: "A comprehensive financial management dashboard designed for high-net-worth individuals to track global assets in real-time.",
-        tech: ["Next.js", "TailwindCSS", "Recharts", "Prisma"],
+        desc: "High-end commercial production for a global luxury brand, focusing on cinematic lighting and emotional narrative.",
+        tech: ["Premiere Pro", "DaVinci Resolve", "Arri Alexa"],
         size: "large"
     },
     {
         id: 2,
-        title: "Brand Identity",
-        category: "Visual",
-        mainImage: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2071&auto=format&fit=crop",
-        gallery: ["https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2071&auto=format&fit=crop"],
-        desc: "A modern visual system for a creative studio focusing on minimalist aesthetics and bold typography.",
-        tech: ["Illustrator", "Photoshop", "Figma"],
+        title: "Audio Identity",
+        category: "Voice",
+        mainImage: "https://images.unsplash.com/photo-1590602847861-f357a93bb2be?q=80&w=1974&auto=format&fit=crop",
+        gallery: ["https://images.unsplash.com/photo-1590602847861-f357a93bb2be?q=80&w=1974&auto=format&fit=crop"],
+        desc: "Professional voice narration and audio branding for a leading fintech company's global campaign.",
+        tech: ["Pro Tools", "Audition", "Neumann U87"],
         size: "medium"
     },
     {
         id: 3,
-        title: "UX Research",
-        category: "Product",
-        mainImage: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=2070&auto=format&fit=crop",
-        gallery: ["https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=2070&auto=format&fit=crop"],
-        desc: "Deep user research and mapping for a healthcare platform to improve patient onboarding.",
-        tech: ["Miro", "Figma", "Notion"],
+        title: "Motion Poster",
+        category: "Motion",
+        mainImage: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop",
+        gallery: ["https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop"],
+        desc: "Dynamic motion graphics that bring static film posters to life using fluid animation and 3D depth.",
+        tech: ["After Effects", "Cinema 4D", "X-Particles"],
         size: "small"
     },
     {
         id: 4,
-        title: "Motion Graphics",
-        category: "Visual",
-        mainImage: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop",
-        gallery: ["https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop"],
-        desc: "High-energy motion graphics for a tech conference reveal.",
-        tech: ["After Effects", "C4D"],
+        title: "Documentary Edit",
+        category: "Video",
+        mainImage: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop",
+        gallery: ["https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop"],
+        desc: "Powerful storytelling through careful editing of a feature-length documentary on urban explorers.",
+        tech: ["Premiere Pro", "Avid", "After Effects"],
         size: "small"
     },
     {
         id: 5,
-        title: "Web Platforms",
-        category: "Product",
-        mainImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
-        gallery: ["https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"],
-        desc: "Scalable web infrastructure for a global e-commerce brand.",
-        tech: ["React", "Node.js", "AWS"],
+        title: "Visual Branding",
+        category: "Graphic",
+        mainImage: "https://images.unsplash.com/photo-1541462608141-ad43d53e39ca?q=80&w=2070&auto=format&fit=crop",
+        gallery: ["https://images.unsplash.com/photo-1541462608141-ad43d53e39ca?q=80&w=2070&auto=format&fit=crop"],
+        desc: "Scalable visual identity system including logo design, color theory, and marketing assets.",
+        tech: ["Illustrator", "Photoshop", "InDesign"],
         size: "medium"
     },
     {
         id: 6,
-        title: "HEALTH TRACKER APP",
-        category: "Product",
-        mainImage: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1964&auto=format&fit=crop",
-        gallery: [
-            "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1964&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=2070&auto=format&fit=crop"
-        ],
-        desc: "Focusing on user psychology, this app helps users maintain long-term wellness through gamified habit tracking.",
-        tech: ["React Native", "Firebase", "Styled Components"],
+        title: "Podcast Production",
+        category: "Voice",
+        mainImage: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop",
+        gallery: ["https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop"],
+        desc: "Full audio production and voice engineering for a top-rated technology podcast.",
+        tech: ["Audition", "Logic Pro X", "iZotope RX"],
         size: "small"
     }
 ];
@@ -109,8 +105,8 @@ export default function PortfolioPage() {
                                 key={cat}
                                 onClick={() => setFilter(cat)}
                                 className={`px-10 py-4 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${filter === cat
-                                        ? "bg-accent text-black shadow-lg shadow-accent/20"
-                                        : "text-gray-500 hover:text-white"
+                                    ? "bg-accent text-black shadow-lg shadow-accent/20"
+                                    : "text-gray-500 hover:text-white"
                                     }`}
                             >
                                 {cat}
@@ -125,7 +121,7 @@ export default function PortfolioPage() {
                             key={project.id}
                             onClick={() => setSelectedProject(project)}
                             className={`group relative glass rounded-[40px] overflow-hidden cursor-pointer transition-all duration-700 hover:border-accent/40 animate-fade-up stagger-${(i % 3) + 1} ${project.size === 'large' ? 'md:row-span-2 lg:row-span-2' :
-                                    project.size === 'medium' ? 'lg:col-span-2' : ''
+                                project.size === 'medium' ? 'lg:col-span-2' : ''
                                 }`}
                         >
                             <Image

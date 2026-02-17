@@ -6,43 +6,43 @@ import { FaArrowRight } from "react-icons/fa";
 const galleryItems = [
     {
         id: 1,
-        title: "Brand Identity",
-        category: "Visual",
-        img: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2071&auto=format&fit=crop",
+        title: "Commercial Film",
+        category: "Video",
+        img: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop",
         size: "large"
     },
     {
         id: 2,
-        title: "UX Research",
-        category: "Product",
-        img: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=2070&auto=format&fit=crop",
+        title: "Audio Branding",
+        category: "Audio",
+        img: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop",
         size: "small"
     },
     {
         id: 3,
-        title: "Motion Graphics",
-        category: "Visual",
+        title: "Motion Poster",
+        category: "Motion",
         img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop",
         size: "small"
     },
     {
         id: 4,
-        title: "Web Platforms",
-        category: "Product",
-        img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
+        title: "Product Showcase",
+        category: "Video",
+        img: "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=2000&auto=format&fit=crop",
         size: "medium"
     },
     {
         id: 5,
-        title: "Mobile Apps",
-        category: "Product",
-        img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2070&auto=format&fit=crop",
+        title: "Cinematic Reel",
+        category: "Video",
+        img: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop",
         size: "medium"
     },
     {
         id: 6,
-        title: "Art Direction",
-        category: "Visual",
+        title: "Visual Identity",
+        category: "Graphic",
         img: "https://images.unsplash.com/photo-1541462608141-ad43d53e39ca?q=80&w=2070&auto=format&fit=crop",
         size: "small"
     }
@@ -62,7 +62,7 @@ export default function GallerySection() {
                         <div
                             key={item.id}
                             className={`group relative rounded-[40px] overflow-hidden glass hover:border-accent/40 transition-all duration-700 ${item.size === 'large' ? 'md:row-span-2 lg:row-span-2' :
-                                    item.size === 'medium' ? 'lg:col-span-2' : ''
+                                item.size === 'medium' ? 'lg:col-span-2' : ''
                                 }`}
                         >
                             <Image
