@@ -141,51 +141,6 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Featured Work Grid Teaser */}
-            <section className="py-32 bg-secondary/30">
-                <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-                    <div className="text-center mb-24">
-                        <h2 className="text-7xl md:text-9xl font-black outline-text uppercase leading-none opacity-20">Portfolio</h2>
-                        <h3 className="text-4xl md:text-6xl font-black -mt-10 md:-mt-16 text-white tracking-tighter">SELECT RECENT WORK</h3>
-                    </div>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                        {[
-                            { title: "Fintech App", cat: "Mobile Development", img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop" },
-                            { title: "Interior Design", cat: "E-Commerce", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop" }
-                        ].map((project, i) => (
-                            <div key={i} className="group cursor-pointer">
-                                <div className="relative aspect-video rounded-[3rem] overflow-hidden mb-8 glass translate-z-0">
-                                    <Image
-                                        src={project.img}
-                                        alt={project.title}
-                                        fill
-                                        className="object-cover group-hover:scale-110 transition-transform duration-1000 grayscale hover:grayscale-0"
-                                    />
-                                    <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all duration-500"></div>
-                                    <div className="absolute top-8 right-8 w-16 h-16 rounded-full glass flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all group-hover:rotate-45">
-                                        <FaArrowRight className="text-accent" />
-                                    </div>
-                                </div>
-                                <div className="flex justify-between items-center px-4">
-                                    <div>
-                                        <h4 className="text-2xl font-black tracking-tighter uppercase group-hover:text-accent transition-colors">{project.title}</h4>
-                                        <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mt-2">{project.cat}</p>
-                                    </div>
-                                    <span className="text-[10px] font-black text-gray-700">2024</span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="text-center mt-20">
-                        <Link href="/portfolio" className="btn-outline px-12 group">
-                            VIEW ALL CASE STUDIES <FaArrowRight className="ml-4 group-hover:translate-x-2 transition-transform inline" />
-                        </Link>
-                    </div>
-                </div>
-            </section>
-
             {/* Testimonials */}
             <TestimonialsSlider />
 

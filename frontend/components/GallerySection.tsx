@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
 
 const galleryItems = [
     {
@@ -47,43 +48,17 @@ const galleryItems = [
     }
 ];
 
-const categories = ["All", "Visual", "Product"];
-
 export default function GallerySection() {
-    const [filter, setFilter] = useState("All");
-
-    const filteredItems = filter === "All"
-        ? galleryItems
-        : galleryItems.filter(item => item.category === filter);
-
     return (
         <section className="py-40 px-6 md:px-12 lg:px-24">
             <div className="max-w-7xl mx-auto">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-10">
-                    <div className="max-w-2xl">
-                        <h4 className="text-accent text-[12px] font-black uppercase tracking-[0.6em] mb-6">Visual Showcase</h4>
-                        <h2 className="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.8]">Gallery.</h2>
-                    </div>
-
-                    {/* Category Filter */}
-                    <div className="flex gap-4 glass p-2 rounded-2xl border border-white/5">
-                        {categories.map((cat) => (
-                            <button
-                                key={cat}
-                                onClick={() => setFilter(cat)}
-                                className={`px-8 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${filter === cat
-                                        ? "bg-accent text-black"
-                                        : "text-gray-500 hover:text-white"
-                                    }`}
-                            >
-                                {cat}
-                            </button>
-                        ))}
-                    </div>
+                <div className="text-center mb-24">
+                    <h4 className="text-accent text-[12px] font-black uppercase tracking-[0.6em] mb-6">Visual Showcase</h4>
+                    <h2 className="text-6xl md:text-8xl font-black tracking-tighter uppercase mb-8">Selected Works.</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px]">
-                    {filteredItems.map((item) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px] mb-20">
+                    {galleryItems.map((item) => (
                         <div
                             key={item.id}
                             className={`group relative rounded-[40px] overflow-hidden glass hover:border-accent/40 transition-all duration-700 ${item.size === 'large' ? 'md:row-span-2 lg:row-span-2' :
@@ -106,6 +81,13 @@ export default function GallerySection() {
                             </div>
                         </div>
                     ))}
+                </div>
+
+                <div className="text-center">
+                    <Link href="/portfolio" className="btn-primary px-16 py-8 rounded-full group inline-flex items-center gap-6">
+                        SEE ALL FULL GALLERY
+                        <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
+                    </Link>
                 </div>
             </div>
         </section>
