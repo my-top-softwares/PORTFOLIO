@@ -1,91 +1,104 @@
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaPaperPlane } from "react-icons/fa";
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaPaperPlane, FaTwitter, FaLinkedin, FaInstagram, FaGithub, FaArrowRight } from "react-icons/fa";
 
 export default function ContactPage() {
     return (
-        <section className="py-40 px-6 md:px-12 lg:px-24 min-h-screen flex items-center">
-            <div className="max-w-7xl mx-auto w-full">
-                <div className="text-center mb-32">
-                    <h4 className="text-[12px] uppercase tracking-[1em] font-black mb-10 text-accent">GET IN TOUCH</h4>
-                    <h2 className="text-7xl md:text-[120px] font-black tracking-tighter uppercase outline-text opacity-40">Contact</h2>
-                </div>
+        <main className="relative min-h-screen pt-40 pb-40 overflow-hidden bg-background">
+            {/* Super Large Background Text */}
+            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none z-0 select-none">
+                <h2 className="text-[200px] md:text-[350px] font-black uppercase tracking-tighter text-white/[0.02] leading-none">
+                    CONTACT.
+                </h2>
+            </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 lg:gap-40 items-start">
-                    {/* Contact Info */}
-                    <div>
-                        <h2 className="text-5xl font-black italic mb-10 tracking-tighter">
-                            Let's craft something <br /> <span className="text-accent">legendary together.</span>
-                        </h2>
-                        <p className="text-gray-400 text-xl font-light leading-relaxed mb-16 max-w-md">
-                            Whether you have a question or just want to say hi, my inbox is always open.
-                        </p>
+            {/* Ambient Background Orbs */}
+            <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -z-10"></div>
+            <div className="absolute bottom-[10%] right-[-10%] w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px] -z-10"></div>
 
-                        <div className="space-y-12">
-                            <div className="flex items-center gap-8 group">
-                                <div className="w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-black transition-all">
-                                    <FaEnvelope size={28} />
-                                </div>
-                                <div>
-                                    <p className="text-[11px] font-black uppercase tracking-[0.4em] text-gray-500 mb-2">Email Me</p>
-                                    <p className="text-2xl font-black text-white">alex.wallace@gmail.com</p>
-                                </div>
-                            </div>
+            <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
-                            <div className="flex items-center gap-8 group">
-                                <div className="w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-black transition-all">
-                                    <FaMapMarkerAlt size={28} />
-                                </div>
-                                <div>
-                                    <p className="text-[11px] font-black uppercase tracking-[0.4em] text-gray-500 mb-2">Location</p>
-                                    <p className="text-2xl font-black text-white">Manila, Philippines</p>
-                                </div>
-                            </div>
+                    {/* Left Column: Headline & Status */}
+                    <div className="lg:col-span-12 mb-20">
+                        <div className="inline-flex items-center gap-4 px-5 py-2 rounded-full glass mb-10 border border-white/10">
+                            <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
+                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white">Opening for partnerships</span>
+                        </div>
+                        <h1 className="text-6xl md:text-[120px] font-black tracking-tighter leading-[0.85] uppercase text-gradient">
+                            HAVE A PROJECT <br /> <span className="text-accent italic">IN MIND?</span>
+                        </h1>
+                    </div>
 
-                            <div className="flex items-center gap-8 group">
-                                <div className="w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-black transition-all">
-                                    <FaPhoneAlt size={28} />
+                    {/* Left Side: Info Tiles (Bento Style) */}
+                    <div className="lg:col-span-5 space-y-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
+                            {[
+                                { icon: FaEnvelope, label: "Shoot an Email", val: "hello@wallace.studio", color: "text-blue-400" },
+                                { icon: FaMapMarkerAlt, label: "Current Location", val: "Manila, Philippines", color: "text-red-400" },
+                                { icon: FaPhoneAlt, label: "Direct Support", val: "+63 912 345 6789", color: "text-green-400" }
+                            ].map((item, i) => (
+                                <div key={i} className="glass p-10 rounded-[40px] border border-white/5 hover:border-white/10 transition-all group cursor-pointer relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full translate-x-16 -translate-y-16 group-hover:scale-110 transition-transform duration-700"></div>
+                                    <item.icon className={`${item.color} text-2xl mb-6`} />
+                                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-500 mb-2">{item.label}</p>
+                                    <h3 className="text-xl font-bold text-white group-hover:text-accent transition-colors">{item.val}</h3>
                                 </div>
-                                <div>
-                                    <p className="text-[11px] font-black uppercase tracking-[0.4em] text-gray-500 mb-2">Call Me</p>
-                                    <p className="text-2xl font-black text-white">+63 912 345 6789</p>
-                                </div>
+                            ))}
+                        </div>
+
+                        {/* Social Connect Tile */}
+                        <div className="glass p-10 rounded-[40px] border border-white/5">
+                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-500 mb-8">Social Ecosystem</p>
+                            <div className="flex flex-wrap gap-4">
+                                {[FaTwitter, FaLinkedin, FaGithub, FaInstagram].map((Icon, i) => (
+                                    <a key={i} href="#" className="w-14 h-14 glass flex items-center justify-center rounded-2xl text-white hover:bg-accent hover:text-black transition-all duration-500">
+                                        <Icon size={18} />
+                                    </a>
+                                ))}
                             </div>
                         </div>
                     </div>
 
-                    {/* Contact Form */}
-                    <div className="bg-[#111414] p-12 md:p-16 rounded-[4rem] border border-white/5 shadow-2xl relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full translate-x-12 -translate-y-12 transition-transform group-hover:scale-150 duration-700"></div>
+                    {/* Right Side: High-End Form */}
+                    <div className="lg:col-span-7">
+                        <div className="glass p-12 md:p-16 rounded-[60px] border border-white/5 bg-white/[0.01] relative">
+                            <div className="mb-12">
+                                <h3 className="text-3xl font-black uppercase tracking-tighter mb-4">Send a Transmission</h3>
+                                <p className="text-gray-500 text-sm font-medium">Expected response time: Under 24 hours.</p>
+                            </div>
 
-                        <form className="space-y-10 relative z-10">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                                <div className="space-y-3">
-                                    <label className="text-[11px] font-black uppercase tracking-[0.4em] text-gray-500">Your Name</label>
-                                    <input type="text" placeholder="John Doe" className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 focus:border-accent outline-none transition-all placeholder:text-gray-700 font-bold" />
+                            <form className="space-y-8">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div className="relative group">
+                                        <input type="text" className="w-full bg-transparent border-b border-white/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg" placeholder="Full Name" />
+                                        <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-500 group-focus-within:w-full"></div>
+                                    </div>
+                                    <div className="relative group">
+                                        <input type="email" className="w-full bg-transparent border-b border-white/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg" placeholder="Email Address" />
+                                        <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-500 group-focus-within:w-full"></div>
+                                    </div>
                                 </div>
-                                <div className="space-y-3">
-                                    <label className="text-[11px] font-black uppercase tracking-[0.4em] text-gray-500">Your Email</label>
-                                    <input type="email" placeholder="john@example.com" className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 focus:border-accent outline-none transition-all placeholder:text-gray-700 font-bold" />
+
+                                <div className="relative group">
+                                    <input type="text" className="w-full bg-transparent border-b border-white/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg" placeholder="Interested In" />
+                                    <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-500 group-focus-within:w-full"></div>
                                 </div>
-                            </div>
 
-                            <div className="space-y-3">
-                                <label className="text-[11px] font-black uppercase tracking-[0.4em] text-gray-500">Subject</label>
-                                <input type="text" placeholder="Project Inquiry" className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 focus:border-accent outline-none transition-all placeholder:text-gray-700 font-bold" />
-                            </div>
+                                <div className="relative group">
+                                    <textarea rows={4} className="w-full bg-transparent border-b border-white/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg resize-none" placeholder="Message Details"></textarea>
+                                    <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-500 group-focus-within:w-full"></div>
+                                </div>
 
-                            <div className="space-y-3">
-                                <label className="text-[11px] font-black uppercase tracking-[0.4em] text-gray-500">Message</label>
-                                <textarea rows={5} placeholder="Tell me about your project..." className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 focus:border-accent outline-none transition-all placeholder:text-gray-700 font-bold resize-none"></textarea>
-                            </div>
-
-                            <button className="btn-primary w-full py-8 rounded-2xl font-black tracking-[0.4em] uppercase shadow-lg hover:shadow-accent/40 group">
-                                Send Message
-                                <FaPaperPlane className="ml-4 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
-                            </button>
-                        </form>
+                                <button className="group mt-12 btn-primary w-full py-10 rounded-full font-black tracking-[0.4em] uppercase overflow-hidden relative shadow-2xl">
+                                    <span className="relative z-10 flex items-center justify-center gap-4">
+                                        ENGAGE PROJECT <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
+                                    </span>
+                                </button>
+                            </form>
+                        </div>
                     </div>
+
                 </div>
             </div>
-        </section>
+        </main>
     );
 }

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight, FaMousePointer, FaAward, FaUsers, FaRocket, FaQuoteLeft, FaCheck, FaGithub, FaDribbble, FaLinkedinIn } from "react-icons/fa";
+import TestimonialsSlider from "@/components/TestimonialsSlider";
+import GallerySection from "@/components/GallerySection";
 
 export default function Home() {
     return (
@@ -185,40 +187,10 @@ export default function Home() {
             </section>
 
             {/* Testimonials */}
-            <section className="py-40 px-6 md:px-12 lg:px-24 relative overflow-hidden">
-                <div className="max-w-7xl mx-auto relative z-10">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-                        <div className="relative">
-                            <h4 className="text-accent text-[12px] font-black uppercase tracking-[0.4em] mb-4">Testimonials</h4>
-                            <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-tight">WHAT THEY <br /> <span className="text-accent italic">SAY</span> ABOUT ME.</h2>
-                            <p className="text-gray-400 text-lg font-light leading-relaxed mb-12 max-w-md">
-                                Trusted by industry leaders worldwide to deliver excellence across digital platforms.
-                            </p>
-                            <div className="flex items-center gap-6">
-                                <div className="h-px bg-white/10 flex-grow max-w-[100px]"></div>
-                                <span className="text-[10px] font-black tracking-widest uppercase text-gray-500">Global Trust</span>
-                            </div>
-                        </div>
+            <TestimonialsSlider />
 
-                        <div className="glass p-16 rounded-[60px] relative">
-                            <FaQuoteLeft className="text-accent/20 text-8xl absolute top-10 right-10" />
-                            <div className="flex gap-2 mb-8">
-                                {[1, 2, 3, 4, 5].map(i => <span key={i} className="text-accent text-lg">★</span>)}
-                            </div>
-                            <p className="text-2xl font-medium leading-relaxed italic text-gray-300 mb-12">
-                                "Working with Alex was a game-changer for our SaaS platform. His design not only looks stunning but has directly contributed to a 40% increase in user retention."
-                            </p>
-                            <div className="flex items-center gap-6">
-                                <div className="w-16 h-16 rounded-2xl glass flex items-center justify-center text-accent text-xl font-black">JS</div>
-                                <div>
-                                    <h5 className="font-black uppercase tracking-widest text-white text-sm">James Smith</h5>
-                                    <p className="text-[10px] uppercase font-black tracking-widest text-gray-600 mt-1">CEO @ TECHFLOW</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {/* Gallery Section */}
+            <GallerySection />
 
             {/* CTA Section */}
             <section className="py-40 px-6">
