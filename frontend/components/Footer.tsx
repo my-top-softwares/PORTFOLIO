@@ -6,13 +6,13 @@ export default function Footer() {
     return (
         <footer className="relative bg-primary/90 text-white py-24 w-full overflow-hidden flex flex-col items-center">
             {/* Geometric Background Patterns */}
-            <svg className="absolute inset-0 w-full h-full opacity-10 pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+            {/* <svg className="absolute inset-0 w-full h-full opacity-10 pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <path d="M0 100 L50 0 L100 100" stroke="white" strokeWidth="0.5" fill="none" />
                 <path d="M20 100 L60 20 L100 80" stroke="white" strokeWidth="0.3" fill="none" />
                 <path d="M0 40 L40 100 L80 0" stroke="white" strokeWidth="0.2" fill="none" />
-            </svg>
+            </svg> */}
 
-            <div className="relative text-white z-10 w-full max-w-7xl px-6 md:px-12 lg:px-24 grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 pb-20">
+            <div className="relative text-white z-10 w-full max-w-7xl px-6 md:px-12 lg:px-24 grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 pb-4">
                 {/* Left Side: Branding & Info */}
                 <div>
                     <div className="flex items-center gap-4 mb-10">
@@ -31,30 +31,23 @@ export default function Footer() {
                             </a>
                         ))}
                     </div>
-
-                    <button
-                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                        className="flex items-center gap-4 px-8 py-4 border border-black/10 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] text-black hover:bg-black/5 transition-all group"
-                    >
-                        <div className="group-hover:-translate-y-1 transition-transform">
-                            <FaArrowRight className="-rotate-90 text-black" />
-                        </div>
-                        BACK TO TOP
-                    </button>
+                    <div className="w-full pt-8 items-center justify-center text-center">
+                        <p className="text-white text-[10px] font-normal uppercase justify-center">
+                            Copyright © 2026 Wallace. Studio. All Rights Reserved.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Right Side: Navigation Columns */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-16">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
                     <div>
                         <h5 className="font-black uppercase tracking-[0.3em] text-[11px] mb-10 text-white">Site Map</h5>
                         <ul className="space-y-5 text-white/60 font-bold text-[13px] tracking-wide">
                             <li><Link href="/" className="hover:text-white transition-all block">Project Home</Link></li>
                             <li><Link href="/about" className="hover:text-white transition-all block">The Story</Link></li>
-                            <li><Link href="/portfolio" className="hover:text-black transition-all block underline decoration-black/30 underline-offset-8">Case Studies</Link></li>
-                            <li><Link href="/services" className="hover:text-white transition-all block">Solutions</Link></li>
-                            <li><Link href="/contact" className="hover:text-white transition-all block">Contact Us</Link></li>
+                            <li><Link href="/portfolio" className="hover:text-white transition-all block">Case Studies</Link></li>
                         </ul>
-                    </div>  
+                    </div>
                     <div>
                         <h5 className="font-black uppercase tracking-[0.3em] text-[11px] mb-10 text-white">Legal</h5>
                         <ul className="space-y-5 text-white/60 font-bold text-[13px] tracking-wide">
@@ -63,14 +56,15 @@ export default function Footer() {
                             <li><Link href="#" className="hover:text-white transition-all block">Media Kit</Link></li>
                         </ul>
                     </div>
+                    <div>
+                        <h5 className="font-black uppercase tracking-[0.3em] text-[11px] mb-10 text-white">Solutions</h5>
+                        <ul className="space-y-5 text-white/60 font-bold text-[13px] tracking-wide">
+                            <li><Link href="/services" className="hover:text-white transition-all block">Brand Identity</Link></li>
+                            <li><Link href="/services" className="hover:text-white transition-all block">UI/UX Design</Link></li>
+                            <li><Link href="/services" className="hover:text-white transition-all block">Motion Graphics</Link></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-
-            {/* Bottom Copyright Strip */}
-            <div className="w-full border-t border-white/10 pt-12 text-center">
-                <p className="text-white text-[10px] font-black uppercase tracking-[0.4em]">
-                    Copyright © 2026 Wallace. Studio. All Rights Reserved.
-                </p>
             </div>
         </footer>
     );
