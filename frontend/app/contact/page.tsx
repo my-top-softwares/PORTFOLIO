@@ -32,9 +32,9 @@ export default function ContactPage() {
                     <div className="lg:col-span-5 space-y-6">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
                             {[
-                                { icon: FaEnvelope, label: "Shoot an Email", val: "hello@wallace.studio", color: "text-blue-400" },
-                                { icon: FaMapMarkerAlt, label: "Current Location", val: "Manila, Philippines", color: "text-red-400" },
-                                { icon: FaPhoneAlt, label: "Direct Support", val: "+63 912 345 6789", color: "text-green-400" }
+                                { icon: FaEnvelope, label: "Shoot an Email", val: "amina@gmail.com", color: "text-blue-400" },
+                                { icon: FaMapMarkerAlt, label: "Current Location", val: "Mogadishu Somalia", color: "text-red-400" },
+                                { icon: FaPhoneAlt, label: "Direct Support", val: "+252 618 948 948", color: "text-green-400" }
                             ].map((item, i) => (
                                 <div key={i} className="glass p-10 rounded-[40px] border border-white/5 hover:border-white/10 transition-all group cursor-pointer relative overflow-hidden">
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full translate-x-16 -translate-y-16 group-hover:scale-110 transition-transform duration-700"></div>
