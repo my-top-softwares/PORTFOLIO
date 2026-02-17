@@ -21,6 +21,7 @@ export default function Footer() {
                 <div className="relative z-10 p-12 md:p-20 grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32">
                     {/* Left Side: Branding & Info */}
                     <div>
+                        
                         <div className="flex items-center gap-4 mb-10">
                             <div className="bg-accent text-black font-black w-14 h-14 flex items-center justify-center rounded-2xl text-2xl shadow-[0_0_30px_var(--accent-glow)]">W.</div>
                             <span className="text-3xl font-black tracking-tighter uppercase text-white">Wallace</span>
@@ -73,7 +74,7 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom Strip: Secondary Color (Secondary Color Focus) */}
-                <div className="relative bg-accent h-16 flex items-center justify-center">
+                <div className="relative h-16 flex items-center justify-center">
                     <p className="text-black text-[10px] font-black uppercase tracking-[0.4em]">
                         Copyright © 2026 Wallace. Studio. All Rights Reserved.
                     </p>
