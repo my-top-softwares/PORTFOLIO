@@ -23,7 +23,7 @@ export default function Home() {
                             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">Available for New Projects</span>
                         </div>
 
-                        <h1 className="text-6xl md:text-8xl lg:text-[120px] font-black mb-8 leading-[0.85] tracking-tighter text-gradient">
+                        <h1 className="text-6xl md:text-8xl lg:text-[80px] font-black mb-8 leading-[0.85] tracking-tighter text-gradient">
                             CRAFTING <br />
                             <span className="text-accent italic">DIGITAL</span> <br />
                             EXPERIENCES.
@@ -64,9 +64,9 @@ export default function Home() {
                             </div>
 
                             {/* Floating Stats */}
-                            <div className="absolute -left-8 top-1/4 glass p-6 rounded-3xl animate-float [animation-delay:1s]">
-                                <h4 className="text-3xl font-black text-accent">500+</h4>
-                                <p className="text-[10px] uppercase font-black tracking-widest text-gray-400">Productions</p>
+                            <div className="absolute -left-4 top-1/4 glass p-6 rounded-3xl animate-float [animation-delay:1s]">
+                                <h4 className="text-3xl font-black text-accent">50+</h4>
+                                <p className="text-[10px] uppercase font-black tracking-widest text-gray-400">Projects</p>
                             </div>
 
                             <div className="absolute -right-8 bottom-1/4 glass p-6 rounded-3xl animate-float [animation-delay:2s]">
@@ -90,7 +90,7 @@ export default function Home() {
                     {[
                         "YOUTUBE", "NETFLIX", "DISNEY+", "PARAMOUNT", "BEIN SPORTS", "AL JAZEERA", "BBC", "HBO", "SONY"
                     ].map((brand, i) => (
-                        <span key={i} className="text-4xl md:text-6xl font-black outline-text hover:text-white transition-colors cursor-default">
+                        <span key={i} className="text-4xl md:text-6xl  font-black outline-text hover:text-white transition-colors cursor-default">
                             {brand}
                         </span>
                     ))}
