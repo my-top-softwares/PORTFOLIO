@@ -54,7 +54,7 @@ export default function Home() {
                         <div className="relative w-full aspect-[4/5] rounded-[48px] overflow-hidden glass p-4 animate-float">
                             <div className="relative w-full h-full rounded-[36px] overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000 group">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1598550476439-6847785fce6b?q=80&w=1976&auto=format&fit=crop"
+                                    src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=2067&auto=format&fit=crop"
                                     alt="Alex Portrait"
                                     fill
                                     className="object-cover group-hover:scale-110 transition-transform duration-1000"
