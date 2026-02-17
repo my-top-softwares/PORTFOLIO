@@ -1,33 +1,145 @@
+import { FaCheck, FaRocket, FaGem, FaCrown, FaArrowRight } from "react-icons/fa";
+import Link from "next/link";
+
 export default function ServicesPage() {
-    const services = [
-        { title: "UI & UX Design", count: "158", icon: "✨", color: "accent", desc: "Crafting intuitive interfaces that delight users and drive engagement." },
-        { title: "Branding", count: "84", icon: "💎", color: "white", desc: "Building strong identity through strategic design and visual storytelling." },
-        { title: "App Design", count: "112", icon: "📱", color: "white", desc: "Mobile-first experiences designed for the modern digital landscape." }
+    const plans = [
+        {
+            name: "Starter",
+            tagline: "Individual",
+            price: "499",
+            icon: FaRocket,
+            features: [
+                "UI/UX Design Strategy",
+                "Mobile Responsive Design",
+                "Basic User Research",
+                "High-Fidelity Mockups",
+                "2 Revision Cycles",
+                "Source File Access"
+            ]
+        },
+        {
+            name: "Premium",
+            tagline: "Business",
+            price: "899",
+            icon: FaGem,
+            featured: true,
+            features: [
+                "Advanced UI/UX Design",
+                "Interactive Prototyping",
+                "In-Depth User Testing",
+                "Brand Identity Design",
+                "Unlimited Revision Cycles",
+                "24/7 Priority Support",
+                "Cross-Platform Dev Ready"
+            ]
+        },
+        {
+            name: "Ultimate",
+            tagline: "Enterprise",
+            price: "1599",
+            icon: FaCrown,
+            features: [
+                "Full Product Strategy",
+                "Multi-Platform Design",
+                "UX Audit & Consulting",
+                "Design System Creation",
+                "Lifetime Design Updates",
+                "Direct Slack Communication",
+                "White-Label Solutions"
+            ]
+        }
     ];
 
     return (
-        <section className="py-40 px-6 md:px-12 lg:px-24 min-h-screen flex items-center">
+        <section className="relative py-40 px-6 md:px-12 lg:px-24 min-h-screen">
+            {/* Background elements */}
+            <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+                <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-primary/20 rounded-full blur-[160px]"></div>
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent/10 rounded-full blur-[120px]"></div>
+            </div>
+
             <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-32">
-                    <h4 className="text-[12px] uppercase tracking-[1em] font-black mb-10 text-accent">MY EXPERTISE</h4>
-                    <h2 className="text-7xl md:text-[120px] font-black tracking-tighter uppercase outline-text opacity-40">Services</h2>
+                <div className="text-center mb-24">
+                    <div className="inline-flex items-center gap-4 px-4 py-2 rounded-full glass mb-8 border border-white/5">
+                        <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">Professional Packages</span>
+                    </div>
+                    <h1 className="text-5xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tighter text-gradient">
+                        PRICING PLANS <br /> FOR <span className="text-accent italic">EVERYONE.</span>
+                    </h1>
+                    <p className="text-gray-400 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed font-light">
+                        Flexible solutions tailored to your specific needs. From early-stage startups to established enterprises, choose the plan that scales with you.
+                    </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
-                    {services.map((s, i) => (
-                        <div key={i} className={`group p-14 rounded-[3.5rem] transition-all duration-700 hover:-translate-y-6 shadow-2xl relative overflow-hidden ${s.color === 'accent' ? 'bg-accent text-black scale-105 z-10' : 'bg-[#121414] border border-white/5 hover:border-accent/30'}`}>
-                            {s.color === 'accent' && (
-                                <div className="absolute top-[-10%] right-[-10%] w-32 h-32 bg-black/10 rounded-full blur-2xl"></div>
-                            )}
-                            <div className="text-6xl mb-14 transition-transform group-hover:scale-125 duration-500">{s.icon}</div>
-                            <p className={`text-[11px] font-black uppercase tracking-[0.4em] mb-4 ${s.color === 'accent' ? 'text-black/50' : 'text-gray-500'}`}>{s.count} Projects</p>
-                            <h3 className="text-4xl font-black tracking-tighter uppercase mb-8 leading-tight">{s.title}</h3>
-                            <p className={`text-[17px] font-medium leading-relaxed ${s.color === 'accent' ? 'text-black/80' : 'text-gray-400 font-light'}`}>
-                                {s.desc}
-                            </p>
-                            <div className={`mt-10 w-12 h-1 rounded-full ${s.color === 'accent' ? 'bg-black/20' : 'bg-accent/30 group-hover:bg-accent group-hover:w-full transition-all duration-700'}`}></div>
+                {/* Plan Toggle Aesthetic */}
+                <div className="flex justify-center mb-20">
+                    <div className="glass p-1.5 rounded-2xl flex items-center gap-2 border border-white/5">
+                        <button className="px-8 py-3 bg-accent text-black font-black text-[11px] uppercase tracking-widest rounded-xl transition-all shadow-[0_0_20px_var(--accent-glow)]">Monthly</button>
+                        <button className="px-8 py-3 text-gray-400 font-black text-[11px] uppercase tracking-widest hover:text-white transition-all">Annually</button>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    {plans.map((plan, i) => (
+                        <div
+                            key={i}
+                            className={`group relative glass rounded-[40px] flex flex-col transition-all duration-700 hover:-translate-y-4 hover:shadow-2xl ${plan.featured ? 'border-accent/30 shadow-[0_30px_60px_-15px_rgba(239,134,33,0.15)] scale-105 z-10' : 'border-white/5'}`}
+                        >
+                            {/* Card Header Section */}
+                            <div className="p-12 pb-8">
+                                <div className="flex justify-between items-start mb-10">
+                                    <div>
+                                        <h3 className="text-3xl font-black uppercase tracking-tighter mb-2">{plan.name}</h3>
+                                        <p className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-500 italic">{plan.tagline}</p>
+                                    </div>
+                                    <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center group-hover:bg-accent group-hover:scale-110 transition-all duration-500">
+                                        <plan.icon className="text-accent text-2xl group-hover:text-black transition-colors" />
+                                    </div>
+                                </div>
+
+                                <div className="flex items-baseline gap-2 mb-8">
+                                    <span className="text-6xl font-black tracking-tighter text-white">${plan.price}</span>
+                                    <span className="text-gray-500 font-black text-sm uppercase tracking-widest">/Month</span>
+                                </div>
+
+                                <div className={`h-1.5 w-full rounded-full ${plan.featured ? 'bg-accent' : 'bg-accent/20'}`}></div>
+                            </div>
+
+                            {/* Features Section */}
+                            <div className="p-12 pt-4 flex-grow">
+                                <ul className="space-y-6">
+                                    {plan.features.map((feature, idx) => (
+                                        <li key={idx} className="flex items-center gap-4 text-gray-300 font-medium group/item hover:text-white transition-colors">
+                                            <div className="w-6 h-6 rounded-lg glass flex items-center justify-center group-hover/item:border-accent transition-all">
+                                                <FaCheck className="text-accent text-[10px]" />
+                                            </div>
+                                            <span className="text-sm">{feature}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            {/* CTA Section */}
+                            <div className="p-10 text-center">
+                                <Link
+                                    href="/contact"
+                                    className={`w-full py-5 rounded-2xl block font-black uppercase tracking-widest text-[11px] transition-all duration-500 ${plan.featured ? 'bg-accent text-black shadow-lg shadow-accent/20 hover:shadow-accent/40' : 'btn-outline border-white/10 hover:border-accent hover:text-accent'}`}
+                                >
+                                    GET STARTED <FaArrowRight className="inline ml-2" />
+                                </Link>
+                            </div>
                         </div>
                     ))}
+                </div>
+
+                <div className="mt-40 text-center p-20 glass rounded-[60px] border border-white/5 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-accent/5 -z-10"></div>
+                    <h3 className="text-4xl md:text-5xl font-black mb-10 tracking-tighter uppercase leading-tight">Need a <span className="text-accent italic underline decoration-accent/30 underline-offset-8">Custom</span> Solution?</h3>
+                    <p className="text-gray-400 max-w-xl mx-auto mb-12 text-lg font-light leading-relaxed">
+                        If your project requirements don't fit into these plans, I offer bespoke consulting and design retainers for long-term collaborations.
+                    </p>
+                    <Link href="/contact" className="btn-primary px-16">LET'S CHAT <FaArrowRight className="ml-4 inline" /></Link>
                 </div>
             </div>
         </section>
