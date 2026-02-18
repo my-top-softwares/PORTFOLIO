@@ -32,7 +32,7 @@ export default function ContactPage() {
                     <div className="lg:col-span-5 space-y-6">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
                             {[
-                                { icon: FaEnvelope, label: "Shoot an Email", val: "amina@gmail.com", color: "text-blue-400" },
+                                { icon: FaEnvelope, label: "Shoot an Email", val: "aminofarax19@gmail.com", color: "text-blue-400" },
                                 { icon: FaMapMarkerAlt, label: "Current Location", val: "Mogadishu Somalia", color: "text-red-400" },
                                 { icon: FaPhoneAlt, label: "Direct Support", val: "+252 618 948 948", color: "text-green-400" }
                             ].map((item, i) => (

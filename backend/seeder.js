@@ -21,9 +21,9 @@ const importData = async () => {
         
         const createdUser = await User.create({
             name: "Admin User",
-            email: "admin@example.com",
+            email: "admin@gmail.com",
             role: "admin",
-            password: "password123",
+            password: "123456",
         });
 
         console.log("Data Imported! Admin User created: admin@example.com / password123");

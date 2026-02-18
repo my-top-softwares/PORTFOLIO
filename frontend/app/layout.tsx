@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import LayoutWrapper from "@/components/LayoutWrapper";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
@@ -27,11 +26,9 @@ export default function RootLayout({
                         <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-accent/10 rounded-full blur-[140px]"></div>
                     </div>
 
-                    <Navbar />
-                    <main className="min-h-screen">
+                    <LayoutWrapper>
                         {children}
-                    </main>
-                    <Footer />
+                    </LayoutWrapper>
                 </ThemeProvider>
             </body>
         </html>

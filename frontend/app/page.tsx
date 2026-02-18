@@ -138,7 +138,7 @@ export default function Home() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {[
-                            { title: "Voice Over", icon: FaUsers, desc: "Professional voice narration for commercials, documentaries, and audiobooks." },
+                            { title: "Web Design", icon: FaUsers, desc: "Professional web design ." },
                             { title: "Video Editing", icon: FaRocket, desc: "Seamless storytelling with high-end color grading and sound design." },
                             { title: "Motion Design", icon: FaMousePointer, desc: "Dynamic animations that bring static graphics to life with fluid motion." },
                             { title: "Graphic Design", icon: FaAward, desc: "Powerful visual identities and marketing assets that stand out." }

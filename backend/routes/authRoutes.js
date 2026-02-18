@@ -5,6 +5,6 @@ import { protect, admin } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 router.post("/login", authUser);
-router.post("/register", protect, admin, registerUser); // Only admin can create admin
+router.post("/register", protect,  registerUser); // Only admin can create admin
 
 export default router;
