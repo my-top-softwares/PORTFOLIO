@@ -149,7 +149,7 @@ export default function Home() {
             <GallerySection />
 
             {/* CTA Section */}
-            <section className="py-40 px-6">
+            {/* <section className="py-40 px-6">
                 <div className="max-w-7xl mx-auto glass rounded-[80px] p-24 text-center relative overflow-hidden group">
                     <div className="absolute inset-0 bg-accent/5 -z-10 group-hover:scale-110 transition-transform duration-1000"></div>
                     <div className="relative z-10">
@@ -162,7 +162,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
         </div>
     );
 }
