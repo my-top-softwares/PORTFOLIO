@@ -53,8 +53,8 @@ export default function GallerySection() {
         <section className="py-8 px-6 md:px-12 lg:px-24">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-24">
-                    <h4 className="text-accent text-[12px] font-black uppercase tracking-[0.6em] mb-6">Visual Showcase</h4>
-                    <h2 className="text-6xl md:text-8xl font-black tracking-tighter uppercase mb-8">Selected Works.</h2>
+                    <h4 className="text-accent text-xs font-semibold uppercase tracking-wider mb-4">Visual Showcase</h4>
+                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight uppercase mb-6">Selected Works.</h2>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px] mb-20">
@@ -72,10 +72,10 @@ export default function GallerySection() {
                                 className="object-cover group-hover:scale-110 transition-all duration-1000"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex flex-col justify-end p-10">
-                                <span className="text-accent text-[10px] font-black uppercase tracking-widest mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                                <span className="text-accent text-xs font-semibold uppercase tracking-wide mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
                                     {item.category}
                                 </span>
-                                <h3 className="text-3xl font-black text-white uppercase tracking-tighter translate-y-4 group-hover:translate-y-0 transition-transform duration-700 [transition-delay:100ms]">
+                                <h3 className="text-xl font-bold text-white uppercase tracking-tight translate-y-4 group-hover:translate-y-0 transition-transform duration-700 [transition-delay:100ms]">
                                     {item.title}
                                 </h3>
                             </div>

@@ -26,7 +26,7 @@ export default function Home() {
                         </div>
 
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight text-gradient">
-                            Building 
+                            Building
                             <span className="open-sans"> Digital</span> <br />
                             Realities Branding.
                         </h1>
@@ -87,22 +87,44 @@ export default function Home() {
             </section>
 
             {/* Brand Marquee */}
-            <section className="py-20 border-y border-foreground/5 bg-secondary/20 relative overflow-hidden backdrop-blur-sm">
-                <div className="flex animate-marquee whitespace-nowrap gap-20 items-center">
+            <section className="py-12 border-y border-foreground/5 bg-secondary/20 relative overflow-hidden backdrop-blur-sm">
+                <div className="flex animate-marquee whitespace-nowrap gap-28 items-center">
                     {[
-                        "YOUTUBE", "NETFLIX", "DISNEY+", "PARAMOUNT", "BEIN SPORTS", "AL JAZEERA", "BBC", "HBO", "SONY"
+                        { name: "YouTube", domain: "youtube.com" },
+                        { name: "Netflix", domain: "netflix.com" },
+                        { name: "Disney", domain: "disney.com" },
+                        { name: "Paramount", domain: "paramount.com" },
+                        { name: "Sony", domain: "sony.com" }
                     ].map((brand, i) => (
-                        <span key={i} className="text-2xl md:text-4xl font-bold outline-text hover:text-foreground transition-colors cursor-default">
-                            {brand}
-                        </span>
+                        <div key={i} className="flex items-center gap-4 group">
+                            <img
+                                src={`https://logo.clearbit.com/${brand.domain}`}
+                                alt={brand.name}
+                                className="h-10 md:h-14 grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                            />
+                            <span className="text-xl md:text-2xl font-bold text-text-dim group-hover:text-foreground transition-colors">
+                                {brand.name}
+                            </span>
+                        </div>
                     ))}
                     {/* Repeat for seamless loop */}
                     {[
-                        "YOUTUBE", "NETFLIX", "DISNEY+", "PARAMOUNT", "BEIN SPORTS", "AL JAZEERA", "BBC", "HBO", "SONY"
+                        { name: "YouTube", domain: "youtube.com" },
+                        { name: "Netflix", domain: "netflix.com" },
+                        { name: "Disney", domain: "disney.com" },
+                        { name: "Paramount", domain: "paramount.com" },
+                        { name: "Sony", domain: "sony.com" }
                     ].map((brand, i) => (
-                        <span key={i + '2'} className="text-2xl md:text-4xl font-bold outline-text hover:text-foreground transition-colors cursor-default">
-                            {brand}
-                        </span>
+                        <div key={i + '2'} className="flex items-center gap-4 group">
+                            <img
+                                src={`https://logo.clearbit.com/${brand.domain}`}
+                                alt={brand.name}
+                                className="h-10 md:h-14 grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                            />
+                            <span className="text-xl md:text-2xl font-bold text-text-dim group-hover:text-foreground transition-colors">
+                                {brand.name}
+                            </span>
+                        </div>
                     ))}
                 </div>
             </section>
@@ -151,20 +173,20 @@ export default function Home() {
             <GallerySection />
 
             {/* CTA Section */}
-            {/* <section className="py-40 px-6">
-                <div className="max-w-7xl mx-auto glass rounded-[80px] p-24 text-center relative overflow-hidden group">
+            <section className="py-20 md:py-40 px-6">
+                <div className="max-w-7xl mx-auto glass rounded-[60px] md:rounded-[80px] p-12 md:p-24 text-center relative overflow-hidden group">
                     <div className="absolute inset-0 bg-accent/5 -z-10 group-hover:scale-110 transition-transform duration-1000"></div>
                     <div className="relative z-10">
-                        <h2 className="text-6xl md:text-[140px] font-black tracking-tighter uppercase mb-12 leading-none text-gradient">
+                        <h2 className="text-4xl md:text-7xl font-bold tracking-tight uppercase mb-10 leading-none text-gradient">
                             LET'S <br /> WORK <br /> <span className="text-accent italic">TOGETHER.</span>
                         </h2>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-                            <Link href="/contact" className="btn-primary px-16 py-8 rounded-3xl text-sm transition-all hover:px-20">START A PROJECT</Link>
-                            <a href="mailto:alex@wallace.com" className="text-lg font-black uppercase tracking-widest text-gray-400 hover:text-white transition-colors border-b-2 border-white/5 hover:border-accent pb-2">alex@wallace.com</a>
+                            <Link href="/contact" className="btn-primary px-12 py-6 rounded-2xl text-xs font-bold uppercase tracking-wide transition-all hover:px-16">START A PROJECT</Link>
+                            <a href="mailto:contact@amina.design" className="text-base font-bold uppercase tracking-wide text-text-dim hover:text-foreground transition-colors border-b border-foreground/10 hover:border-accent pb-1">contact@amina.design</a>
                         </div>
                     </div>
                 </div>
-            </section> */}
+            </section>
         </div>
     );
 }
