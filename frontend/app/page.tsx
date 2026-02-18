@@ -97,11 +97,7 @@ export default function Home() {
                         { name: "Sony", domain: "sony.com" }
                     ].map((brand, i) => (
                         <div key={i} className="flex items-center gap-4 group">
-                            <img
-                                src={`https://logo.clearbit.com/${brand.domain}`}
-                                alt={brand.name}
-                                className="h-10 md:h-14 grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
-                            />
+
                             <span className="text-xl md:text-2xl font-bold text-text-dim group-hover:text-foreground transition-colors">
                                 {brand.name}
                             </span>
@@ -116,11 +112,7 @@ export default function Home() {
                         { name: "Sony", domain: "sony.com" }
                     ].map((brand, i) => (
                         <div key={i + '2'} className="flex items-center gap-4 group">
-                            <img
-                                src={`https://logo.clearbit.com/${brand.domain}`}
-                                alt={brand.name}
-                                className="h-10 md:h-14 grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
-                            />
+
                             <span className="text-xl md:text-2xl font-bold text-text-dim group-hover:text-foreground transition-colors">
                                 {brand.name}
                             </span>
