@@ -31,12 +31,12 @@ export default function AboutPage() {
                             {/* Stats Bubbles */}
                             <div className="absolute -top-8 -right-8 glass p-8 rounded-3xl z-20 shadow-2xl animate-bounce transition-all hover:scale-110">
                                 <div className="text-4xl font-black text-accent mb-1">10+</div>
-                                <p className="text-[10px] text-gray-400 uppercase font-black tracking-widest">Years Of <br />Experience</p>
+                                <p className="text-[10px] text-text-dim uppercase font-black tracking-widest">Years Of <br />Experience</p>
                             </div>
 
                             <div className="absolute -bottom-8 -left-8 glass p-8 rounded-3xl z-20 shadow-2xl animate-float [animation-delay:2s] hover:scale-110 transition-all">
-                                <div className="text-4xl font-black text-white mb-1">120+</div>
-                                <p className="text-[10px] text-gray-400 uppercase font-black tracking-widest">Projects <br />Completed</p>
+                                <div className="text-4xl font-black text-foreground mb-1">120+</div>
+                                <p className="text-[10px] text-text-dim uppercase font-black tracking-widest">Projects <br />Completed</p>
                             </div>
                         </div>
                     </div>
@@ -52,8 +52,8 @@ export default function AboutPage() {
                             CRAFTING <br /> <span className="text-accent italic">VISIONARY</span> <br /> SOLUTIONS.
                         </h2>
 
-                        <p className="text-gray-400 mb-10 text-xl font-light leading-relaxed max-w-xl">
-                            Based in the <span className="text-white font-bold underline decoration-accent/30 underline-offset-8">Philippines</span>, I am a strategic Multimedia Artist & UI/UX Designer who blends technical precision with creative flair.
+                        <p className="text-text-dim mb-10 text-xl font-light leading-relaxed max-w-xl">
+                            Based in the <span className="text-foreground font-bold underline decoration-accent/30 underline-offset-8">Philippines</span>, I am a strategic Multimedia Artist & UI/UX Designer who blends technical precision with creative flair.
                             <br /><br />
                             I help brands navigate the digital landscape through immersive motion graphics, intuitive interface design, and high-impact visual storytelling.
                         </p>
@@ -89,8 +89,8 @@ export default function AboutPage() {
                                     <div key={i} className="relative group">
                                         <div className="absolute -left-[41px] top-2 w-4 h-4 rounded-full bg-accent border-4 border-primary transition-transform group-hover:scale-150"></div>
                                         <span className="text-xs font-black text-accent tracking-widest mb-2 block">{exp.year}</span>
-                                        <h4 className="text-xl font-bold text-white mb-1">{exp.role}</h4>
-                                        <p className="text-sm text-gray-500 font-bold uppercase tracking-widest">{exp.company}</p>
+                                        <h4 className="text-xl font-bold text-foreground mb-1">{exp.role}</h4>
+                                        <p className="text-sm text-text-dim font-bold uppercase tracking-widest">{exp.company}</p>
                                     </div>
                                 ))}
                             </div>
@@ -109,9 +109,9 @@ export default function AboutPage() {
                                 ].map((edu, i) => (
                                     <div key={i} className="relative group">
                                         <div className="absolute -left-[41px] top-2 w-4 h-4 rounded-full bg-white/20 border-4 border-primary transition-transform group-hover:bg-accent group-hover:scale-150"></div>
-                                        <span className="text-xs font-black text-gray-500 tracking-widest mb-2 block">{edu.year}</span>
-                                        <h4 className="text-xl font-bold text-white mb-1">{edu.degree}</h4>
-                                        <p className="text-sm text-gray-500 font-bold uppercase tracking-widest">{edu.school}</p>
+                                        <span className="text-xs font-black text-text-dim tracking-widest mb-2 block">{edu.year}</span>
+                                        <h4 className="text-xl font-bold text-foreground mb-1">{edu.degree}</h4>
+                                        <p className="text-sm text-text-dim font-bold uppercase tracking-widest">{edu.school}</p>
                                     </div>
                                 ))}
                             </div>
@@ -142,7 +142,7 @@ export default function AboutPage() {
                                 <h4 className="text-xl font-black uppercase tracking-tighter mb-6">{skill.title}</h4>
                                 <ul className="space-y-3">
                                     {skill.skills.map((s, j) => (
-                                        <li key={j} className="text-sm text-gray-500 font-medium flex items-center gap-3">
+                                        <li key={j} className="text-sm text-text-dim font-medium flex items-center gap-3">
                                             <span className="w-1.5 h-1.5 rounded-full bg-accent/40"></span> {s}
                                         </li>
                                     ))}
@@ -174,7 +174,7 @@ export default function AboutPage() {
                         <div className="lg:w-1/2">
                             <h4 className="text-xs font-black uppercase tracking-[0.5em] text-accent mb-6">Mastery</h4>
                             <h2 className="text-5xl font-black tracking-tighter uppercase leading-none mb-8">Tools & <span className="text-accent italic">Software.</span></h2>
-                            <p className="text-gray-400 text-lg font-light leading-relaxed mb-10">
+                            <p className="text-text-dim text-lg font-light leading-relaxed mb-10">
                                 I leverage industry-standard software to bring complex creative visions to life. From high-fidelity design to cinematic post-production.
                             </p>
                             <button className="btn-primary group">
@@ -190,11 +190,11 @@ export default function AboutPage() {
                                 { name: "After Effects", icon: <SiAdobeaftereffects />, desc: "Cinematic Motion" }
                             ].map((tool, i) => (
                                 <div key={i} className="bg-white/[0.02] border border-white/5 p-8 rounded-[32px] hover:border-accent/20 transition-all cursor-default group">
-                                    <div className="text-3xl text-gray-600 group-hover:text-accent mb-6 transition-colors">
+                                    <div className="text-3xl text-text-dim group-hover:text-accent mb-6 transition-colors">
                                         {tool.icon}
                                     </div>
-                                    <h5 className="font-bold text-white mb-2">{tool.name}</h5>
-                                    <p className="text-[10px] text-gray-500 uppercase tracking-widest">{tool.desc}</p>
+                                    <h5 className="font-bold text-foreground mb-2">{tool.name}</h5>
+                                    <p className="text-[10px] text-text-dim uppercase tracking-widest">{tool.desc}</p>
                                 </div>
                             ))}
                         </div>

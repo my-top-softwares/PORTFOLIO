@@ -106,7 +106,7 @@ export default function PortfolioPage() {
                                 onClick={() => setFilter(cat)}
                                 className={`px-10 py-4 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${filter === cat
                                     ? "bg-accent text-black shadow-lg shadow-accent/20"
-                                    : "text-gray-500 hover:text-white"
+                                    : "text-text-dim hover:text-foreground"
                                     }`}
                             >
                                 {cat}
@@ -137,7 +137,7 @@ export default function PortfolioPage() {
                                 <h3 className="text-4xl font-black text-white uppercase tracking-tighter translate-y-4 group-hover:translate-y-0 transition-transform duration-700 [transition-delay:100ms]">
                                     {project.title}
                                 </h3>
-                                <div className="mt-6 flex items-center gap-4 text-white/40 text-[10px] uppercase font-black tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-700 [transition-delay:200ms]">
+                                <div className="mt-6 flex items-center gap-4 text-white/60 text-[10px] uppercase font-black tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-700 [transition-delay:200ms]">
                                     View Details <FaArrowRight className="group-hover:translate-x-2 transition-all" />
                                 </div>
                             </div>
@@ -149,7 +149,7 @@ export default function PortfolioPage() {
             {selectedProject && (
                 <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 md:p-12">
                     <div
-                        className="absolute inset-0 bg-black/95 backdrop-blur-3xl animate-in fade-in duration-500"
+                        className="absolute inset-0 bg-white/60 backdrop-blur animate-in fade-in duration-500"
                         onClick={() => setSelectedProject(null)}
                     ></div>
 

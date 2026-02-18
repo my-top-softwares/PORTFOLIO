@@ -6,7 +6,7 @@ export default function ServicesPage() {
         {
             name: "Starter",
             tagline: "Individual",
-            price: "499",
+            price: "50",
             icon: FaRocket,
             features: [
                 "UI/UX Design Strategy",
@@ -20,7 +20,7 @@ export default function ServicesPage() {
         {
             name: "Premium",
             tagline: "Business",
-            price: "899",
+            price: "100",
             icon: FaGem,
             featured: true,
             features: [
@@ -36,7 +36,7 @@ export default function ServicesPage() {
         {
             name: "Ultimate",
             tagline: "Enterprise",
-            price: "1599",
+            price: "200",
             icon: FaCrown,
             features: [
                 "Full Product Strategy",
@@ -67,7 +67,7 @@ export default function ServicesPage() {
                     <h1 className="text-5xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tighter text-gradient">
                         PRICING PLANS <br /> FOR <span className="text-accent italic">EVERYONE.</span>
                     </h1>
-                    <p className="text-gray-400 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed font-light">
+                    <p className="text-text-dim max-w-2xl mx-auto text-lg md:text-xl leading-relaxed font-light">
                         Flexible solutions tailored to your specific needs. From early-stage startups to established enterprises, choose the plan that scales with you.
                     </p>
                 </div>
@@ -76,7 +76,7 @@ export default function ServicesPage() {
                 <div className="flex justify-center mb-20">
                     <div className="glass p-1.5 rounded-2xl flex items-center gap-2 border border-white/5">
                         <button className="px-8 py-3 bg-accent text-black font-black text-[11px] uppercase tracking-widest rounded-xl transition-all shadow-[0_0_20px_var(--accent-glow)]">Monthly</button>
-                        <button className="px-8 py-3 text-gray-400 font-black text-[11px] uppercase tracking-widest hover:text-white transition-all">Annually</button>
+                        <button className="px-8 py-3 text-text-dim font-black text-[11px] uppercase tracking-widest hover:text-foreground transition-all">Annually</button>
                     </div>
                 </div>
 
@@ -91,7 +91,7 @@ export default function ServicesPage() {
                                 <div className="flex justify-between items-start mb-10">
                                     <div>
                                         <h3 className="text-3xl font-black uppercase tracking-tighter mb-2">{plan.name}</h3>
-                                        <p className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-500 italic">{plan.tagline}</p>
+                                        <p className="text-[11px] font-black uppercase tracking-[0.2em] text-text-dim italic">{plan.tagline}</p>
                                     </div>
                                     <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center group-hover:bg-accent group-hover:scale-110 transition-all duration-500">
                                         <plan.icon className="text-accent text-2xl group-hover:text-black transition-colors" />
@@ -99,8 +99,8 @@ export default function ServicesPage() {
                                 </div>
 
                                 <div className="flex items-baseline gap-2 mb-8">
-                                    <span className="text-6xl font-black tracking-tighter text-white">${plan.price}</span>
-                                    <span className="text-gray-500 font-black text-sm uppercase tracking-widest">/Month</span>
+                                    <span className="text-6xl font-black tracking-tighter text-foreground">${plan.price}</span>
+                                    <span className="text-text-dim font-black text-sm uppercase tracking-widest">/Month</span>
                                 </div>
 
                                 <div className={`h-1.5 w-full rounded-full ${plan.featured ? 'bg-accent' : 'bg-accent/20'}`}></div>
@@ -110,7 +110,7 @@ export default function ServicesPage() {
                             <div className="p-12 pt-4 flex-grow">
                                 <ul className="space-y-6">
                                     {plan.features.map((feature, idx) => (
-                                        <li key={idx} className="flex items-center gap-4 text-gray-300 font-medium group/item hover:text-white transition-colors">
+                                        <li key={idx} className="flex items-center gap-4 text-text-dim font-medium group/item hover:text-foreground transition-colors">
                                             <div className="w-6 h-6 rounded-lg glass flex items-center justify-center group-hover/item:border-accent transition-all">
                                                 <FaCheck className="text-accent text-[10px]" />
                                             </div>
@@ -136,7 +136,7 @@ export default function ServicesPage() {
                 <div className="mt-40 text-center p-20 glass rounded-[60px] border border-white/5 relative overflow-hidden">
                     <div className="absolute inset-0 bg-accent/5 -z-10"></div>
                     <h3 className="text-4xl md:text-5xl font-black mb-10 tracking-tighter uppercase leading-tight">Need a <span className="text-accent italic underline decoration-accent/30 underline-offset-8">Custom</span> Solution?</h3>
-                    <p className="text-gray-400 max-w-xl mx-auto mb-12 text-lg font-light leading-relaxed">
+                    <p className="text-text-dim max-w-xl mx-auto mb-12 text-lg font-light leading-relaxed">
                         If your project requirements don't fit into these plans, I offer bespoke consulting and design retainers for long-term collaborations.
                     </p>
                     <Link href="/contact" className="btn-primary px-16">LET'S CHAT <FaArrowRight className="ml-4 inline" /></Link>

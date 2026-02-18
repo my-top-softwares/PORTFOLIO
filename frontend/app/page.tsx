@@ -1,15 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowRight, FaMousePointer, FaAward, FaUsers, FaRocket, FaQuoteLeft, FaCheck, FaGithub, FaDribbble, FaLinkedinIn } from "react-icons/fa";
+import { FaArrowRight, FaMousePointer, FaAward, FaUsers, FaRocket, FaGithub, FaDribbble, FaLinkedinIn } from "react-icons/fa";
 import TestimonialsSlider from "@/components/TestimonialsSlider";
 import GallerySection from "@/components/GallerySection";
+import { useTheme } from "@/components/ThemeProvider";
 
 export default function Home() {
+    // const { theme, toggleTheme } = useTheme();
     return (
         <div className="relative">
             {/* Ambient Background Elements */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/20 rounded-full blur-[120px] animate-pulse"></div>
+                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/20 rounded-fu    ll blur-[120px] animate-pulse"></div>
                 <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent/10 rounded-full blur-[100px]"></div>
             </div>
 
