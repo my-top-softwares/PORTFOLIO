@@ -1,10 +1,14 @@
 "use client";
 import Link from "next/link";
 import { FaLinkedin, FaTwitter, FaGithub, FaInstagram, FaArrowRight, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
+import { useTheme } from "./ThemeProvider";
+
+
 
 export default function Footer() {
+    const { theme, toggleTheme } = useTheme();
     return (
-        <footer className="relative bg-primary/90 text-white py-24 w-full overflow-hidden flex flex-col items-center">
+        <footer className="relative bg-primary/90 text-foreground py-24 w-full overflow-hidden flex flex-col items-center border-t border-white/5 dark:border-white/5 border-black/5">
             {/* Geometric Background Patterns */}
             {/* <svg className="absolute inset-0 w-full h-full opacity-10 pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <path d="M0 100 L50 0 L100 100" stroke="white" strokeWidth="0.5" fill="none" />
@@ -15,10 +19,14 @@ export default function Footer() {
             <div className="relative text-white z-10 w-full max-w-7xl px-6 md:px-12 lg:px-24 grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 pb-4">
                 {/* Left Side: Branding & Info */}
                 <div>
-                    <div className="flex items-center gap-4 mb-10">
-                        <div className="bg-foreground text-background font-black w-14 h-14 flex items-center justify-center rounded-2xl text-2xl">W.</div>
-                        <span className="text-3xl font-black tracking-tighter uppercase text-foreground">Wallace</span>
-                    </div>
+                    
+                    {
+                        theme === "dark" ? (
+                            <img src="/logo.png" className="w-40 mb-8" alt="" />
+                        ) : (
+                            <img src="/logolight.png" className="w-40 mb-8" alt="" />
+                        )
+                    }
 
                     <p className="text-text-dim text-lg md:text-xl font-medium leading-relaxed mb-12 max-w-sm">
                         Empowering brands with advanced multi-modal solutions to improve digital presence and user outcomes.
