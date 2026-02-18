@@ -47,7 +47,7 @@ export default function ContactPage() {
 
                         {/* Social Connect Tile */}
                         <div className="glass p-10 rounded-[40px] border border-foreground/10">
-                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-text-dim mb-8">Social Ecosystem</p>>
+                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-text-dim mb-8">Social Ecosystem</p>
                             <div className="flex flex-wrap gap-4">
                                 {[FaTwitter, FaLinkedin, FaGithub, FaInstagram].map((Icon, i) => (
                                     <a key={i} href="#" className="w-14 h-14 glass flex items-center justify-center rounded-2xl text-foreground hover:bg-accent hover:text-black transition-all duration-500">
@@ -63,7 +63,7 @@ export default function ContactPage() {
                         <div className="glass p-12 md:p-16 rounded-[60px] border border-foreground/10 bg-white/[0.01] relative">
                             <div className="mb-12">
                                 <h3 className="text-3xl font-black uppercase tracking-tighter mb-4">Send a Transmission</h3>
-                                <p className="text-text-dim text-sm font-medium">Expected response time: Under 24 hours.</p>>
+                                <p className="text-text-dim text-sm font-medium">Expected response time: Under 24 hours.</p>
                             </div>
 
                             <form className="space-y-8">
