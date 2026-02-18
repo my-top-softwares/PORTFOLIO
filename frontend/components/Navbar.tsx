@@ -28,7 +28,11 @@ export default function Navbar() {
         <nav className="fixed top-8 left-1/2 -translate-x-1/2 w-[90%] md:w-[85%] lg:w-[75%] z-[100] px-8 py-4 flex justify-between items-center glass rounded-3xl border border-white/5 shadow-2xl overflow-hidden transition-colors duration-500">
 
             <a href="/">
-                <img src="/logo.png" alt="Logo" width={100} height={10} />
+               {theme === "dark" ? (
+                    <img src="/logo.png" alt="Logo" width={100} height={10} />
+                ) : (
+                    <img src="/logolight.png" alt="Logo" width={100} height={10} />
+                )}
             </a>
 
             <div className="hidden md:flex items-center gap-8 text-[11px] font-black uppercase tracking-[0.2em]">

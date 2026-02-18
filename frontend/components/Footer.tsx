@@ -16,23 +16,23 @@ export default function Footer() {
                 {/* Left Side: Branding & Info */}
                 <div>
                     <div className="flex items-center gap-4 mb-10">
-                        <div className="bg-black text-white font-black w-14 h-14 flex items-center justify-center rounded-2xl text-2xl">W.</div>
-                        <span className="text-3xl font-black tracking-tighter uppercase text-white">Wallace</span>
+                        <div className="bg-foreground text-background font-black w-14 h-14 flex items-center justify-center rounded-2xl text-2xl">W.</div>
+                        <span className="text-3xl font-black tracking-tighter uppercase text-foreground">Wallace</span>
                     </div>
 
-                    <p className="text-white/70 text-lg md:text-xl font-medium leading-relaxed mb-12 max-w-sm">
+                    <p className="text-text-dim text-lg md:text-xl font-medium leading-relaxed mb-12 max-w-sm">
                         Empowering brands with advanced multi-modal solutions to improve digital presence and user outcomes.
                     </p>
 
                     <div className="flex gap-6 mb-16">
                         {[FaTwitter, FaLinkedin, FaGithub, FaInstagram].map((Icon, i) => (
-                            <a key={i} href="#" className="text-white/60 hover:text-white transition-all duration-500 hover:-translate-y-1">
+                            <a key={i} href="#" className="text-text-dim hover:text-foreground transition-all duration-500 hover:-translate-y-1">
                                 <Icon size={24} />
                             </a>
                         ))}
                     </div>
                     <div className="w-full pt-8 items-center justify-center text-center">
-                        <p className="text-white text-[10px] font-normal uppercase justify-center">
+                        <p className="text-text-dim text-[10px] font-normal uppercase justify-center">
                             Copyright © 2026 Wallace. Studio. All Rights Reserved.
                         </p>
                     </div>
@@ -41,27 +41,27 @@ export default function Footer() {
                 {/* Right Side: Navigation Columns */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
                     <div>
-                        <h5 className="font-black uppercase tracking-[0.3em] text-[11px] mb-10 text-white">Site Map</h5>
-                        <ul className="space-y-5 text-white/60 font-bold text-[13px] tracking-wide">
-                            <li><Link href="/" className="hover:text-white transition-all block">Project Home</Link></li>
-                            <li><Link href="/about" className="hover:text-white transition-all block">The Story</Link></li>
-                            <li><Link href="/portfolio" className="hover:text-white transition-all block">Case Studies</Link></li>
+                        <h5 className="font-black uppercase tracking-[0.3em] text-[11px] mb-10 text-foreground">Site Map</h5>
+                        <ul className="space-y-5 text-text-dim font-bold text-[13px] tracking-wide">
+                            <li><Link href="/" className="hover:text-foreground transition-all block">Project Home</Link></li>
+                            <li><Link href="/about" className="hover:text-foreground transition-all block">The Story</Link></li>
+                            <li><Link href="/portfolio" className="hover:text-foreground transition-all block">Case Studies</Link></li>
                         </ul>
                     </div>
                     <div>
-                        <h5 className="font-black uppercase tracking-[0.3em] text-[11px] mb-10 text-white">Legal</h5>
-                        <ul className="space-y-5 text-white/60 font-bold text-[13px] tracking-wide">
-                            <li><Link href="#" className="hover:text-white transition-all block">Privacy Policy</Link></li>
-                            <li><Link href="#" className="hover:text-white transition-all block">Terms of Service</Link></li>
-                            <li><Link href="#" className="hover:text-white transition-all block">Media Kit</Link></li>
+                        <h5 className="font-black uppercase tracking-[0.3em] text-[11px] mb-10 text-foreground">Legal</h5>
+                        <ul className="space-y-5 text-text-dim font-bold text-[13px] tracking-wide">
+                            <li><Link href="#" className="hover:text-foreground transition-all block">Privacy Policy</Link></li>
+                            <li><Link href="#" className="hover:text-foreground transition-all block">Terms of Service</Link></li>
+                            <li><Link href="#" className="hover:text-foreground transition-all block">Media Kit</Link></li>
                         </ul>
                     </div>
                     <div>
-                        <h5 className="font-black uppercase tracking-[0.3em] text-[11px] mb-10 text-white">Solutions</h5>
-                        <ul className="space-y-5 text-white/60 font-bold text-[13px] tracking-wide">
-                            <li><Link href="/portfolio" className="hover:text-white transition-all block">Video Production</Link></li>
-                            <li><Link href="/portfolio" className="hover:text-white transition-all block">Motion Design</Link></li>
-                            <li><Link href="/portfolio" className="hover:text-white transition-all block">Voice Narration</Link></li>
+                        <h5 className="font-black uppercase tracking-[0.3em] text-[11px] mb-10 text-foreground">Solutions</h5>
+                        <ul className="space-y-5 text-text-dim font-bold text-[13px] tracking-wide">
+                            <li><Link href="/portfolio" className="hover:text-foreground transition-all block">Video Production</Link></li>
+                            <li><Link href="/portfolio" className="hover:text-foreground transition-all block">Motion Design</Link></li>
+                            <li><Link href="/portfolio" className="hover:text-foreground transition-all block">Voice Narration</Link></li>
                         </ul>
                     </div>
                 </div>
