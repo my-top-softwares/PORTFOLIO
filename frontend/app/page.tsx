@@ -32,7 +32,7 @@ export default function Home() {
                         </h1>
 
                         <p className="text-text-dim max-w-xl mb-12 text-lg md:text-xl leading-relaxed font-light mx-auto lg:mx-0">
-                            I am <span className="text-foreground font-bold">Alex Wallace</span>, a Senior <span className="text-accent italic">Multimedia Specialist</span> specialized in high-end video production, immersive motion design, and professional voice narration.
+                            I am <span className="text-foreground font-bold">Amina</span>, a Senior <span className="text-accent italic">Multimedia Specialist</span> specialized in high-end video production, immersive motion design, and professional voice narration.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center gap-8 justify-center lg:justify-start">
