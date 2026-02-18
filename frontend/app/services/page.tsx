@@ -11,7 +11,7 @@ export default function ServicesPage() {
         {
             name: "Starter",
             tagline: "Individual",
-            price: { monthly: "50", annually: "100" },
+            price: { monthly: "50", annually: "125" },
             icon: FaRocket,
             features: [
                 "UI/UX Design Strategy",
