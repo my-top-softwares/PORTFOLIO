@@ -56,7 +56,7 @@ export default function Home() {
                         <div className="relative w-full aspect-[4/5] rounded-[48px] overflow-hidden glass p-4 animate-float">
                             <div className="relative w-full h-full rounded-[36px] overflow-hidden  transition-all duration-1000 group">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1888&auto=format&fit=crop"
+                                    src="/myimage.jpeg"
                                     alt="Amina - Multimedia Specialist"
                                     fill
                                     className="object-cover  transition-transform duration-1000"
