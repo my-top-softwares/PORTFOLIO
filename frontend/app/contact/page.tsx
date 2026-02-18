@@ -19,9 +19,9 @@ export default function ContactPage() {
 
                     {/* Left Column: Headline & Status */}
                     <div className="lg:col-span-12 mb-20">
-                        <div className="inline-flex items-center gap-4 px-5 py-2 rounded-full glass mb-10 border border-white/10">
+                        <div className="inline-flex items-center gap-4 px-5 py-2 rounded-full glass mb-10 border border-foreground/10">
                             <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
-                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white">Opening for partnerships</span>
+                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground">Opening for partnerships</span>
                         </div>
                         <h1 className="text-6xl md:text-[120px] font-black tracking-tighter leading-[0.85] uppercase text-gradient">
                             HAVE A PROJECT <br /> <span className="text-accent italic">IN MIND?</span>
@@ -36,21 +36,21 @@ export default function ContactPage() {
                                 { icon: FaMapMarkerAlt, label: "Current Location", val: "Mogadishu Somalia", color: "text-red-400" },
                                 { icon: FaPhoneAlt, label: "Direct Support", val: "+252 618 948 948", color: "text-green-400" }
                             ].map((item, i) => (
-                                <div key={i} className="glass p-10 rounded-[40px] border border-white/5 hover:border-white/10 transition-all group cursor-pointer relative overflow-hidden">
+                                <div key={i} className="glass p-10 rounded-[40px] border border-foreground/10 hover:border-foreground/20 transition-all group cursor-pointer relative overflow-hidden">
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full translate-x-16 -translate-y-16 group-hover:scale-110 transition-transform duration-700"></div>
                                     <item.icon className={`${item.color} text-2xl mb-6`} />
-                                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-500 mb-2">{item.label}</p>
-                                    <h3 className="text-xl font-bold text-white group-hover:text-accent transition-colors">{item.val}</h3>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-text-dim mb-2">{item.label}</p>
+                                    <h3 className="text-xl font-bold text-foreground group-hover:text-accent transition-colors">{item.val}</h3>
                                 </div>
                             ))}
                         </div>
 
                         {/* Social Connect Tile */}
-                        <div className="glass p-10 rounded-[40px] border border-white/5">
-                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-500 mb-8">Social Ecosystem</p>
+                        <div className="glass p-10 rounded-[40px] border border-foreground/10">
+                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-text-dim mb-8">Social Ecosystem</p>>
                             <div className="flex flex-wrap gap-4">
                                 {[FaTwitter, FaLinkedin, FaGithub, FaInstagram].map((Icon, i) => (
-                                    <a key={i} href="#" className="w-14 h-14 glass flex items-center justify-center rounded-2xl text-white hover:bg-accent hover:text-black transition-all duration-500">
+                                    <a key={i} href="#" className="w-14 h-14 glass flex items-center justify-center rounded-2xl text-foreground hover:bg-accent hover:text-black transition-all duration-500">
                                         <Icon size={18} />
                                     </a>
                                 ))}
@@ -60,31 +60,31 @@ export default function ContactPage() {
 
                     {/* Right Side: High-End Form */}
                     <div className="lg:col-span-7">
-                        <div className="glass p-12 md:p-16 rounded-[60px] border border-white/5 bg-white/[0.01] relative">
+                        <div className="glass p-12 md:p-16 rounded-[60px] border border-foreground/10 bg-white/[0.01] relative">
                             <div className="mb-12">
                                 <h3 className="text-3xl font-black uppercase tracking-tighter mb-4">Send a Transmission</h3>
-                                <p className="text-gray-500 text-sm font-medium">Expected response time: Under 24 hours.</p>
+                                <p className="text-text-dim text-sm font-medium">Expected response time: Under 24 hours.</p>>
                             </div>
 
                             <form className="space-y-8">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div className="relative group">
-                                        <input type="text" className="w-full bg-transparent border-b border-white/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg" placeholder="Full Name" />
+                                        <input type="text" className="w-full bg-transparent border-b border-foreground/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg text-foreground" placeholder="Full Name" />
                                         <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-500 group-focus-within:w-full"></div>
                                     </div>
                                     <div className="relative group">
-                                        <input type="email" className="w-full bg-transparent border-b border-white/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg" placeholder="Email Address" />
+                                        <input type="email" className="w-full bg-transparent border-b border-foreground/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg text-foreground" placeholder="Email Address" />
                                         <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-500 group-focus-within:w-full"></div>
                                     </div>
                                 </div>
 
                                 <div className="relative group">
-                                    <input type="text" className="w-full bg-transparent border-b border-white/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg" placeholder="Interested In" />
+                                    <input type="text" className="w-full bg-transparent border-b border-foreground/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg text-foreground" placeholder="Interested In" />
                                     <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-500 group-focus-within:w-full"></div>
                                 </div>
 
                                 <div className="relative group">
-                                    <textarea rows={4} className="w-full bg-transparent border-b border-white/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg resize-none" placeholder="Message Details"></textarea>
+                                    <textarea rows={4} className="w-full bg-transparent border-b border-foreground/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg resize-none text-foreground" placeholder="Message Details"></textarea>
                                     <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-500 group-focus-within:w-full"></div>
                                 </div>
 

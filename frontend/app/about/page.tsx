@@ -1,7 +1,17 @@
 import Image from "next/image";
-import { FaEnvelope, FaDownload, FaBriefcase, FaArrowRight, FaGraduationCap, FaCode, FaPaintBrush, FaVideo, FaLayerGroup } from "react-icons/fa";
-import { SiAdobephotoshop, SiAdobepremierepro, SiAdobeaftereffects, SiFigma, SiBlender, SiNextdotjs, SiTailwindcss, SiTypescript, SiFramer } from "react-icons/si";
 import Link from "next/link";
+import { FaEnvelope, FaDownload, FaBriefcase, FaArrowRight, FaGraduationCap, FaCode, FaPaintBrush, FaVideo, FaLayerGroup } from "react-icons/fa";
+import {
+    SiAdobephotoshop,
+    SiAdobepremierepro,
+    SiAdobeaftereffects,
+    SiFigma,
+    SiBlender,
+    SiAdobexd,
+    SiCanva,
+    SiDavinciresolve
+} from "react-icons/si";
+
 
 export default function AboutPage() {
     return (
@@ -43,7 +53,7 @@ export default function AboutPage() {
 
                     {/* About Text */}
                     <div className="lg:w-1/2">
-                        <div className="inline-flex items-center gap-4 px-4 py-2 rounded-full glass mb-8 border border-white/5">
+                        <div className="inline-flex items-center gap-4 px-4 py-2 rounded-full glass mb-8 border border-foreground/10">
                             <span className="w-2 h-2 bg-accent rounded-full"></span>
                             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">Multimedia Professional</span>
                         </div>
@@ -80,7 +90,7 @@ export default function AboutPage() {
                                 <FaBriefcase className="text-accent text-2xl" />
                                 <h3 className="text-3xl font-black uppercase tracking-tighter">Professional Experience</h3>
                             </div>
-                            <div className="space-y-10 border-l border-white/5 pl-8">
+                            <div className="space-y-10 border-l border-foreground/10 pl-8">
                                 {[
                                     { year: "2022 - Present", role: "Senior Multimedia Designer", company: "Pixel Craft Studio" },
                                     { year: "2019 - 2022", role: "UI/UX Specialist", company: "Tech Horizon Global" },
@@ -102,7 +112,7 @@ export default function AboutPage() {
                                 <FaGraduationCap className="text-accent text-2xl" />
                                 <h3 className="text-3xl font-black uppercase tracking-tighter">Academic History</h3>
                             </div>
-                            <div className="space-y-10 border-l border-white/5 pl-8">
+                            <div className="space-y-10 border-l border-foreground/10 pl-8">
                                 {[
                                     { year: "2014 - 2016", degree: "Master of Digital Arts", school: "Academy of Visual Arts" },
                                     { year: "2010 - 2014", degree: "B.S. in Multimedia Arts", school: "State University PH" }
@@ -135,7 +145,7 @@ export default function AboutPage() {
                             { icon: <FaCode />, title: "Web Development", skills: ["Next.js", "TypeScript", "GSAP"] },
                             { icon: <FaPaintBrush />, title: "Branding", skills: ["Logo Design", "Style Guides", "Typography"] }
                         ].map((skill, i) => (
-                            <div key={i} className="glass p-10 rounded-[40px] border-white/5 hover:border-accent/40 transition-all group">
+                            <div key={i} className="glass p-10 rounded-[40px] border border-foreground/10 hover:border-accent/40 transition-all group">
                                 <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-8 text-accent text-2xl group-hover:bg-accent group-hover:text-black transition-all">
                                     {skill.icon}
                                 </div>
@@ -153,21 +163,22 @@ export default function AboutPage() {
 
                     {/* Tech Stack Icons */}
                     <div className="mt-20 flex flex-wrap justify-center gap-10 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-1000">
-                        <SiNextdotjs size={40} />
-                        <SiTypescript size={40} />
-                        <SiTailwindcss size={40} />
-                        <SiFramer size={40} />
-                        <SiFigma size={40} />
                         <SiAdobephotoshop size={40} />
                         <SiAdobepremierepro size={40} />
                         <SiAdobeaftereffects size={40} />
+                        <SiFigma size={40} />
+                        <SiBlender size={40} />
+                        <SiAdobexd size={40} />
+                        <SiCanva size={40} />
+                        <SiDavinciresolve size={40} />
+
                     </div>
                 </div>
             </section>
 
             {/* Tools & Software Section */}
             <section className="px-6 md:px-12 lg:px-24">
-                <div className="max-w-7xl mx-auto glass rounded-[60px] p-20 border-white/5 relative overflow-hidden">
+                <div className="max-w-7xl mx-auto glass rounded-[60px] p-20 border border-foreground/10 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 blur-[120px] rounded-full -mr-20 -mt-20 pointer-events-none"></div>
 
                     <div className="flex flex-col lg:flex-row gap-20 items-center">
@@ -189,7 +200,7 @@ export default function AboutPage() {
                                 { name: "Blender", icon: <SiBlender />, desc: "3D Modeling & Rendering" },
                                 { name: "After Effects", icon: <SiAdobeaftereffects />, desc: "Cinematic Motion" }
                             ].map((tool, i) => (
-                                <div key={i} className="bg-white/[0.02] border border-white/5 p-8 rounded-[32px] hover:border-accent/20 transition-all cursor-default group">
+                                <div key={i} className="bg-white/[0.02] border border-foreground/10 p-8 rounded-[32px] hover:border-accent/20 transition-all cursor-default group">
                                     <div className="text-3xl text-text-dim group-hover:text-accent mb-6 transition-colors">
                                         {tool.icon}
                                     </div>

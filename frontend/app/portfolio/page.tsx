@@ -89,7 +89,7 @@ export default function PortfolioPage() {
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12">
                     <div className="animate-fade-up">
-                        <div className="inline-flex items-center gap-4 px-4 py-2 rounded-full glass mb-8 border border-white/5">
+                        <div className="inline-flex items-center gap-4 px-4 py-2 rounded-full glass mb-8 border border-foreground/10">
                             <span className="w-2 h-2 bg-accent rounded-full animate-ping"></span>
                             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">Selected Case Studies</span>
                         </div>
@@ -99,7 +99,7 @@ export default function PortfolioPage() {
                     </div>
 
                     {/* Category Filter */}
-                    <div className="flex gap-4 glass p-2 rounded-2xl border border-white/10 animate-fade-up stagger-1">
+                    <div className="flex gap-4 glass p-2 rounded-2xl border border-foreground/10 animate-fade-up stagger-1">
                         {categories.map((cat) => (
                             <button
                                 key={cat}
@@ -153,8 +153,8 @@ export default function PortfolioPage() {
                         onClick={() => setSelectedProject(null)}
                     ></div>
 
-                    <div className="relative w-full max-w-6xl max-h-[90vh] glass rounded-[60px] overflow-y-auto border border-white/10 shadow-2xl animate-in zoom-in slide-in-from-bottom-10 duration-700">
-                        <div className="sticky top-0 bg-primary/40 backdrop-blur-3xl z-30 flex justify-between items-center px-16 py-10 border-b border-white/5">
+                    <div className="relative w-full max-w-6xl max-h-[90vh] glass rounded-[60px] overflow-y-auto border border-foreground/10 shadow-2xl animate-in zoom-in slide-in-from-bottom-10 duration-700">
+                        <div className="sticky top-0 bg-primary/40 backdrop-blur-3xl z-30 flex justify-between items-center px-16 py-10 border-b border-foreground/10">
                             <div>
                                 <h2 className="text-4xl font-black uppercase tracking-tighter mb-2 text-gradient">{selectedProject.title}</h2>
                                 <p className="text-[10px] font-black uppercase tracking-[0.5em] text-accent/60">{selectedProject.category}</p>
@@ -171,7 +171,7 @@ export default function PortfolioPage() {
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-24">
                                 <div className="lg:col-span-2">
                                     <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-accent mb-8">Concept & Vision</h4>
-                                    <p className="text-2xl text-gray-300 font-light leading-relaxed mb-12">
+                                    <p className="text-2xl text-text-dim font-light leading-relaxed mb-12">
                                         {selectedProject.desc}
                                     </p>
 
@@ -185,11 +185,11 @@ export default function PortfolioPage() {
                                     </div>
                                 </div>
 
-                                <div className="glass p-10 rounded-[40px] border-white/5 h-fit">
+                                <div className="glass p-10 rounded-[40px] border border-foreground/10 h-fit">
                                     <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-accent mb-8">Technical Stack</h4>
                                     <div className="flex flex-wrap gap-3">
                                         {selectedProject.tech.map((t: string, i: number) => (
-                                            <span key={i} className="px-5 py-3 glass rounded-2xl text-[10px] font-black uppercase tracking-widest text-gray-400">
+                                            <span key={i} className="px-5 py-3 glass rounded-2xl text-[10px] font-black uppercase tracking-widest text-text-dim">
                                                 {t}
                                             </span>
                                         ))}
@@ -200,7 +200,7 @@ export default function PortfolioPage() {
                             <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-accent mb-12 text-center">Visual Case Study</h4>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                 {selectedProject.gallery.map((img: string, i: number) => (
-                                    <div key={i} className="group relative aspect-video rounded-[40px] overflow-hidden glass p-3 border border-white/5">
+                                    <div key={i} className="group relative aspect-video rounded-[40px] overflow-hidden glass p-3 border border-foreground/10">
                                         <div className="relative w-full h-full rounded-[30px] overflow-hidden">
                                             <Image
                                                 src={img}

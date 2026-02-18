@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 export const metadata: Metadata = {
     title: "Amina | UI & UX Designer",
     icons: {
-        icon: '/logo.png',
+        icon: '/logoheader.png',
     },
     description: "Personal portfolio of Amina, a passionate UI/UX Designer based in the Philippines.",
 };

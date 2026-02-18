@@ -18,6 +18,9 @@
     --card-bg: rgba(255, 255, 255, 0.7);
     --text-dim: #64748b;
     --glass-border: rgba(0, 0, 0, 0.05);
+    --text-gradient-start: #1e293b;
+    --text-gradient-end: rgba(30, 41, 59, 0.6);
+    --outline-color: rgba(0, 0, 0, 0.1);
 }
 
 [data-theme='dark'],
@@ -34,6 +37,9 @@
     --card-bg: rgba(0, 46, 64, 0.5);
     --text-dim: #94a3b8;
     --glass-border: rgba(255, 255, 255, 0.08);
+    --text-gradient-start: #ffffff;
+    --text-gradient-end: rgba(255, 255, 255, 0.4);
+    --outline-color: rgba(255, 255, 255, 0.15);
 }
 
 @theme inline {
@@ -77,7 +83,7 @@ body {
 
 /* Text Effects */
 .text-gradient {
-    background: linear-gradient(to bottom right, #fff 60%, rgba(255, 255, 255, 0.4));
+    background: linear-gradient(to bottom right, var(--text-gradient-start) 60%, var(--text-gradient-end));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -168,11 +174,11 @@ body {
 }
 
 .btn-outline {
-    @apply border border-white/10 px-8 py-4 text-white font-extrabold uppercase tracking-widest text-[12px] transition-all duration-500 rounded-xl hover:border-accent hover:text-accent hover:bg-accent/5;
+    @apply border border-foreground/10 px-8 py-4 text-foreground font-extrabold uppercase tracking-widest text-[12px] transition-all duration-500 rounded-xl hover:border-accent hover:text-accent hover:bg-accent/5;
 }
 
 .outline-text {
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+    -webkit-text-stroke: 1px var(--outline-color);
     color: transparent;
 }
 

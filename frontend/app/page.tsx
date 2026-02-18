@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowRight, FaMousePointer, FaAward, FaUsers, FaRocket, FaGithub, FaDribbble, FaLinkedinIn } from "react-icons/fa";
+import { FaArrowRight, FaMousePointer, FaAward, FaUsers, FaRocket, FaGithub, FaDribbble, FaLinkedinIn,FaBehance } from "react-icons/fa";
 import TestimonialsSlider from "@/components/TestimonialsSlider";
 import GallerySection from "@/components/GallerySection";
 import { useTheme } from "@/components/ThemeProvider";
@@ -42,7 +42,7 @@ export default function Home() {
                             </Link>
 
                             <div className="flex items-center gap-4">
-                                {[FaGithub, FaDribbble, FaLinkedinIn].map((Icon, i) => (
+                                {[FaBehance, FaDribbble, FaLinkedinIn].map((Icon, i) => (
                                     <a key={i} href="#" className="w-12 h-12 rounded-xl glass flex items-center justify-center hover:border-accent hover:text-accent transition-all hover:-translate-y-1 text-foreground">
                                         <Icon />
                                     </a>
@@ -87,7 +87,7 @@ export default function Home() {
             </section>
 
             {/* Brand Marquee */}
-            <section className="py-20 border-y border-white/5 bg-secondary/20 relative overflow-hidden backdrop-blur-sm">
+            <section className="py-20 border-y border-foreground/5 bg-secondary/20 relative overflow-hidden backdrop-blur-sm">
                 <div className="flex animate-marquee whitespace-nowrap gap-20 items-center">
                     {[
                         "YOUTUBE", "NETFLIX", "DISNEY+", "PARAMOUNT", "BEIN SPORTS", "AL JAZEERA", "BBC", "HBO", "SONY"

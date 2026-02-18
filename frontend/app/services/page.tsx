@@ -60,7 +60,7 @@ export default function ServicesPage() {
 
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-24">
-                    <div className="inline-flex items-center gap-4 px-4 py-2 rounded-full glass mb-8 border border-white/5">
+                    <div className="inline-flex items-center gap-4 px-4 py-2 rounded-full glass mb-8 border border-foreground/10">
                         <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
                         <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">Professional Packages</span>
                     </div>
@@ -74,7 +74,7 @@ export default function ServicesPage() {
 
                 {/* Plan Toggle Aesthetic */}
                 <div className="flex justify-center mb-20">
-                    <div className="glass p-1.5 rounded-2xl flex items-center gap-2 border border-white/5">
+                    <div className="glass p-1.5 rounded-2xl flex items-center gap-2 border border-foreground/10">
                         <button className="px-8 py-3 bg-accent text-black font-black text-[11px] uppercase tracking-widest rounded-xl transition-all shadow-[0_0_20px_var(--accent-glow)]">Monthly</button>
                         <button className="px-8 py-3 text-text-dim font-black text-[11px] uppercase tracking-widest hover:text-foreground transition-all">Annually</button>
                     </div>
@@ -84,7 +84,7 @@ export default function ServicesPage() {
                     {plans.map((plan, i) => (
                         <div
                             key={i}
-                            className={`group relative glass rounded-[40px] flex flex-col transition-all duration-700 hover:-translate-y-4 hover:shadow-2xl ${plan.featured ? 'border-accent/30 shadow-[0_30px_60px_-15px_rgba(239,134,33,0.15)] scale-105 z-10' : 'border-white/5'}`}
+                            className={`group relative glass rounded-[40px] flex flex-col transition-all duration-700 hover:-translate-y-4 hover:shadow-2xl ${plan.featured ? 'border-accent/30 shadow-[0_30px_60px_-15px_rgba(239,134,33,0.15)] scale-105 z-10' : 'border-foreground/10'}`}
                         >
                             {/* Card Header Section */}
                             <div className="p-12 pb-8">
@@ -124,7 +124,7 @@ export default function ServicesPage() {
                             <div className="p-10 text-center">
                                 <Link
                                     href="/contact"
-                                    className={`w-full py-5 rounded-2xl block font-black uppercase tracking-widest text-[11px] transition-all duration-500 ${plan.featured ? 'bg-accent text-black shadow-lg shadow-accent/20 hover:shadow-accent/40' : 'btn-outline border-white/10 hover:border-accent hover:text-accent'}`}
+                                    className={`w-full py-5 rounded-2xl block font-black uppercase tracking-widest text-[11px] transition-all duration-500 ${plan.featured ? 'bg-accent text-black shadow-lg shadow-accent/20 hover:shadow-accent/40' : 'btn-outline border-foreground/10 hover:border-accent hover:text-accent'}`}
                                 >
                                     GET STARTED <FaArrowRight className="inline ml-2" />
                                 </Link>
@@ -133,7 +133,7 @@ export default function ServicesPage() {
                     ))}
                 </div>
 
-                <div className="mt-40 text-center p-20 glass rounded-[60px] border border-white/5 relative overflow-hidden">
+                <div className="mt-40 text-center p-20 glass rounded-[60px] border border-foreground/10 relative overflow-hidden">
                     <div className="absolute inset-0 bg-accent/5 -z-10"></div>
                     <h3 className="text-4xl md:text-5xl font-black mb-10 tracking-tighter uppercase leading-tight">Need a <span className="text-accent italic underline decoration-accent/30 underline-offset-8">Custom</span> Solution?</h3>
                     <p className="text-text-dim max-w-xl mx-auto mb-12 text-lg font-light leading-relaxed">
