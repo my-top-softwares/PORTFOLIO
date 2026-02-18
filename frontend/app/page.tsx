@@ -26,9 +26,9 @@ export default function Home() {
                         </div>
 
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight text-gradient">
-                            Building<br />
-                            <span className="text-accent italic">Digital</span> <br />
-                            Realities.
+                            Building 
+                            <span className="open-sans"> Digital</span> <br />
+                            Realities Branding.
                         </h1>
 
                         <p className="text-text-dim max-w-xl mb-8 text-base md:text-lg leading-relaxed font-normal mx-auto lg:mx-0">
