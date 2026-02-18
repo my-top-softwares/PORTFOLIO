@@ -6,7 +6,25 @@
 }
 
 :root {
+    /* Default Light Mode */
+    --background: #F9F9F7;
+    --background-gradient: #F9F9F7;
+    --foreground: #1e293b;
+    --primary: #ffffff;
+    --accent: #ef8621;
+    --accent-glow: rgba(239, 134, 33, 0.2);
+    --accent-muted: rgba(239, 134, 33, 0.05);
+    --secondary: #f1f5f9;
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --text-dim: #64748b;
+    --glass-border: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='dark'],
+.dark {
+    /* Dark Mode */
     --background: #003043;
+    --background-gradient: linear-gradient(135deg, #003a52 0%, #00212e 100%);
     --foreground: #ffffff;
     --primary: #002e40;
     --accent: #ef8621;
@@ -32,7 +50,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, #003a52 0%, #00212e 100%);
+    background: var(--background-gradient);
     background-attachment: fixed;
     color: var(--foreground);
     font-family: var(--font-outfit);
@@ -40,6 +58,7 @@ body {
     padding: 0;
     overflow-x: hidden;
     min-height: 100vh;
+    transition: background 0.5s ease, color 0.5s ease;
 }
 
 /* Glassmorphism */

@@ -29,8 +29,8 @@ export default function Home() {
                             EXPERIENCES.
                         </h1>
 
-                        <p className="text-gray-400 max-w-xl mb-12 text-lg md:text-xl leading-relaxed font-light mx-auto lg:mx-0">
-                            I am <span className="text-white font-bold">Alex Wallace</span>, a Senior <span className="text-accent italic">Multimedia Specialist</span> specialized in high-end video production, immersive motion design, and professional voice narration.
+                        <p className="text-text-dim max-w-xl mb-12 text-lg md:text-xl leading-relaxed font-light mx-auto lg:mx-0">
+                            I am <span className="text-foreground font-bold">Alex Wallace</span>, a Senior <span className="text-accent italic">Multimedia Specialist</span> specialized in high-end video production, immersive motion design, and professional voice narration.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center gap-8 justify-center lg:justify-start">
@@ -41,7 +41,7 @@ export default function Home() {
 
                             <div className="flex items-center gap-4">
                                 {[FaGithub, FaDribbble, FaLinkedinIn].map((Icon, i) => (
-                                    <a key={i} href="#" className="w-12 h-12 rounded-xl glass flex items-center justify-center hover:border-accent hover:text-accent transition-all hover:-translate-y-1">
+                                    <a key={i} href="#" className="w-12 h-12 rounded-xl glass flex items-center justify-center hover:border-accent hover:text-accent transition-all hover:-translate-y-1 text-foreground">
                                         <Icon />
                                     </a>
                                 ))}
@@ -66,7 +66,7 @@ export default function Home() {
                             {/* Floating Stats */}
                             <div className="absolute -left-4 top-1/4 glass p-6 rounded-3xl animate-float [animation-delay:1s]">
                                 <h4 className="text-3xl font-black text-accent">50+</h4>
-                                <p className="text-[10px] uppercase font-black tracking-widest text-gray-400">Projects</p>
+                                <p className="text-[10px] uppercase font-black tracking-widest text-text-dim">Projects</p>
                             </div>
 
                             <div className="absolute -right-8 bottom-1/4 glass p-6 rounded-3xl animate-float [animation-delay:2s]">
@@ -77,7 +77,7 @@ export default function Home() {
                                         </div>
                                     ))}
                                 </div>
-                                <p className="text-[10px] uppercase font-black tracking-widest text-gray-400">Happy Clients</p>
+                                <p className="text-[10px] uppercase font-black tracking-widest text-text-dim">Happy Clients</p>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@ export default function Home() {
                     {[
                         "YOUTUBE", "NETFLIX", "DISNEY+", "PARAMOUNT", "BEIN SPORTS", "AL JAZEERA", "BBC", "HBO", "SONY"
                     ].map((brand, i) => (
-                        <span key={i} className="text-4xl md:text-6xl  font-black outline-text hover:text-white transition-colors cursor-default">
+                        <span key={i} className="text-4xl md:text-6xl  font-black outline-text hover:text-foreground transition-colors cursor-default">
                             {brand}
                         </span>
                     ))}
@@ -98,7 +98,7 @@ export default function Home() {
                     {[
                         "YOUTUBE", "NETFLIX", "DISNEY+", "PARAMOUNT", "BEIN SPORTS", "AL JAZEERA", "BBC", "HBO", "SONY"
                     ].map((brand, i) => (
-                        <span key={i + '2'} className="text-4xl md:text-6xl font-black outline-text hover:text-white transition-colors cursor-default">
+                        <span key={i + '2'} className="text-4xl md:text-6xl font-black outline-text hover:text-foreground transition-colors cursor-default">
                             {brand}
                         </span>
                     ))}
@@ -115,7 +115,7 @@ export default function Home() {
                                 MULTIMEDIA <br /> <span className="text-accent italic">CRAFT.</span>
                             </h2>
                         </div>
-                        <p className="text-gray-400 max-w-sm mb-4 font-light leading-relaxed">
+                        <p className="text-text-dim max-w-sm mb-4 font-light leading-relaxed">
                             Transforming raw concepts into cinematic experiences using industry-leading tools and narrative techniques.
                         </p>
                     </div>
@@ -132,7 +132,7 @@ export default function Home() {
                                     <s.icon className="text-accent text-2xl group-hover:text-black transition-colors" />
                                 </div>
                                 <h3 className="text-2xl font-black mb-4 tracking-tighter uppercase leading-tight">{s.title}</h3>
-                                <p className="text-gray-500 text-sm leading-relaxed mb-8">{s.desc}</p>
+                                <p className="text-text-dim text-sm leading-relaxed mb-8">{s.desc}</p>
                                 <Link href="/portfolio" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-accent group-hover:gap-4 transition-all">
                                     View Projects <FaArrowRight />
                                 </Link>

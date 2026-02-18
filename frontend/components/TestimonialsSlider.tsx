@@ -48,7 +48,7 @@ export default function TestimonialsSlider() {
                     <div className="relative">
                         <h4 className="text-accent text-[12px] font-black uppercase tracking-[0.4em] mb-4">Testimonials</h4>
                         <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-tight">WHAT THEY <br /> <span className="text-accent italic">SAY</span> ABOUT ME.</h2>
-                        <p className="text-gray-400 text-lg font-light leading-relaxed mb-12 max-w-md">
+                        <p className="text-text-dim text-lg font-light leading-relaxed mb-12 max-w-md">
                             Trusted by industry leaders worldwide to deliver excellence across digital platforms.
                         </p>
                         <div className="flex items-center gap-6">
@@ -62,8 +62,8 @@ export default function TestimonialsSlider() {
                             <div
                                 key={testimonial.id}
                                 className={`absolute inset-0 glass p-12 md:p-16 rounded-[60px] transition-all duration-1000 flex flex-col justify-center ${index === activeIndex
-                                        ? "opacity-100 translate-x-0 scale-100 z-10"
-                                        : "opacity-0 translate-x-20 scale-95 pointer-events-none"
+                                    ? "opacity-100 translate-x-0 scale-100 z-10"
+                                    : "opacity-0 translate-x-20 scale-95 pointer-events-none"
                                     }`}
                             >
                                 <FaQuoteLeft className="text-accent/20 text-8xl absolute top-10 right-10" />
@@ -72,7 +72,7 @@ export default function TestimonialsSlider() {
                                         <FaStar key={i} className="text-accent text-lg" />
                                     ))}
                                 </div>
-                                <p className="text-xl md:text-2xl font-medium leading-relaxed italic text-gray-300 mb-12">
+                                <p className="text-xl md:text-2xl font-medium leading-relaxed italic text-text-dim mb-12">
                                     "{testimonial.content}"
                                 </p>
                                 <div className="flex items-center gap-6">
@@ -80,7 +80,7 @@ export default function TestimonialsSlider() {
                                         {testimonial.initials}
                                     </div>
                                     <div>
-                                        <h5 className="font-black uppercase tracking-widest text-white text-sm">{testimonial.name}</h5>
+                                        <h5 className="font-black uppercase tracking-widest text-foreground text-sm">{testimonial.name}</h5>
                                         <p className="text-[10px] uppercase font-black tracking-widest text-accent/60 mt-1">{testimonial.role}</p>
                                     </div>
                                 </div>
@@ -93,7 +93,7 @@ export default function TestimonialsSlider() {
                                 <button
                                     key={i}
                                     onClick={() => setActiveIndex(i)}
-                                    className={`h-1.5 rounded-full transition-all duration-500 ${i === activeIndex ? "w-12 bg-accent" : "w-4 bg-white/10"
+                                    className={`h-1.5 rounded-full transition-all duration-500 ${i === activeIndex ? "w-12 bg-accent" : "w-4 bg-gray-300 dark:bg-white/10"
                                         }`}
                                 />
                             ))}
