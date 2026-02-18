@@ -11,7 +11,7 @@ export default function ServicesPage() {
         {
             name: "Starter",
             tagline: "Individual",
-            price: { monthly: "50", annually: "500" },
+            price: { monthly: "50", annually: "100" },
             icon: FaRocket,
             features: [
                 "UI/UX Design Strategy",
@@ -25,7 +25,7 @@ export default function ServicesPage() {
         {
             name: "Premium",
             tagline: "Business",
-            price: { monthly: "100", annually: "1000" },
+            price: { monthly: "100", annually: "250" },
             icon: FaGem,
             featured: true,
             features: [
@@ -41,7 +41,7 @@ export default function ServicesPage() {
         {
             name: "Ultimate",
             tagline: "Enterprise",
-            price: { monthly: "200", annually: "2000" },
+            price: { monthly: "200", annually: "500" },
             icon: FaCrown,
             features: [
                 "Full Product Strategy",

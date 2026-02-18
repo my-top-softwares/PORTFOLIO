@@ -99,7 +99,7 @@ export default function PortfolioPage() {
                     </div>
 
                     {/* Category Filter */}
-                    <div className="flex gap-4 glass p-2 rounded-2xl border border-foreground/10 animate-fade-up stagger-1">
+                    <div className="flex flex-wrap justify-center gap-4 glass p-2 rounded-2xl border border-foreground/10 animate-fade-up stagger-1">
                         {categories.map((cat) => (
                             <button
                                 key={cat}

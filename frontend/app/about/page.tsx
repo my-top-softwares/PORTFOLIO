@@ -193,7 +193,7 @@ export default function AboutPage() {
                             </button>
                         </div>
 
-                        <div className="lg:w-1/2 grid grid-cols-2 gap-6 w-full">
+                        <div className="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
                             {[
                                 { name: "Adobe Creative Cloud", icon: <SiAdobephotoshop />, desc: "Primary Visual Suite" },
                                 { name: "Figma", icon: <SiFigma />, desc: "UI/UX & Prototyping" },
