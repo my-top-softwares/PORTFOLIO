@@ -58,7 +58,7 @@ export default function AboutPage() {
                             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">Multimedia Professional</span>
                         </div>
 
-                        <h2 className="text-6xl md:text-[100px] font-black mb-10 tracking-tighter leading-[0.85] text-gradient uppercase">
+                        <h2 className="text-5xl md:text-7xl font-black mb-10 tracking-tighter leading-[0.85] text-gradient uppercase">
                             CRAFTING <br /> <span className="text-accent italic">VISIONARY</span> <br /> SOLUTIONS.
                         </h2>
 
@@ -88,7 +88,7 @@ export default function AboutPage() {
                         <div className="flex-1">
                             <div className="flex items-center gap-4 mb-12">
                                 <FaBriefcase className="text-accent text-2xl" />
-                                <h3 className="text-3xl font-black uppercase tracking-tighter">Professional Experience</h3>
+                                <h3 className="text-2xl font-black uppercase tracking-tighter">Professional Experience</h3>
                             </div>
                             <div className="space-y-10 border-l border-foreground/10 pl-8">
                                 {[
@@ -110,7 +110,7 @@ export default function AboutPage() {
                         <div className="flex-1">
                             <div className="flex items-center gap-4 mb-12">
                                 <FaGraduationCap className="text-accent text-2xl" />
-                                <h3 className="text-3xl font-black uppercase tracking-tighter">Academic History</h3>
+                                <h3 className="text-2xl font-black uppercase tracking-tighter">Academic History</h3>
                             </div>
                             <div className="space-y-10 border-l border-foreground/10 pl-8">
                                 {[
@@ -135,7 +135,7 @@ export default function AboutPage() {
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-24">
                         <h4 className="text-xs font-black uppercase tracking-[0.5em] text-accent mb-6">Expertise</h4>
-                        <h2 className="text-6xl font-black tracking-tighter uppercase leading-none">Skills & <span className="text-accent italic">Tech Stack.</span></h2>
+                        <h2 className="text-5xl font-black tracking-tighter uppercase leading-none">Skills & <span className="text-accent italic">Tech Stack.</span></h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -184,7 +184,7 @@ export default function AboutPage() {
                     <div className="flex flex-col lg:flex-row gap-20 items-center">
                         <div className="lg:w-1/2">
                             <h4 className="text-xs font-black uppercase tracking-[0.5em] text-accent mb-6">Mastery</h4>
-                            <h2 className="text-5xl font-black tracking-tighter uppercase leading-none mb-8">Tools & <span className="text-accent italic">Software.</span></h2>
+                            <h2 className="text-4xl font-black tracking-tighter uppercase leading-none mb-8">Tools & <span className="text-accent italic">Software.</span></h2>
                             <p className="text-text-dim text-lg font-light leading-relaxed mb-10">
                                 I leverage industry-standard software to bring complex creative visions to life. From high-fidelity design to cinematic post-production.
                             </p>

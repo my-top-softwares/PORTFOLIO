@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowRight, FaMousePointer, FaAward, FaUsers, FaRocket, FaGithub, FaDribbble, FaLinkedinIn,FaBehance } from "react-icons/fa";
+import { FaArrowRight, FaMousePointer, FaAward, FaUsers, FaRocket, FaGithub, FaDribbble, FaLinkedinIn, FaBehance } from "react-icons/fa";
 import TestimonialsSlider from "@/components/TestimonialsSlider";
 import GallerySection from "@/components/GallerySection";
 import { useTheme } from "@/components/ThemeProvider";
@@ -25,7 +25,7 @@ export default function Home() {
                             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">Available for New Projects</span>
                         </div>
 
-                        <h1 className="text-6xl md:text-8xl lg:text-[80px] font-black mb-8 leading-[0.85] tracking-tighter text-gradient">
+                        <h1 className="text-5xl md:text-7xl lg:text-[70px] font-black mb-8 leading-[0.85] tracking-tighter text-gradient">
                             CRAFTING <br />
                             <span className="text-accent italic">DIGITAL</span> <br />
                             EXPERIENCES.
@@ -92,7 +92,7 @@ export default function Home() {
                     {[
                         "YOUTUBE", "NETFLIX", "DISNEY+", "PARAMOUNT", "BEIN SPORTS", "AL JAZEERA", "BBC", "HBO", "SONY"
                     ].map((brand, i) => (
-                        <span key={i} className="text-4xl md:text-6xl  font-black outline-text hover:text-foreground transition-colors cursor-default">
+                        <span key={i} className="text-3xl md:text-5xl  font-black outline-text hover:text-foreground transition-colors cursor-default">
                             {brand}
                         </span>
                     ))}
@@ -100,7 +100,7 @@ export default function Home() {
                     {[
                         "YOUTUBE", "NETFLIX", "DISNEY+", "PARAMOUNT", "BEIN SPORTS", "AL JAZEERA", "BBC", "HBO", "SONY"
                     ].map((brand, i) => (
-                        <span key={i + '2'} className="text-4xl md:text-6xl font-black outline-text hover:text-foreground transition-colors cursor-default">
+                        <span key={i + '2'} className="text-3xl md:text-5xl font-black outline-text hover:text-foreground transition-colors cursor-default">
                             {brand}
                         </span>
                     ))}
@@ -113,7 +113,7 @@ export default function Home() {
                     <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
                         <div className="max-w-2xl">
                             <h4 className="text-accent text-[12px] font-black uppercase tracking-[0.4em] mb-4">My Expertise</h4>
-                            <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight">
+                            <h2 className="text-4xl md:text-6xl font-black tracking-tighter leading-tight">
                                 MULTIMEDIA <br /> <span className="text-accent italic">CRAFT.</span>
                             </h2>
                         </div>
@@ -133,7 +133,7 @@ export default function Home() {
                                 <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-8 group-hover:bg-accent group-hover:rotate-12 transition-all">
                                     <s.icon className="text-accent text-2xl group-hover:text-black transition-colors" />
                                 </div>
-                                <h3 className="text-2xl font-black mb-4 tracking-tighter uppercase leading-tight">{s.title}</h3>
+                                <h3 className="text-xl font-black mb-4 tracking-tighter uppercase leading-tight">{s.title}</h3>
                                 <p className="text-text-dim text-sm leading-relaxed mb-8">{s.desc}</p>
                                 <Link href="/portfolio" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-accent group-hover:gap-4 transition-all">
                                     View Projects <FaArrowRight />

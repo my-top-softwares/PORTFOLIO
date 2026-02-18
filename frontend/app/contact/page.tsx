@@ -5,7 +5,7 @@ export default function ContactPage() {
         <main className="relative min-h-screen pt-40 pb-40 overflow-hidden bg-background">
             {/* Super Large Background Text */}
             <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none z-0 select-none">
-                <h2 className="text-[200px] md:text-[350px] font-black uppercase tracking-tighter text-white/[0.02] leading-none">
+                <h2 className="text-[100px] md:text-[200px] font-black uppercase tracking-tighter text-white/[0.02] leading-none">
                     CONTACT.
                 </h2>
             </div>
@@ -23,7 +23,7 @@ export default function ContactPage() {
                             <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
                             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground">Opening for partnerships</span>
                         </div>
-                        <h1 className="text-6xl md:text-[120px] font-black tracking-tighter leading-[0.85] uppercase text-gradient">
+                        <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.85] uppercase text-gradient">
                             HAVE A PROJECT <br /> <span className="text-accent italic">IN MIND?</span>
                         </h1>
                     </div>
@@ -62,7 +62,7 @@ export default function ContactPage() {
                     <div className="lg:col-span-7">
                         <div className="glass p-12 md:p-16 rounded-[60px] border border-foreground/10 bg-white/[0.01] relative">
                             <div className="mb-12">
-                                <h3 className="text-3xl font-black uppercase tracking-tighter mb-4">Send a Transmission</h3>
+                                <h3 className="text-2xl font-black uppercase tracking-tighter mb-4">Send a Transmission</h3>
                                 <p className="text-text-dim text-sm font-medium">Expected response time: Under 24 hours.</p>
                             </div>
 

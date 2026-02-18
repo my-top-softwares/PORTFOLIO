@@ -93,7 +93,7 @@ export default function PortfolioPage() {
                             <span className="w-2 h-2 bg-accent rounded-full animate-ping"></span>
                             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">Selected Case Studies</span>
                         </div>
-                        <h1 className="text-6xl md:text-[100px] font-black tracking-tighter leading-[0.8] text-gradient uppercase">
+                        <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.8] text-gradient uppercase">
                             IMPACTFUL <br /> <span className="text-accent italic">CREATIONS.</span>
                         </h1>
                     </div>
@@ -134,7 +134,7 @@ export default function PortfolioPage() {
                                 <span className="text-accent text-[10px] font-black uppercase tracking-widest mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
                                     {project.category}
                                 </span>
-                                <h3 className="text-4xl font-black text-white uppercase tracking-tighter translate-y-4 group-hover:translate-y-0 transition-transform duration-700 [transition-delay:100ms]">
+                                <h3 className="text-2xl font-black text-white uppercase tracking-tighter translate-y-4 group-hover:translate-y-0 transition-transform duration-700 [transition-delay:100ms]">
                                     {project.title}
                                 </h3>
                                 <div className="mt-6 flex items-center gap-4 text-white/60 text-[10px] uppercase font-black tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-700 [transition-delay:200ms]">
@@ -156,7 +156,7 @@ export default function PortfolioPage() {
                     <div className="relative w-full max-w-6xl max-h-[90vh] glass rounded-[60px] overflow-y-auto border border-foreground/10 shadow-2xl animate-in zoom-in slide-in-from-bottom-10 duration-700">
                         <div className="sticky top-0 bg-primary/40 backdrop-blur-3xl z-30 flex justify-between items-center px-16 py-10 border-b border-foreground/10">
                             <div>
-                                <h2 className="text-4xl font-black uppercase tracking-tighter mb-2 text-gradient">{selectedProject.title}</h2>
+                                <h2 className="text-3xl font-black uppercase tracking-tighter mb-2 text-gradient">{selectedProject.title}</h2>
                                 <p className="text-[10px] font-black uppercase tracking-[0.5em] text-accent/60">{selectedProject.category}</p>
                             </div>
                             <button
