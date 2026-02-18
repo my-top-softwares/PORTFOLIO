@@ -25,7 +25,7 @@ export default function ServicesPage() {
         {
             name: "Premium",
             tagline: "Business",
-            price: { monthly: "100", annually: "250" },
+            price: { monthly: "100", annually: "25" },
             icon: FaGem,
             featured: true,
             features: [
