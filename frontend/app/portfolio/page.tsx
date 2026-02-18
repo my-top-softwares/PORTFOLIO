@@ -91,9 +91,9 @@ export default function PortfolioPage() {
                     <div className="animate-fade-up">
                         <div className="inline-flex items-center gap-4 px-4 py-2 rounded-full glass mb-8 border border-foreground/10">
                             <span className="w-2 h-2 bg-accent rounded-full animate-ping"></span>
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">Selected Case Studies</span>
+                            <span className="text-xs font-semibold uppercase tracking-wider text-accent">Selected Case Studies</span>
                         </div>
-                        <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.8] text-gradient uppercase">
+                        <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-gradient uppercase">
                             IMPACTFUL <br /> <span className="text-accent italic">CREATIONS.</span>
                         </h1>
                     </div>
@@ -104,7 +104,7 @@ export default function PortfolioPage() {
                             <button
                                 key={cat}
                                 onClick={() => setFilter(cat)}
-                                className={`px-10 py-4 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${filter === cat
+                                className={`px-8 py-3 rounded-xl text-xs font-semibold uppercase tracking-wide transition-all ${filter === cat
                                     ? "bg-accent text-black shadow-lg shadow-accent/20"
                                     : "text-text-dim hover:text-foreground"
                                     }`}
@@ -131,13 +131,13 @@ export default function PortfolioPage() {
                                 className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex flex-col justify-end p-10">
-                                <span className="text-accent text-[10px] font-black uppercase tracking-widest mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                                <span className="text-accent text-xs font-semibold uppercase tracking-wide mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
                                     {project.category}
                                 </span>
-                                <h3 className="text-2xl font-black text-white uppercase tracking-tighter translate-y-4 group-hover:translate-y-0 transition-transform duration-700 [transition-delay:100ms]">
+                                <h3 className="text-xl font-bold text-white uppercase tracking-tight translate-y-4 group-hover:translate-y-0 transition-transform duration-700 [transition-delay:100ms]">
                                     {project.title}
                                 </h3>
-                                <div className="mt-6 flex items-center gap-4 text-white/60 text-[10px] uppercase font-black tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-700 [transition-delay:200ms]">
+                                <div className="mt-4 flex items-center gap-3 text-white/60 text-xs uppercase font-semibold tracking-wide translate-y-4 group-hover:translate-y-0 transition-transform duration-700 [transition-delay:200ms]">
                                     View Details <FaArrowRight className="group-hover:translate-x-2 transition-all" />
                                 </div>
                             </div>
@@ -156,8 +156,8 @@ export default function PortfolioPage() {
                     <div className="relative w-full max-w-6xl max-h-[90vh] glass rounded-[60px] overflow-y-auto border border-foreground/10 shadow-2xl animate-in zoom-in slide-in-from-bottom-10 duration-700">
                         <div className="sticky top-0 bg-primary/40 backdrop-blur-3xl z-30 flex justify-between items-center px-16 py-10 border-b border-foreground/10">
                             <div>
-                                <h2 className="text-3xl font-black uppercase tracking-tighter mb-2 text-gradient">{selectedProject.title}</h2>
-                                <p className="text-[10px] font-black uppercase tracking-[0.5em] text-accent/60">{selectedProject.category}</p>
+                                <h2 className="text-2xl font-bold uppercase tracking-tight mb-1 text-gradient">{selectedProject.title}</h2>
+                                <p className="text-xs font-semibold uppercase tracking-wider text-accent/60">{selectedProject.category}</p>
                             </div>
                             <button
                                 onClick={() => setSelectedProject(null)}
@@ -170,8 +170,8 @@ export default function PortfolioPage() {
                         <div className="p-16">
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-24">
                                 <div className="lg:col-span-2">
-                                    <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-accent mb-8">Concept & Vision</h4>
-                                    <p className="text-2xl text-text-dim font-light leading-relaxed mb-12">
+                                    <h4 className="text-xs font-semibold uppercase tracking-wider text-accent mb-4">Concept & Vision</h4>
+                                    <p className="text-base text-text-dim font-normal leading-relaxed mb-8">
                                         {selectedProject.desc}
                                     </p>
 
@@ -186,10 +186,10 @@ export default function PortfolioPage() {
                                 </div>
 
                                 <div className="glass p-10 rounded-[40px] border border-foreground/10 h-fit">
-                                    <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-accent mb-8">Technical Stack</h4>
+                                    <h4 className="text-xs font-semibold uppercase tracking-wider text-accent mb-4">Technical Stack</h4>
                                     <div className="flex flex-wrap gap-3">
                                         {selectedProject.tech.map((t: string, i: number) => (
-                                            <span key={i} className="px-5 py-3 glass rounded-2xl text-[10px] font-black uppercase tracking-widest text-text-dim">
+                                            <span key={i} className="px-4 py-2 glass rounded-xl text-xs font-semibold uppercase tracking-wide text-text-dim">
                                                 {t}
                                             </span>
                                         ))}
@@ -197,7 +197,7 @@ export default function PortfolioPage() {
                                 </div>
                             </div>
 
-                            <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-accent mb-12 text-center">Visual Case Study</h4>
+                            <h4 className="text-xs font-semibold uppercase tracking-wider text-accent mb-8 text-center">Visual Case Study</h4>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                 {selectedProject.gallery.map((img: string, i: number) => (
                                     <div key={i} className="group relative aspect-video rounded-[40px] overflow-hidden glass p-3 border border-foreground/10">

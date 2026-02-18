@@ -19,7 +19,7 @@ export default function Footer() {
             <div className="relative text-white z-10 w-full max-w-7xl px-6 md:px-12 lg:px-24 grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 pb-4">
                 {/* Left Side: Branding & Info */}
                 <div>
-                    
+
                     {
                         theme === "dark" ? (
                             <img src="/logo.png" className="w-40 mb-8" alt="" />
@@ -40,7 +40,7 @@ export default function Footer() {
                         ))}
                     </div>
                     <div className="w-full pt-8 items-center justify-center text-center">
-                        <p className="text-text-dim text-[10px] font-normal uppercase justify-center">
+                        <p className="text-text-dim text-xs font-normal uppercase justify-center">
                             Copyright © 2026 Wallace. Studio. All Rights Reserved.
                         </p>
                     </div>
@@ -49,7 +49,7 @@ export default function Footer() {
                 {/* Right Side: Navigation Columns */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
                     <div>
-                        <h5 className="font-black uppercase tracking-[0.3em] text-[11px] mb-10 text-foreground">Site Map</h5>
+                        <h5 className="font-bold uppercase tracking-wide text-xs mb-8 text-foreground">Site Map</h5>
                         <ul className="space-y-5 text-text-dim font-bold text-[13px] tracking-wide">
                             <li><Link href="/" className="hover:text-foreground transition-all block">Project Home</Link></li>
                             <li><Link href="/about" className="hover:text-foreground transition-all block">The Story</Link></li>
@@ -57,7 +57,7 @@ export default function Footer() {
                         </ul>
                     </div>
                     <div>
-                        <h5 className="font-black uppercase tracking-[0.3em] text-[11px] mb-10 text-foreground">Legal</h5>
+                        <h5 className="font-bold uppercase tracking-wide text-xs mb-8 text-foreground">Legal</h5>
                         <ul className="space-y-5 text-text-dim font-bold text-[13px] tracking-wide">
                             <li><Link href="#" className="hover:text-foreground transition-all block">Privacy Policy</Link></li>
                             <li><Link href="#" className="hover:text-foreground transition-all block">Terms of Service</Link></li>
@@ -65,7 +65,7 @@ export default function Footer() {
                         </ul>
                     </div>
                     <div>
-                        <h5 className="font-black uppercase tracking-[0.3em] text-[11px] mb-10 text-foreground">Solutions</h5>
+                        <h5 className="font-bold uppercase tracking-wide text-xs mb-8 text-foreground">Solutions</h5>
                         <ul className="space-y-5 text-text-dim font-bold text-[13px] tracking-wide">
                             <li><Link href="/portfolio" className="hover:text-foreground transition-all block">Video Production</Link></li>
                             <li><Link href="/portfolio" className="hover:text-foreground transition-all block">Motion Design</Link></li>

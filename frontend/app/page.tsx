@@ -22,16 +22,16 @@ export default function Home() {
                     <div className="lg:w-3/5 text-center lg:text-left">
                         <div className="inline-flex items-center gap-4 px-4 py-2 rounded-full glass mb-8 animate-bounce transition-all hover:border-accent/40">
                             <span className="w-2 h-2 bg-accent rounded-full animate-ping"></span>
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">Available for New Projects</span>
+                            <span className="text-xs font-semibold uppercase tracking-wider text-accent">Available for New Projects</span>
                         </div>
 
-                        <h1 className="text-5xl md:text-7xl lg:text-[70px] font-black mb-8 leading-[0.85] tracking-tighter text-gradient">
-                            CRAFTING <br />
-                            <span className="text-accent italic">DIGITAL</span> <br />
-                            EXPERIENCES.
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight text-gradient">
+                            Building<br />
+                            <span className="text-accent italic">Digital</span> <br />
+                            Realities.
                         </h1>
 
-                        <p className="text-text-dim max-w-xl mb-12 text-lg md:text-xl leading-relaxed font-light mx-auto lg:mx-0">
+                        <p className="text-text-dim max-w-xl mb-8 text-base md:text-lg leading-relaxed font-normal mx-auto lg:mx-0">
                             I am <span className="text-foreground font-bold">Amina</span>, a Senior <span className="text-accent italic">Multimedia Specialist</span> specialized in high-end video production, immersive motion design, and professional voice narration.
                         </p>
 
@@ -68,7 +68,7 @@ export default function Home() {
                             {/* Floating Stats */}
                             <div className="absolute -left-4 top-1/4 glass p-6 rounded-3xl animate-float [animation-delay:1s]">
                                 <h4 className="text-3xl font-black text-accent">50+</h4>
-                                <p className="text-[10px] uppercase font-black tracking-widest text-text-dim">Projects</p>
+                                <p className="text-xs uppercase font-bold tracking-wide text-text-dim">Projects</p>
                             </div>
 
                             <div className="absolute -right-8 bottom-1/4 glass p-6 rounded-3xl animate-float [animation-delay:2s]">
@@ -79,7 +79,7 @@ export default function Home() {
                                         </div>
                                     ))}
                                 </div>
-                                <p className="text-[10px] uppercase font-black tracking-widest text-text-dim">Happy Clients</p>
+                                <p className="text-xs uppercase font-bold tracking-wide text-text-dim">Happy Clients</p>
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,7 @@ export default function Home() {
                     {[
                         "YOUTUBE", "NETFLIX", "DISNEY+", "PARAMOUNT", "BEIN SPORTS", "AL JAZEERA", "BBC", "HBO", "SONY"
                     ].map((brand, i) => (
-                        <span key={i} className="text-3xl md:text-5xl  font-black outline-text hover:text-foreground transition-colors cursor-default">
+                        <span key={i} className="text-2xl md:text-4xl font-bold outline-text hover:text-foreground transition-colors cursor-default">
                             {brand}
                         </span>
                     ))}
@@ -100,7 +100,7 @@ export default function Home() {
                     {[
                         "YOUTUBE", "NETFLIX", "DISNEY+", "PARAMOUNT", "BEIN SPORTS", "AL JAZEERA", "BBC", "HBO", "SONY"
                     ].map((brand, i) => (
-                        <span key={i + '2'} className="text-3xl md:text-5xl font-black outline-text hover:text-foreground transition-colors cursor-default">
+                        <span key={i + '2'} className="text-2xl md:text-4xl font-bold outline-text hover:text-foreground transition-colors cursor-default">
                             {brand}
                         </span>
                     ))}
@@ -112,12 +112,12 @@ export default function Home() {
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
                         <div className="max-w-2xl">
-                            <h4 className="text-accent text-[12px] font-black uppercase tracking-[0.4em] mb-4">My Expertise</h4>
-                            <h2 className="text-4xl md:text-6xl font-black tracking-tighter leading-tight">
+                            <h4 className="text-accent text-xs font-semibold uppercase tracking-wider mb-2">My Expertise</h4>
+                            <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight">
                                 MULTIMEDIA <br /> <span className="text-accent italic">CRAFT.</span>
                             </h2>
                         </div>
-                        <p className="text-text-dim max-w-sm mb-4 font-light leading-relaxed">
+                        <p className="text-text-dim max-w-sm mb-4 font-normal leading-relaxed text-base">
                             Transforming raw concepts into cinematic experiences using industry-leading tools and narrative techniques.
                         </p>
                     </div>
@@ -133,9 +133,9 @@ export default function Home() {
                                 <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-8 group-hover:bg-accent group-hover:rotate-12 transition-all">
                                     <s.icon className="text-accent text-2xl group-hover:text-black transition-colors" />
                                 </div>
-                                <h3 className="text-xl font-black mb-4 tracking-tighter uppercase leading-tight">{s.title}</h3>
-                                <p className="text-text-dim text-sm leading-relaxed mb-8">{s.desc}</p>
-                                <Link href="/portfolio" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-accent group-hover:gap-4 transition-all">
+                                <h3 className="text-lg font-bold mb-3 tracking-tight uppercase leading-snug">{s.title}</h3>
+                                <p className="text-text-dim text-sm leading-relaxed mb-6 font-normal">{s.desc}</p>
+                                <Link href="/portfolio" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-accent group-hover:gap-4 transition-all">
                                     View Projects <FaArrowRight />
                                 </Link>
                             </div>

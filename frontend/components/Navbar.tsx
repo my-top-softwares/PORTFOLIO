@@ -41,7 +41,7 @@ export default function Navbar() {
                 </a>
 
                 {/* Desktop Menu */}
-                <div className="hidden md:flex items-center gap-8 text-[11px] font-black uppercase tracking-[0.2em]">
+                <div className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-wide">
                     {links.map((link) => (
                         <Link
                             key={link.name}
@@ -64,7 +64,7 @@ export default function Navbar() {
                         {mounted && theme === 'dark' ? <FiMoon size={20} /> : <FiSun size={20} className="text-amber-500" />}
                     </button>
 
-                    <Link href="/contact" className="btn-primary text-[10px] py-3 px-6 rounded-xl hover:shadow-accent/40 shadow-lg">START TALKING</Link>
+                    <Link href="/contact" className="btn-primary text-xs py-3 px-6 rounded-xl hover:shadow-accent/40 shadow-lg">START TALKING</Link>
                 </div>
 
                 {/* Mobile Menu Toggle */}

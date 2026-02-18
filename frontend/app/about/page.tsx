@@ -40,13 +40,13 @@ export default function AboutPage() {
 
                             {/* Stats Bubbles */}
                             <div className="absolute -top-8 -right-8 glass p-8 rounded-3xl z-20 shadow-2xl animate-bounce transition-all hover:scale-110">
-                                <div className="text-4xl font-black text-accent mb-1">10+</div>
-                                <p className="text-[10px] text-text-dim uppercase font-black tracking-widest">Years Of <br />Experience</p>
+                                <div className="text-3xl font-bold text-accent mb-1">10+</div>
+                                <p className="text-xs text-text-dim uppercase font-semibold tracking-wide">Years Of <br />Experience</p>
                             </div>
 
                             <div className="absolute -bottom-8 -left-8 glass p-8 rounded-3xl z-20 shadow-2xl animate-float [animation-delay:2s] hover:scale-110 transition-all">
-                                <div className="text-4xl font-black text-foreground mb-1">120+</div>
-                                <p className="text-[10px] text-text-dim uppercase font-black tracking-widest">Projects <br />Completed</p>
+                                <div className="text-3xl font-bold text-foreground mb-1">120+</div>
+                                <p className="text-xs text-text-dim uppercase font-semibold tracking-wide">Projects <br />Completed</p>
                             </div>
                         </div>
                     </div>
@@ -55,14 +55,14 @@ export default function AboutPage() {
                     <div className="lg:w-1/2">
                         <div className="inline-flex items-center gap-4 px-4 py-2 rounded-full glass mb-8 border border-foreground/10">
                             <span className="w-2 h-2 bg-accent rounded-full"></span>
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">Multimedia Professional</span>
+                            <span className="text-xs font-semibold uppercase tracking-wider text-accent">Multimedia Professional</span>
                         </div>
 
-                        <h2 className="text-5xl md:text-7xl font-black mb-10 tracking-tighter leading-[0.85] text-gradient uppercase">
+                        <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tight leading-tight text-gradient uppercase">
                             CRAFTING <br /> <span className="text-accent italic">VISIONARY</span> <br /> SOLUTIONS.
                         </h2>
 
-                        <p className="text-text-dim mb-10 text-xl font-light leading-relaxed max-w-xl">
+                        <p className="text-text-dim mb-8 text-base md:text-lg font-normal leading-relaxed max-w-xl">
                             Based in the <span className="text-foreground font-bold underline decoration-accent/30 underline-offset-8">Philippines</span>, I am a strategic Multimedia Artist & UI/UX Designer who blends technical precision with creative flair.
                             <br /><br />
                             I help brands navigate the digital landscape through immersive motion graphics, intuitive interface design, and high-impact visual storytelling.
@@ -88,7 +88,7 @@ export default function AboutPage() {
                         <div className="flex-1">
                             <div className="flex items-center gap-4 mb-12">
                                 <FaBriefcase className="text-accent text-2xl" />
-                                <h3 className="text-2xl font-black uppercase tracking-tighter">Professional Experience</h3>
+                                <h3 className="text-xl font-bold uppercase tracking-tight">Professional Experience</h3>
                             </div>
                             <div className="space-y-10 border-l border-foreground/10 pl-8">
                                 {[
@@ -98,9 +98,9 @@ export default function AboutPage() {
                                 ].map((exp, i) => (
                                     <div key={i} className="relative group">
                                         <div className="absolute -left-[41px] top-2 w-4 h-4 rounded-full bg-accent border-4 border-primary transition-transform group-hover:scale-150"></div>
-                                        <span className="text-xs font-black text-accent tracking-widest mb-2 block">{exp.year}</span>
-                                        <h4 className="text-xl font-bold text-foreground mb-1">{exp.role}</h4>
-                                        <p className="text-sm text-text-dim font-bold uppercase tracking-widest">{exp.company}</p>
+                                        <span className="text-xs font-semibold text-accent tracking-wide mb-1 block">{exp.year}</span>
+                                        <h4 className="text-lg font-bold text-foreground mb-0.5">{exp.role}</h4>
+                                        <p className="text-xs text-text-dim font-semibold uppercase tracking-wide">{exp.company}</p>
                                     </div>
                                 ))}
                             </div>
@@ -110,7 +110,7 @@ export default function AboutPage() {
                         <div className="flex-1">
                             <div className="flex items-center gap-4 mb-12">
                                 <FaGraduationCap className="text-accent text-2xl" />
-                                <h3 className="text-2xl font-black uppercase tracking-tighter">Academic History</h3>
+                                <h3 className="text-xl font-bold uppercase tracking-tight">Academic History</h3>
                             </div>
                             <div className="space-y-10 border-l border-foreground/10 pl-8">
                                 {[
@@ -119,9 +119,9 @@ export default function AboutPage() {
                                 ].map((edu, i) => (
                                     <div key={i} className="relative group">
                                         <div className="absolute -left-[41px] top-2 w-4 h-4 rounded-full bg-white/20 border-4 border-primary transition-transform group-hover:bg-accent group-hover:scale-150"></div>
-                                        <span className="text-xs font-black text-text-dim tracking-widest mb-2 block">{edu.year}</span>
-                                        <h4 className="text-xl font-bold text-foreground mb-1">{edu.degree}</h4>
-                                        <p className="text-sm text-text-dim font-bold uppercase tracking-widest">{edu.school}</p>
+                                        <span className="text-xs font-semibold text-text-dim tracking-wide mb-1 block">{edu.year}</span>
+                                        <h4 className="text-lg font-bold text-foreground mb-0.5">{edu.degree}</h4>
+                                        <p className="text-xs text-text-dim font-semibold uppercase tracking-wide">{edu.school}</p>
                                     </div>
                                 ))}
                             </div>
@@ -134,8 +134,8 @@ export default function AboutPage() {
             <section className="px-6 md:px-12 lg:px-24 mb-60">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-24">
-                        <h4 className="text-xs font-black uppercase tracking-[0.5em] text-accent mb-6">Expertise</h4>
-                        <h2 className="text-5xl font-black tracking-tighter uppercase leading-none">Skills & <span className="text-accent italic">Tech Stack.</span></h2>
+                        <h4 className="text-xs font-semibold uppercase tracking-wider text-accent mb-4">Expertise</h4>
+                        <h2 className="text-3xl md:text-5xl font-bold tracking-tight uppercase leading-none">Skills & <span className="text-accent italic">Tech Stack.</span></h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -149,7 +149,7 @@ export default function AboutPage() {
                                 <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-8 text-accent text-2xl group-hover:bg-accent group-hover:text-black transition-all">
                                     {skill.icon}
                                 </div>
-                                <h4 className="text-xl font-black uppercase tracking-tighter mb-6">{skill.title}</h4>
+                                <h4 className="text-lg font-bold uppercase tracking-tight mb-4">{skill.title}</h4>
                                 <ul className="space-y-3">
                                     {skill.skills.map((s, j) => (
                                         <li key={j} className="text-sm text-text-dim font-medium flex items-center gap-3">
@@ -183,9 +183,9 @@ export default function AboutPage() {
 
                     <div className="flex flex-col lg:flex-row gap-20 items-center">
                         <div className="lg:w-1/2">
-                            <h4 className="text-xs font-black uppercase tracking-[0.5em] text-accent mb-6">Mastery</h4>
-                            <h2 className="text-4xl font-black tracking-tighter uppercase leading-none mb-8">Tools & <span className="text-accent italic">Software.</span></h2>
-                            <p className="text-text-dim text-lg font-light leading-relaxed mb-10">
+                            <h4 className="text-xs font-semibold uppercase tracking-wider text-accent mb-4">Mastery</h4>
+                            <h2 className="text-3xl md:text-4xl font-bold tracking-tight uppercase leading-none mb-6">Tools & <span className="text-accent italic">Software.</span></h2>
+                            <p className="text-text-dim text-base font-normal leading-relaxed mb-8">
                                 I leverage industry-standard software to bring complex creative visions to life. From high-fidelity design to cinematic post-production.
                             </p>
                             <button className="btn-primary group">
@@ -204,8 +204,8 @@ export default function AboutPage() {
                                     <div className="text-3xl text-text-dim group-hover:text-accent mb-6 transition-colors">
                                         {tool.icon}
                                     </div>
-                                    <h5 className="font-bold text-foreground mb-2">{tool.name}</h5>
-                                    <p className="text-[10px] text-text-dim uppercase tracking-widest">{tool.desc}</p>
+                                    <h5 className="font-bold text-foreground mb-1">{tool.name}</h5>
+                                    <p className="text-xs text-text-dim uppercase font-semibold tracking-wide">{tool.desc}</p>
                                 </div>
                             ))}
                         </div>

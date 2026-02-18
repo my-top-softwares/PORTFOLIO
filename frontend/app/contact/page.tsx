@@ -5,7 +5,7 @@ export default function ContactPage() {
         <main className="relative min-h-screen pt-40 pb-40 overflow-hidden bg-background">
             {/* Super Large Background Text */}
             <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none z-0 select-none">
-                <h2 className="text-[100px] md:text-[200px] font-black uppercase tracking-tighter text-white/[0.02] leading-none">
+                <h2 className="text-[80px] md:text-[150px] font-bold uppercase tracking-tight text-white/[0.02] leading-none">
                     CONTACT.
                 </h2>
             </div>
@@ -21,9 +21,9 @@ export default function ContactPage() {
                     <div className="lg:col-span-12 mb-20">
                         <div className="inline-flex items-center gap-4 px-5 py-2 rounded-full glass mb-10 border border-foreground/10">
                             <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
-                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground">Opening for partnerships</span>
+                            <span className="text-xs font-semibold uppercase tracking-wider text-foreground">Opening for partnerships</span>
                         </div>
-                        <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.85] uppercase text-gradient">
+                        <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight uppercase text-gradient">
                             HAVE A PROJECT <br /> <span className="text-accent italic">IN MIND?</span>
                         </h1>
                     </div>
@@ -39,15 +39,15 @@ export default function ContactPage() {
                                 <div key={i} className="glass p-10 rounded-[40px] border border-foreground/10 hover:border-foreground/20 transition-all group cursor-pointer relative overflow-hidden">
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full translate-x-16 -translate-y-16 group-hover:scale-110 transition-transform duration-700"></div>
                                     <item.icon className={`${item.color} text-2xl mb-6`} />
-                                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-text-dim mb-2">{item.label}</p>
-                                    <h3 className="text-xl font-bold text-foreground group-hover:text-accent transition-colors">{item.val}</h3>
+                                    <p className="text-xs font-semibold uppercase tracking-wider text-text-dim mb-1">{item.label}</p>
+                                    <h3 className="text-lg font-bold text-foreground group-hover:text-accent transition-colors">{item.val}</h3>
                                 </div>
                             ))}
                         </div>
 
                         {/* Social Connect Tile */}
                         <div className="glass p-10 rounded-[40px] border border-foreground/10">
-                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-text-dim mb-8">Social Ecosystem</p>
+                            <p className="text-xs font-semibold uppercase tracking-wider text-text-dim mb-6">Social Ecosystem</p>
                             <div className="flex flex-wrap gap-4">
                                 {[FaTwitter, FaLinkedin, FaGithub, FaInstagram].map((Icon, i) => (
                                     <a key={i} href="#" className="w-14 h-14 glass flex items-center justify-center rounded-2xl text-foreground hover:bg-accent hover:text-black transition-all duration-500">
@@ -62,33 +62,33 @@ export default function ContactPage() {
                     <div className="lg:col-span-7">
                         <div className="glass p-12 md:p-16 rounded-[60px] border border-foreground/10 bg-white/[0.01] relative">
                             <div className="mb-12">
-                                <h3 className="text-2xl font-black uppercase tracking-tighter mb-4">Send a Transmission</h3>
-                                <p className="text-text-dim text-sm font-medium">Expected response time: Under 24 hours.</p>
+                                <h3 className="text-xl font-bold uppercase tracking-tight mb-2">Send a Transmission</h3>
+                                <p className="text-text-dim text-sm font-normal">Expected response time: Under 24 hours.</p>
                             </div>
 
                             <form className="space-y-8">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div className="relative group">
-                                        <input type="text" className="w-full bg-transparent border-b border-foreground/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg text-foreground" placeholder="Full Name" />
+                                        <input type="text" className="w-full bg-transparent border-b border-foreground/10 py-4 outline-none focus:border-accent transition-all peer font-normal text-base text-foreground" placeholder="Full Name" />
                                         <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-500 group-focus-within:w-full"></div>
                                     </div>
                                     <div className="relative group">
-                                        <input type="email" className="w-full bg-transparent border-b border-foreground/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg text-foreground" placeholder="Email Address" />
+                                        <input type="email" className="w-full bg-transparent border-b border-foreground/10 py-4 outline-none focus:border-accent transition-all peer font-normal text-base text-foreground" placeholder="Email Address" />
                                         <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-500 group-focus-within:w-full"></div>
                                     </div>
                                 </div>
 
                                 <div className="relative group">
-                                    <input type="text" className="w-full bg-transparent border-b border-foreground/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg text-foreground" placeholder="Interested In" />
+                                    <input type="text" className="w-full bg-transparent border-b border-foreground/10 py-4 outline-none focus:border-accent transition-all peer font-normal text-base text-foreground" placeholder="Interested In" />
                                     <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-500 group-focus-within:w-full"></div>
                                 </div>
 
                                 <div className="relative group">
-                                    <textarea rows={4} className="w-full bg-transparent border-b border-foreground/10 py-6 outline-none focus:border-accent transition-all peer font-bold text-lg resize-none text-foreground" placeholder="Message Details"></textarea>
+                                    <textarea rows={4} className="w-full bg-transparent border-b border-foreground/10 py-4 outline-none focus:border-accent transition-all peer font-normal text-base resize-none text-foreground" placeholder="Message Details"></textarea>
                                     <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-500 group-focus-within:w-full"></div>
                                 </div>
 
-                                <button className="group mt-12 btn-primary w-full py-10 rounded-full font-black tracking-[0.4em] uppercase overflow-hidden relative shadow-2xl">
+                                <button className="group mt-8 btn-primary w-full py-6 rounded-full font-bold tracking-wide uppercase overflow-hidden relative shadow-2xl">
                                     <span className="relative z-10 flex items-center justify-center gap-4">
                                         ENGAGE PROJECT <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
                                     </span>
