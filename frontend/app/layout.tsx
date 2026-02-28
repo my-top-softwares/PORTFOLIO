@@ -17,8 +17,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className="scroll-smooth">
-            <body className="antialiased bg-[#0b0d0d] text-white font-outfit overflow-x-hidden selection:bg-accent selection:text-black transition-colors duration-500">
+        <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+            <body className="antialiased font-outfit overflow-x-hidden transition-colors duration-500" suppressHydrationWarning>
                 <ThemeProvider>
                     {/* Global Background Decorations - Adjust for theme sensitivity if needed */}
                     <div className="fixed inset-0 pointer-events-none -z-50 overflow-hidden">

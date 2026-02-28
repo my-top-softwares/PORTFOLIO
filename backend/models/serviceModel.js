@@ -9,7 +9,12 @@ const serviceSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    price: {
+    monthlyPrice: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    annuallyPrice: {
         type: Number,
         required: true,
         default: 0,
@@ -19,7 +24,10 @@ const serviceSchema = mongoose.Schema({
     }],
     icon: {
         type: String,
-        // URL or icon class string
+    },
+    isPopular: {
+        type: Boolean,
+        default: false,
     },
 }, {
     timestamps: true,

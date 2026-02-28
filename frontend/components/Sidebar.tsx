@@ -45,7 +45,7 @@ export default function Sidebar() {
     };
 
     return (
-        <aside className="fixed left-0 top-0 h-screen w-64 bg-[#0b0d0d] border-r border-white/5 flex flex-col z-[150]">
+        <aside className="fixed left-0 top-0 h-screen w-64 bg-card-bg border-r border-foreground/5 flex flex-col z-[150] shadow-sm">
             <div className="p-8">
                 <Link href="/" className="flex items-center gap-2">
                     <img src="/logo.png" alt="Logo" className="w-24" />
@@ -64,11 +64,11 @@ export default function Sidebar() {
                                 key={item.name}
                                 href={item.href}
                                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all group ${isActive
-                                    ? "bg-accent/10 text-accent font-bold border border-accent/20"
-                                    : "text-text-dim hover:bg-white/5 hover:text-white"
+                                    ? "bg-accent/10 text-accent font-bold border border-accent/20 shadow-sm"
+                                    : "text-text-dim hover:bg-accent/5 hover:text-accent"
                                     }`}
                             >
-                                <Icon className={`text-xl ${isActive ? "text-accent" : "group-hover:text-white"}`} />
+                                <Icon className={`text-xl transition-colors ${isActive ? "text-accent" : "group-hover:text-accent"}`} />
                                 <span className="text-sm">{item.name}</span>
                             </Link>
                         );
@@ -76,13 +76,13 @@ export default function Sidebar() {
                 </div>
             </div>
 
-            <div className="p-4 border-t border-white/5">
+            <div className="p-4 border-t border-foreground/5">
                 <div className="flex items-center gap-3 px-4 py-3 mb-2">
                     <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent font-black text-xs">
                         {userName[0].toUpperCase()}
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-xs font-bold text-white truncate w-32">{userName}</span>
+                        <span className="text-xs font-bold text-foreground truncate w-32">{userName}</span>
                         <span className="text-[10px] text-text-dim uppercase tracking-widest">Administrator</span>
                     </div>
                 </div>

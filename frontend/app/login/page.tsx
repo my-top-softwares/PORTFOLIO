@@ -41,7 +41,7 @@ export default function LoginPage() {
                 <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px]"></div>
             </div>
 
-            <div className="w-full max-w-md glass p-10 rounded-3xl border border-white/10 shadow-2xl">
+            <div className="w-full max-w-md glass p-10 rounded-3xl border border-foreground/10 shadow-2xl">
                 <div className="text-center mb-10">
                     <h1 className="text-4xl font-black uppercase tracking-tighter mb-2 text-gradient">Welcome Back</h1>
                     <p className="text-text-dim text-sm font-medium">Please enter your credentials to access the dashboard</p>
@@ -60,7 +60,7 @@ export default function LoginPage() {
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-accent transition-all"
+                            className="w-full bg-foreground/5 border border-foreground/10 rounded-xl px-4 py-4 text-foreground focus:outline-none focus:border-accent transition-all placeholder:text-text-dim/50"
                             placeholder="name@company.com"
                             required
                         />
@@ -72,7 +72,7 @@ export default function LoginPage() {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-accent transition-all"
+                            className="w-full bg-foreground/5 border border-foreground/10 rounded-xl px-4 py-4 text-foreground focus:outline-none focus:border-accent transition-all placeholder:text-text-dim/50"
                             placeholder="••••••••"
                             required
                         />

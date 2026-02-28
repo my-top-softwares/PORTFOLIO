@@ -32,14 +32,16 @@ const getServiceById = async (req, res) => {
 // @route   POST /api/services
 // @access  Private/Admin
 const createService = async (req, res) => {
-    const { title, description, icon, price, features } = req.body;
+    const { title, description, icon, monthlyPrice, annuallyPrice, features, isPopular } = req.body;
     try {
         const service = new Service({
             title,
             description,
             icon,
-            price,
-            features
+            monthlyPrice,
+            annuallyPrice,
+            features,
+            isPopular
         });
         const createdService = await service.save();
         res.status(201).json(createdService);
@@ -52,15 +54,17 @@ const createService = async (req, res) => {
 // @route   PUT /api/services/:id
 // @access  Private/Admin
 const updateService = async (req, res) => {
-    const { title, description, icon, price, features } = req.body;
+    const { title, description, icon, monthlyPrice, annuallyPrice, features, isPopular } = req.body;
     try {
         const service = await Service.findById(req.params.id);
         if (service) {
             service.title = title || service.title;
             service.description = description || service.description;
             service.icon = icon || service.icon;
-            service.price = price !== undefined ? price : service.price;
+            service.monthlyPrice = monthlyPrice !== undefined ? monthlyPrice : service.monthlyPrice;
+            service.annuallyPrice = annuallyPrice !== undefined ? annuallyPrice : service.annuallyPrice;
             service.features = features || service.features;
+            service.isPopular = isPopular !== undefined ? isPopular : service.isPopular;
 
             const updatedService = await service.save();
             res.json(updatedService);

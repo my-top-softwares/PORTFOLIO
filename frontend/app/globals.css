@@ -6,21 +6,21 @@
 }
 
 :root {
-    /* Default Light Mode */
-    --background: #F9F9F7;
-    --background-gradient: #F9F9F7;
-    --foreground: #1e293b;
+    /* Default Light Mode - Pure White */
+    --background: #ffffff;
+    --background-gradient: #ffffff;
+    --foreground: #0f172a;
     --primary: #ffffff;
     --accent: #ef8621;
     --accent-glow: rgba(239, 134, 33, 0.2);
     --accent-muted: rgba(239, 134, 33, 0.05);
-    --secondary: #f1f5f9;
-    --card-bg: rgba(255, 255, 255, 0.7);
+    --secondary: #ffffff;
+    --card-bg: #ffffff;
     --text-dim: #64748b;
-    --glass-border: rgba(0, 0, 0, 0.05);
-    --text-gradient-start: #1e293b;
-    --text-gradient-end: rgba(30, 41, 59, 0.6);
-    --outline-color: rgba(0, 0, 0, 0.1);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --text-gradient-start: #0f172a;
+    --text-gradient-end: #334155;
+    --outline-color: rgba(0, 0, 0, 0.08);
 }
 
 [data-theme='dark'],

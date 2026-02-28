@@ -18,15 +18,36 @@ connectDB();
 const importData = async () => {
     try {
         await User.deleteMany();
-        
+        await Service.deleteMany();
+
         const createdUser = await User.create({
             name: "Admin User",
             email: "admin@gmail.com",
             role: "admin",
-            password: "123456",
+            password: "password123",
         });
 
-        console.log("Data Imported! Admin User created: admin@example.com / password123");
+        const demoServices = [
+            {
+                title: "Starter",
+                description: "INDIVIDUAL",
+                price: 50,
+                icon: "package",
+                features: ["UI/UX Design Strategy", "Mobile Responsive", "Basic User Research"]
+            },
+            {
+                title: "Premium",
+                description: "BUSINESS",
+                price: 100,
+                icon: "diamond",
+                features: ["Advanced UI/UX", "Interactive Prototyping", "In-Depth User Testing", "Brand Identity"]
+            }
+        ];
+
+        await Service.insertMany(demoServices);
+
+        console.log("Data Imported! Admin User created: admin@gmail.com / password123");
+        console.log("Demo Services imported!");
         process.exit();
     } catch (error) {
         console.error(`${error}`);

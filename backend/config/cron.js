@@ -2,6 +2,11 @@ import { CronJob } from "cron";
 import https from "https";
 
 const job = new CronJob("*/14 * * * *", function () {
+  // Support skipping ping in development
+  if (process.env.NODE_ENV === "development") {
+    return;
+  }
+
   if (!process.env.BACKEND_URL) {
     console.error("BACKEND_URL is not defined in environment variables");
     return;
@@ -9,10 +14,17 @@ const job = new CronJob("*/14 * * * *", function () {
 
   https
     .get(process.env.BACKEND_URL, (res) => {
-      if (res.statusCode === 200) console.log("GET request sent successfully");
-      else console.log("GET request failed", res.statusCode);
+      if (res.statusCode === 200) console.log("Keep-alive ping successful");
+      else console.log("Keep-alive ping returned status:", res.statusCode);
     })
-    .on("error", (e) => console.error("Error while sending request", e));
+    .on("error", (e) => {
+      // Log as a warning instead of a full error to reduce noise in dev
+      if (e.code === 'ETIMEDOUT') {
+        console.warn("Keep-alive ping timed out (expected in some local environments)");
+      } else {
+        console.error("Error while sending keep-alive request:", e.message);
+      }
+    });
 });
 
 export default job;

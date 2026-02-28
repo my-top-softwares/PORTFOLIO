@@ -8,3 +8,4 @@ router.post("/login", authUser);
 router.post("/register", protect,  registerUser); // Only admin can create admin
 
 export default router;
+``

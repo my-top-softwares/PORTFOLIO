@@ -16,13 +16,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        // Check local storage or system preference
-        const savedTheme = localStorage.getItem("theme") as Theme;
-        if (savedTheme) {
-            setTheme(savedTheme);
-        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            setTheme("dark");
-        }
+        // ALWAYS force light mode for now as requested by user
+        setTheme("light");
+        localStorage.setItem("theme", "light");
         setMounted(true);
     }, []);
 
