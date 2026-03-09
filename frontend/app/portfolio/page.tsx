@@ -1,86 +1,55 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { FaArrowRight, FaTimes, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
-
-const categories = ["All", "Video", "Motion", "Graphic", "Voice"];
-
-const portfolioData = [
-    {
-        id: 1,
-        title: "Commercial Film",
-        category: "Video",
-        mainImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop",
-        gallery: [
-            "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop"
-        ],
-        desc: "High-end commercial production for a global luxury brand, focusing on cinematic lighting and emotional narrative.",
-        tech: ["Premiere Pro", "DaVinci Resolve", "Arri Alexa"],
-        size: "large"
-    },
-    {
-        id: 2,
-        title: "Audio Identity",
-        category: "Voice",
-        mainImage: "https://images.unsplash.com/photo-1590602847861-f357a93bb2be?q=80&w=1974&auto=format&fit=crop",
-        gallery: ["https://images.unsplash.com/photo-1590602847861-f357a93bb2be?q=80&w=1974&auto=format&fit=crop"],
-        desc: "Professional voice narration and audio branding for a leading fintech company's global campaign.",
-        tech: ["Pro Tools", "Audition", "Neumann U87"],
-        size: "medium"
-    },
-    {
-        id: 3,
-        title: "Motion Poster",
-        category: "Motion",
-        mainImage: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop",
-        gallery: ["https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop"],
-        desc: "Dynamic motion graphics that bring static film posters to life using fluid animation and 3D depth.",
-        tech: ["After Effects", "Cinema 4D", "X-Particles"],
-        size: "small"
-    },
-    {
-        id: 4,
-        title: "Documentary Edit",
-        category: "Video",
-        mainImage: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop",
-        gallery: ["https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop"],
-        desc: "Powerful storytelling through careful editing of a feature-length documentary on urban explorers.",
-        tech: ["Premiere Pro", "Avid", "After Effects"],
-        size: "small"
-    },
-    {
-        id: 5,
-        title: "Visual Branding",
-        category: "Graphic",
-        mainImage: "https://images.unsplash.com/photo-1541462608141-ad43d53e39ca?q=80&w=2070&auto=format&fit=crop",
-        gallery: ["https://images.unsplash.com/photo-1541462608141-ad43d53e39ca?q=80&w=2070&auto=format&fit=crop"],
-        desc: "Scalable visual identity system including logo design, color theory, and marketing assets.",
-        tech: ["Illustrator", "Photoshop", "InDesign"],
-        size: "medium"
-    },
-    {
-        id: 6,
-        title: "Podcast Production",
-        category: "Voice",
-        mainImage: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop",
-        gallery: ["https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop"],
-        desc: "Full audio production and voice engineering for a top-rated technology podcast.",
-        tech: ["Audition", "Logic Pro X", "iZotope RX"],
-        size: "small"
-    }
-];
+import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
+import API from "@/utils/api";
 
 export default function PortfolioPage() {
-    const [selectedProject, setSelectedProject] = useState<any>(null);
+    const [projects, setProjects] = useState<any[]>([]);
+    const [categories, setCategories] = useState<string[]>(["All"]);
     const [filter, setFilter] = useState("All");
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchPortfolioData = async () => {
+            try {
+                setLoading(true);
+                const [projectsRes, categoriesRes] = await Promise.all([
+                    API.get("/projects"),
+                    API.get("/categories")
+                ]);
+
+                setProjects(projectsRes.data);
+
+                // Extract category names for the filter
+                const catNames = ["All", ...categoriesRes.data.map((c: any) => c.name)];
+                setCategories(catNames);
+
+                setLoading(false);
+            } catch (error) {
+                console.error("Portfolio fetch error:", error);
+                setLoading(false);
+            }
+        };
+
+        fetchPortfolioData();
+    }, []);
 
     const filteredProjects = filter === "All"
-        ? portfolioData
-        : portfolioData.filter(p => p.category === filter);
+        ? projects
+        : projects.filter(p => p.category?.name === filter);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        );
+    }
 
     return (
-        <main className="relative py-40 px-6 md:px-12 lg:px-24 min-h-screen">
+        <main className="relative py-40 px-6 md:px-12 lg:px-24 min-h-screen overflow-hidden">
             <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
                 <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/20 rounded-full blur-[120px] animate-pulse"></div>
                 <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent/5 rounded-full blur-[100px]"></div>
@@ -117,22 +86,35 @@ export default function PortfolioPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-[300px]">
                     {filteredProjects.map((project, i) => (
-                        <div
-                            key={project.id}
-                            onClick={() => setSelectedProject(project)}
+                        <Link
+                            key={project._id}
+                            href={`/portfolio/${project._id}`}
                             className={`group relative glass rounded-[40px] overflow-hidden cursor-pointer transition-all duration-700 hover:border-accent/40 animate-fade-up stagger-${(i % 3) + 1} ${project.size === 'large' ? 'md:row-span-2 lg:row-span-2' :
                                 project.size === 'medium' ? 'lg:col-span-2' : ''
                                 }`}
                         >
-                            <Image
-                                src={project.mainImage}
-                                alt={project.title}
-                                fill
-                                className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
-                            />
+                            {project.mainMedia?.type === "video" ? (
+                                <video
+                                    src={project.mainMedia.url}
+                                    className="w-full h-full object-cover   transition-all duration-1000"
+                                    autoPlay
+                                    muted
+                                    loop
+                                    playsInline
+                                />
+                            ) : (
+                                <div className="relative w-full h-full">
+                                    <Image
+                                        src={project.mainMedia?.url || "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop"}
+                                        alt={project.title}
+                                        fill
+                                        className="object-cover transition-all duration-1000"
+                                    />
+                                </div>
+                            )}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex flex-col justify-end p-10">
                                 <span className="text-accent text-xs font-semibold uppercase tracking-wide mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
-                                    {project.category}
+                                    {project.category?.name}
                                 </span>
                                 <h3 className="text-xl font-bold text-white uppercase tracking-tight translate-y-4 group-hover:translate-y-0 transition-transform duration-700 [transition-delay:100ms]">
                                     {project.title}
@@ -141,81 +123,10 @@ export default function PortfolioPage() {
                                     View Details <FaArrowRight className="group-hover:translate-x-2 transition-all" />
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
-
-            {selectedProject && (
-                <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 md:p-12">
-                    <div
-                        className="absolute inset-0 bg-white/60 backdrop-blur animate-in fade-in duration-500"
-                        onClick={() => setSelectedProject(null)}
-                    ></div>
-
-                    <div className="relative w-full max-w-6xl max-h-[90vh] glass rounded-[60px] overflow-y-auto border border-foreground/10 shadow-2xl animate-in zoom-in slide-in-from-bottom-10 duration-700">
-                        <div className="sticky top-0 bg-primary/40 backdrop-blur-3xl z-30 flex justify-between items-center px-16 py-10 border-b border-foreground/10">
-                            <div>
-                                <h2 className="text-2xl font-bold uppercase tracking-tight mb-1 text-gradient">{selectedProject.title}</h2>
-                                <p className="text-xs font-semibold uppercase tracking-wider text-accent/60">{selectedProject.category}</p>
-                            </div>
-                            <button
-                                onClick={() => setSelectedProject(null)}
-                                className="w-14 h-14 glass rounded-2xl flex items-center justify-center hover:border-accent hover:text-accent transition-all duration-500 hover:rotate-90"
-                            >
-                                <FaTimes size={20} />
-                            </button>
-                        </div>
-
-                        <div className="p-16">
-                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-24">
-                                <div className="lg:col-span-2">
-                                    <h4 className="text-xs font-semibold uppercase tracking-wider text-accent mb-4">Concept & Vision</h4>
-                                    <p className="text-base text-text-dim font-normal leading-relaxed mb-8">
-                                        {selectedProject.desc}
-                                    </p>
-
-                                    <div className="flex flex-wrap gap-6">
-                                        <button className="btn-primary flex items-center gap-4 group">
-                                            LIVE PREVIEW <FaExternalLinkAlt size={12} className="group-hover:translate-y-[-2px] group-hover:translate-x-[2px] transition-transform" />
-                                        </button>
-                                        <button className="btn-outline flex items-center gap-4 group">
-                                            VIEW CODE <FaGithub size={18} className="group-hover:scale-125 transition-transform" />
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div className="glass p-10 rounded-[40px] border border-foreground/10 h-fit">
-                                    <h4 className="text-xs font-semibold uppercase tracking-wider text-accent mb-4">Technical Stack</h4>
-                                    <div className="flex flex-wrap gap-3">
-                                        {selectedProject.tech.map((t: string, i: number) => (
-                                            <span key={i} className="px-4 py-2 glass rounded-xl text-xs font-semibold uppercase tracking-wide text-text-dim">
-                                                {t}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h4 className="text-xs font-semibold uppercase tracking-wider text-accent mb-8 text-center">Visual Case Study</h4>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                                {selectedProject.gallery.map((img: string, i: number) => (
-                                    <div key={i} className="group relative aspect-video rounded-[40px] overflow-hidden glass p-3 border border-foreground/10">
-                                        <div className="relative w-full h-full rounded-[30px] overflow-hidden">
-                                            <Image
-                                                src={img}
-                                                alt={`Gallery ${i}`}
-                                                fill
-                                                className="object-cover group-hover:scale-110 transition-transform duration-[2000ms]"
-                                            />
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
         </main>
     );
 }

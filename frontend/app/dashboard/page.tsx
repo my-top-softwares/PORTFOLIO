@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import API from "@/utils/api";
-import { FiGrid, FiMail, FiBriefcase, FiStar, FiActivity, FiArrowUpRight, FiClock } from "react-icons/fi";
+import { FiGrid, FiMail, FiBriefcase, FiStar, FiActivity, FiArrowUpRight, FiClock, FiFileText } from "react-icons/fi";
 
 export default function DashboardPage() {
     const [stats, setStats] = useState([
@@ -10,7 +10,8 @@ export default function DashboardPage() {
         { label: "Testimonials", value: "0", growth: "0", color: "purple", icon: FiStar, endpoint: "/testimonials" },
         { label: "Services", value: "0", growth: "0", color: "orange", icon: FiGrid, endpoint: "/services" },
     ]);
-    const [recentMessages, setRecentMessages] = useState([]);
+    const [recentMessages, setRecentMessages] = useState<any[]>([]);
+    const [featuredGallery, setFeaturedGallery] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -30,6 +31,10 @@ export default function DashboardPage() {
                 // Fetch recent messages
                 const { data: messages } = await API.get("/messages");
                 setRecentMessages(messages.slice(0, 4));
+
+                // Fetch and filter featured gallery items
+                const { data: galleryItems } = await API.get("/gallery");
+                setFeaturedGallery(galleryItems.filter((p: any) => p.featured));
 
                 setLoading(false);
             } catch (error) {
@@ -93,7 +98,7 @@ export default function DashboardPage() {
 
             <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Recent Items / Activity */}
-                <div className="bg-card-bg p-10 rounded-[3rem] border border-foreground/5 shadow-sm h-full">
+                <div className="bg-white p-12 rounded-[4rem] border border-black/[0.05] shadow-[0_40px_120px_rgba(0,0,0,0.1)] h-full">
                     <div className="flex items-center justify-between mb-8 pb-4 border-b border-foreground/5">
                         <h3 className="text-xl font-black text-foreground uppercase tracking-tighter">Recent Messages</h3>
                         <FiMail className="text-text-dim" />
@@ -128,7 +133,7 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Quick Shortcuts */}
-                <div className="bg-card-bg p-10 rounded-[3rem] border border-foreground/5 shadow-sm h-full flex flex-col justify-between">
+                <div className="bg-white p-12 rounded-[4rem] border border-black/[0.05] shadow-[0_40px_120px_rgba(0,0,0,0.1)] h-full flex flex-col justify-between">
                     <div>
                         <div className="flex items-center justify-between mb-8 pb-4 border-b border-foreground/5">
                             <h3 className="text-xl font-black text-foreground uppercase tracking-tighter">Quick Access</h3>
@@ -137,7 +142,7 @@ export default function DashboardPage() {
                         <div className="grid grid-cols-2 gap-4">
                             {[
                                 { label: "Project", endpoint: "/dashboard/projects", icon: FiBriefcase },
-                                { label: "Service", endpoint: "/dashboard/services", icon: FiGrid },
+                                { label: "Gallery", endpoint: "/dashboard/gallery", icon: FiGrid },
                                 { label: "Feedback", endpoint: "/dashboard/testimonials", icon: FiStar },
                                 { label: "Resume", endpoint: "/dashboard/resume", icon: FiFileText },
                             ].map((action, i) => (
@@ -155,11 +160,11 @@ export default function DashboardPage() {
                         </div>
                     </div>
 
-                    <div className="mt-10 p-6 bg-accent border border-accent/20 rounded-[2rem] text-white overflow-hidden relative group">
+                    <div className="mt-10 p-6 bg-accent border border-accent/20 rounded-[2rem] text-white overflow-hidden relative group cursor-pointer">
                         <div className="relative z-10 flex items-center justify-between">
                             <div>
-                                <h4 className="text-lg font-black uppercase tracking-tighter mb-1">Portfolio v2.0</h4>
-                                <p className="text-[9px] font-bold uppercase tracking-widest opacity-80 italic">Ready to scale your digital presence.</p>
+                                <h4 className="text-lg font-black uppercase tracking-tighter mb-1">Portfolio Live</h4>
+                                <p className="text-[9px] font-bold uppercase tracking-widest opacity-80 italic">Click to view public site.</p>
                             </div>
                             <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-md">
                                 <FiArrowUpRight className="text-2xl" />
@@ -170,8 +175,108 @@ export default function DashboardPage() {
                     </div>
                 </div>
             </div>
+
+            {/* Selected Works Gallery Section */}
+            <div className="mt-20">
+                <div className="mb-12 text-center">
+                    <h2 className="text-7xl font-black uppercase tracking-tighter text-foreground mb-4">Selected Works.</h2>
+                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-text-dim italic">Curated highlights from your creative journey</p>
+                </div>
+
+                {loading ? (
+                    <div className="grid grid-cols-3 gap-6 h-[800px]">
+                        <div className="col-span-1 row-span-2 bg-foreground/5 rounded-[3rem] animate-pulse"></div>
+                        <div className="col-span-1 bg-foreground/5 rounded-[3rem] animate-pulse"></div>
+                        <div className="col-span-1 bg-foreground/5 rounded-[3rem] animate-pulse"></div>
+                        <div className="col-span-2 bg-foreground/5 rounded-[3rem] animate-pulse"></div>
+                    </div>
+                ) : featuredGallery.length > 0 ? (
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 auto-rows-[300px]">
+                        {/* First Item: Large Vertical (Masonry style emulation) */}
+                        {featuredGallery[0] && (
+                            <div className="lg:row-span-2 group relative overflow-hidden rounded-[3rem] border border-black/[0.05] shadow-xl">
+                                <img
+                                    src={featuredGallery[0].media?.url}
+                                    alt=""
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-10 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <span className="text-accent text-[10px] font-black uppercase tracking-widest mb-2">{featuredGallery[0].category}</span>
+                                    <h4 className="text-white text-2xl font-black uppercase tracking-tighter">{featuredGallery[0].title}</h4>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Middle Top */}
+                        {featuredGallery[1] && (
+                            <div className="group relative overflow-hidden rounded-[3rem] border border-black/[0.05] shadow-xl">
+                                <img
+                                    src={featuredGallery[1].media?.url}
+                                    alt=""
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-8 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <h4 className="text-white text-lg font-black uppercase tracking-tighter">{featuredGallery[1].title}</h4>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Right Top */}
+                        {featuredGallery[2] && (
+                            <div className="group relative overflow-hidden rounded-[3rem] border border-black/[0.05] shadow-xl">
+                                <img
+                                    src={featuredGallery[2].media?.url}
+                                    alt=""
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-8 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <h4 className="text-white text-lg font-black uppercase tracking-tighter">{featuredGallery[2].title}</h4>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Large Horizontal Spanning 2 columns */}
+                        {featuredGallery[3] && (
+                            <div className="lg:col-span-2 group relative overflow-hidden rounded-[3rem] border border-black/[0.05] shadow-xl">
+                                <img
+                                    src={featuredGallery[3].media?.url}
+                                    alt=""
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-10 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <h4 className="text-white text-3xl font-black uppercase tracking-tighter">{featuredGallery[3].title}</h4>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Additional projects as regular bricks if any */}
+                        {featuredGallery.slice(4).map((project: any) => (
+                            <div key={project._id} className="lg:col-span-3 group relative overflow-hidden rounded-[4rem] border border-black/[0.05] shadow-xl h-[400px]">
+                                <img
+                                    src={project.media?.url}
+                                    alt=""
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-12 flex items-end justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                                    <div>
+                                        <span className="text-accent text-[11px] font-black uppercase tracking-[0.3em] mb-3 block">{project.category}</span>
+                                        <h4 className="text-white text-4xl font-black uppercase tracking-tighter">{project.title}</h4>
+                                    </div>
+                                    <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center border border-white/20 text-white">
+                                        <FiArrowUpRight size={30} />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-32 bg-foreground/[0.02] rounded-[4rem] border-2 border-dashed border-foreground/5">
+                        <FiGrid size={60} className="mx-auto text-text-dim/20 mb-6" />
+                        <h3 className="text-xl font-black text-foreground uppercase tracking-tight mb-2">No Featured Assets</h3>
+                        <p className="text-[10px] font-bold text-text-dim uppercase tracking-widest">Toggle "Highlight Asset" in the Resources section to showcase them here</p>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
-
-import { FiFileText } from "react-icons/fi";

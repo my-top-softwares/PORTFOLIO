@@ -41,7 +41,9 @@ export default function LoginPage() {
                 <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px]"></div>
             </div>
 
-            <div className="w-full max-w-md glass p-10 rounded-3xl border border-foreground/10 shadow-2xl">
+            <div className="w-full max-w-lg bg-white p-14 rounded-[4rem] border border-black/[0.05] shadow-[0_40px_120px_rgba(0,0,0,0.15)] relative overflow-hidden">
+                <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+
                 <div className="text-center mb-10">
                     <h1 className="text-4xl font-black uppercase tracking-tighter mb-2 text-gradient">Welcome Back</h1>
                     <p className="text-text-dim text-sm font-medium">Please enter your credentials to access the dashboard</p>

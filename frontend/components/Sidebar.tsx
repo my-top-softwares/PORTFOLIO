@@ -32,6 +32,7 @@ export default function Sidebar() {
         { name: "Categories", icon: FiLayers, href: "/dashboard/categories" },
         { name: "Messages", icon: FiMail, href: "/dashboard/messages" },
         { name: "Projects", icon: FiBriefcase, href: "/dashboard/projects" },
+        { name: "Gallery", icon: FiGrid, href: "/dashboard/gallery" },
         { name: "Resume", icon: FiFileText, href: "/dashboard/resume" },
         { name: "Services", icon: FiGrid, href: "/dashboard/services" },
         { name: "Testimonials", icon: FiStar, href: "/dashboard/testimonials" },
@@ -45,14 +46,14 @@ export default function Sidebar() {
     };
 
     return (
-        <aside className="fixed left-0 top-0 h-screen w-64 bg-card-bg border-r border-foreground/5 flex flex-col z-[150] shadow-sm">
+        <aside className="fixed left-0 top-0 h-screen w-64 bg-white border-r border-black/[0.05] flex flex-col z-[150] shadow-sm">
             <div className="p-8">
                 <Link href="/" className="flex items-center gap-2">
-                    <img src="/logo.png" alt="Logo" className="w-24" />
+                    <img src="/logolight.png" alt="Logo" className="w-24" />
                 </Link>
             </div>
 
-            <div className="flex-1 px-4 overflow-y-auto custom-scrollbar">
+            <div className="flex-1 px-4 ">
                 <div className="space-y-1">
                     {menuItems.map((item) => {
                         const Icon = item.icon;

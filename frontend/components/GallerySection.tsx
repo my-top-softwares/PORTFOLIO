@@ -1,54 +1,66 @@
 "use client";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
+import API from "@/utils/api";
 
-const galleryItems = [
-    {
-        id: 1,
-        title: "Commercial Film",
-        category: "Video",
-        img: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop",
-        size: "large"
-    },
-    {
-        id: 2,
-        title: "Audio Branding",
-        category: "Audio",
-        img: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop",
-        size: "small"
-    },
-    {
-        id: 3,
-        title: "Motion Poster",
-        category: "Motion",
-        img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop",
-        size: "small"
-    },
-    {
-        id: 4,
-        title: "Product Showcase",
-        category: "Video",
-        img: "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=2000&auto=format&fit=crop",
-        size: "medium"
-    },
-    {
-        id: 5,
-        title: "Cinematic Reel",
-        category: "Video",
-        img: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop",
-        size: "medium"
-    },
-    {
-        id: 6,
-        title: "Visual Identity",
-        category: "Graphic",
-        img: "https://images.unsplash.com/photo-1541462608141-ad43d53e39ca?q=80&w=2070&auto=format&fit=crop",
-        size: "small"
-    }
-];
+interface GalleryItem {
+    _id: string;
+    title: string;
+    category: string;
+    media: {
+        url: string;
+        type: "image" | "video";
+    };
+    featured: boolean;
+}
 
 export default function GallerySection() {
+    const [items, setItems] = useState<GalleryItem[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchGallery = async () => {
+            try {
+                const { data } = await API.get("/gallery");
+                // Only show featured items on home page, up to 6 for the layout
+                const featured = data.filter((item: any) => item.featured).slice(0, 6);
+                setItems(featured);
+            } catch (error) {
+                console.error("Home gallery fetch error:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchGallery();
+    }, []);
+
+    const getLayoutClasses = (index: number) => {
+        switch (index) {
+            case 0: return "md:row-span-2 lg:row-span-2"; // Large Vertical
+            case 3: return "lg:col-span-2"; // Medium Horizontal
+            case 4: return "lg:col-span-2"; // Medium Horizontal
+            default: return ""; // Small
+        }
+    };
+
+    if (loading) {
+        return (
+            <section className="py-8 px-6 md:px-12 lg:px-24">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px]">
+                        {[1, 2, 3, 4].map(i => (
+                            <div key={i} className="rounded-[40px] bg-foreground/5 animate-pulse"></div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    if (items.length === 0) return null;
+
     return (
         <section className="py-8 px-6 md:px-12 lg:px-24">
             <div className="max-w-7xl mx-auto">
@@ -58,19 +70,28 @@ export default function GallerySection() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px] mb-20">
-                    {galleryItems.map((item) => (
+                    {items.map((item, index) => (
                         <div
-                            key={item.id}
-                            className={`group relative rounded-[40px] overflow-hidden glass hover:border-accent/40 transition-all duration-700 ${item.size === 'large' ? 'md:row-span-2 lg:row-span-2' :
-                                item.size === 'medium' ? 'lg:col-span-2' : ''
-                                }`}
+                            key={item._id}
+                            className={`group relative rounded-[40px] overflow-hidden glass hover:border-accent/40 transition-all duration-700 ${getLayoutClasses(index)}`}
                         >
-                            <Image
-                                src={item.img}
-                                alt={item.title}
-                                fill
-                                className="object-cover group-hover:scale-110 transition-all duration-1000"
-                            />
+                            {item.media.type === "video" ? (
+                                <video
+                                    src={item.media.url}
+                                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-all duration-1000"
+                                    autoPlay
+                                    muted
+                                    loop
+                                    playsInline
+                                />
+                            ) : (
+                                <Image
+                                    src={item.media.url}
+                                    alt={item.title}
+                                    fill
+                                    className="object-cover group-hover:scale-110 transition-all duration-1000"
+                                />
+                            )}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex flex-col justify-end p-10">
                                 <span className="text-accent text-xs font-semibold uppercase tracking-wide mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
                                     {item.category}
@@ -84,8 +105,8 @@ export default function GallerySection() {
                 </div>
 
                 <div className="text-center">
-                    <Link href="/portfolio" className="btn-primary px-16 py-8 rounded-full group inline-flex items-center gap-6">
-                        SEE ALL FULL GALLERY
+                    <Link href="/gallery" className="btn-primary px-16 py-8 rounded-full group inline-flex items-center gap-6">
+                        SEE FULL GALLERY
                         <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
                     </Link>
                 </div>

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import API from "@/utils/api";
 import { FiPlus, FiEdit2, FiTrash2, FiX, FiCheck, FiSettings, FiBriefcase, FiStar } from "react-icons/fi";
+import ConfirmModal from "@/components/ConfirmModal";
 
 interface Service {
     _id: string;
@@ -23,6 +24,10 @@ export default function ServicesPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [currentId, setCurrentId] = useState("");
+
+    // Confirm state
+    const [confirmOpen, setConfirmOpen] = useState(false);
+    const [deleteId, setDeleteId] = useState<string | null>(null);
 
     // Form state
     const [title, setTitle] = useState("");
@@ -81,14 +86,19 @@ export default function ServicesPage() {
         setIsModalOpen(true);
     };
 
-    const handleDelete = async (id: string) => {
-        if (window.confirm("Are you sure you want to delete this service?")) {
-            try {
-                await API.delete(`/services/${id}`);
-                setServices(services.filter(s => s._id !== id));
-            } catch (err: any) {
-                alert(err.response?.data?.message || "Failed to delete service");
-            }
+    const confirmDelete = (id: string) => {
+        setDeleteId(id);
+        setConfirmOpen(true);
+    };
+
+    const handleDelete = async () => {
+        if (!deleteId) return;
+        try {
+            await API.delete(`/services/${deleteId}`);
+            setServices(services.filter(s => s._id !== deleteId));
+            setDeleteId(null);
+        } catch (err: any) {
+            alert(err.response?.data?.message || "Failed to delete service");
         }
     };
 
@@ -196,7 +206,7 @@ export default function ServicesPage() {
                                     <span>EDIT</span>
                                 </button>
                                 <button
-                                    onClick={() => handleDelete(service._id)}
+                                    onClick={() => confirmDelete(service._id)}
                                     className="w-12 h-12 flex items-center justify-center bg-red-500/5 rounded-xl text-red-500 hover:bg-red-500 hover:text-white transition-all border border-red-500/10"
                                 >
                                     <FiTrash2 />
@@ -209,70 +219,143 @@ export default function ServicesPage() {
 
             {/* Modal */}
             {isModalOpen && (
-                <div className="fixed inset-0 z-[1000] flex items-center justify-center p-6 bg-background/80 backdrop-blur-md">
-                    <div className="bg-card-bg w-full max-w-2xl rounded-3xl p-8 border border-foreground/10 shadow-2xl animate-fade-up max-h-[90vh] overflow-y-auto custom-scrollbar">
-                        <div className="flex items-center justify-between mb-8 pb-4 border-b border-foreground/5">
-                            <h2 className="text-3xl font-black text-foreground uppercase tracking-tighter">
-                                {isEditing ? "Edit Package" : "New Package"}
+                <div className="fixed inset-0 z-[1000] flex items-start justify-center p-4 md:p-8 bg-white/80 backdrop-blur-xl animate-fade-in  pt-10 md:pt-22 ">
+                    <div className="bg-white w-full max-w-2xl rounded-[4rem] border border-black/[0.05] shadow-[0_40px_120px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col animate-zoom-in relative">
+                        <div className="px-12 py-10 border-b border-slate-50 flex justify-between items-center bg-white sticky top-0 z-10">
+                            <h2 className="text-4xl font-black text-slate-900 uppercase tracking-tighter">
+                                {isEditing ? "Refine Package" : "New Package"}
                             </h2>
-                            <button onClick={() => setIsModalOpen(false)} className="w-10 h-10 bg-foreground/5 rounded-full flex items-center justify-center text-foreground hover:bg-accent hover:text-white transition-all">
-                                <FiX />
+                            <button
+                                onClick={() => setIsModalOpen(false)}
+                                className="w-14 h-14 bg-slate-50 rounded-[1.5rem] flex items-center justify-center text-slate-400 hover:bg-slate-900 hover:text-white transition-all hover:rotate-90 duration-300 border border-slate-200/50"
+                            >
+                                <FiX size={24} />
                             </button>
                         </div>
 
-                        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="md:col-span-2">
-                                <label className="block text-xs font-bold uppercase tracking-widest text-text-dim mb-2 ml-1">Package Title</label>
-                                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full bg-foreground/5 border border-foreground/5 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-all font-medium" placeholder="e.g. STARTER" required />
-                            </div>
-
-                            <div className="md:col-span-2">
-                                <label className="block text-xs font-bold uppercase tracking-widest text-text-dim mb-2 ml-1">Description/Subtitle</label>
-                                <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} className="w-full bg-foreground/5 border border-foreground/5 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-all font-medium" placeholder="e.g. FOR INDIVIDUAL" required />
-                            </div>
-
-                            <div>
-                                <label className="block text-xs font-bold uppercase tracking-widest text-text-dim mb-2 ml-1">Monthly Price ($)</label>
-                                <input type="number" value={monthlyPrice} onChange={(e) => setMonthlyPrice(Number(e.target.value))} className="w-full bg-foreground/5 border border-foreground/5 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-all font-bold" required />
-                            </div>
-
-                            <div>
-                                <label className="block text-xs font-bold uppercase tracking-widest text-text-dim mb-2 ml-1">Annually Price ($)</label>
-                                <input type="number" value={annuallyPrice} onChange={(e) => setAnnuallyPrice(Number(e.target.value))} className="w-full bg-foreground/5 border border-foreground/5 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-all font-bold" required />
-                            </div>
-
-                            <div className="md:col-span-2">
-                                <label className="flex items-center gap-3 cursor-pointer group">
-                                    <input type="checkbox" checked={isPopular} onChange={(e) => setIsPopular(e.target.checked)} className="w-5 h-5 accent-accent rounded" />
-                                    <span className="text-xs font-bold uppercase tracking-widest text-text-dim group-hover:text-accent transition-colors">Mark as Popular/Featured</span>
-                                </label>
-                            </div>
-
-                            <div className="md:col-span-2">
-                                <label className="block text-xs font-bold uppercase tracking-widest text-text-dim mb-4 ml-1">Features</label>
-                                <div className="flex gap-2 mb-4">
-                                    <input type="text" value={featureInput} onChange={(e) => setFeatureInput(e.target.value)} className="flex-1 bg-foreground/5 border border-foreground/5 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-all font-medium" placeholder="Add feature..." onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddFeature())} />
-                                    <button type="button" onClick={handleAddFeature} className="px-6 bg-accent text-white font-black rounded-xl hover:scale-105 active:scale-95 transition-all text-sm uppercase tracking-widest">ADD</button>
+                        <form onSubmit={handleSubmit} className="p-12 space-y-10">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div className="md:col-span-2 space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Package Title</label>
+                                    <input
+                                        type="text"
+                                        value={title}
+                                        onChange={(e) => setTitle(e.target.value)}
+                                        className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 focus:bg-background rounded-2xl px-6 py-4 text-sm font-bold text-foreground transition-all outline-none"
+                                        placeholder="e.g. STARTER"
+                                        required
+                                    />
                                 </div>
-                                <div className="flex flex-wrap gap-2 min-h-[40px] p-4 bg-foreground/5 rounded-2xl border border-dashed border-foreground/10">
-                                    {features.map((feat, i) => (
-                                        <div key={i} className="flex items-center gap-2 bg-accent/10 border border-accent/20 text-accent px-3 py-1.5 rounded-lg text-xs font-bold uppercase">
-                                            <span>{feat}</span>
-                                            <button type="button" onClick={() => removeFeature(i)} className="hover:text-red-500"><FiX /></button>
-                                        </div>
-                                    ))}
+
+                                <div className="md:col-span-2 space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Description/Subtitle</label>
+                                    <input
+                                        type="text"
+                                        value={description}
+                                        onChange={(e) => setDescription(e.target.value)}
+                                        className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 focus:bg-background rounded-2xl px-6 py-4 text-sm font-bold text-foreground transition-all outline-none"
+                                        placeholder="e.g. FOR INDIVIDUAL"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Monthly Price ($)</label>
+                                    <input
+                                        type="number"
+                                        value={monthlyPrice}
+                                        onChange={(e) => setMonthlyPrice(Number(e.target.value))}
+                                        className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 focus:bg-background rounded-2xl px-6 py-4 text-sm font-bold text-foreground transition-all outline-none"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Annually Price ($)</label>
+                                    <input
+                                        type="number"
+                                        value={annuallyPrice}
+                                        onChange={(e) => setAnnuallyPrice(Number(e.target.value))}
+                                        className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 focus:bg-background rounded-2xl px-6 py-4 text-sm font-bold text-foreground transition-all outline-none"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="md:col-span-2">
+                                    <label className="inline-flex items-center gap-4 cursor-pointer group bg-foreground/[0.03] px-6 py-4 rounded-2xl border-2 border-transparent hover:border-accent/20 transition-all">
+                                        <input
+                                            type="checkbox"
+                                            checked={isPopular}
+                                            onChange={(e) => setIsPopular(e.target.checked)}
+                                            className="w-5 h-5 accent-accent rounded"
+                                        />
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-text-dim group-hover:text-accent transition-colors">Featured Package (Popular)</span>
+                                    </label>
+                                </div>
+
+                                <div className="md:col-span-2 space-y-4">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Service Features</label>
+                                    <div className="flex gap-3">
+                                        <input
+                                            type="text"
+                                            value={featureInput}
+                                            onChange={(e) => setFeatureInput(e.target.value)}
+                                            className="flex-1 bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 focus:bg-background rounded-2xl px-6 py-4 text-sm font-medium text-foreground transition-all outline-none"
+                                            placeholder="Add feature..."
+                                            onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddFeature())}
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={handleAddFeature}
+                                            className="px-8 bg-foreground text-background font-black rounded-2xl hover:scale-105 active:scale-95 transition-all text-xs uppercase tracking-widest"
+                                        >
+                                            ADD
+                                        </button>
+                                    </div>
+                                    <div className="flex flex-wrap gap-3 min-h-[60px] p-6 bg-foreground/[0.02] rounded-[2rem] border-2 border-dashed border-foreground/10">
+                                        {features.map((feat, i) => (
+                                            <div key={i} className="flex items-center gap-3 bg-accent/10 border border-accent/20 text-accent px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest animate-fade-in group/feat">
+                                                <span>{feat}</span>
+                                                <button type="button" onClick={() => removeFeature(i)} className="hover:text-red-500 transition-colors">
+                                                    <FiX />
+                                                </button>
+                                            </div>
+                                        ))}
+                                        {features.length === 0 && (
+                                            <p className="text-[10px] text-text-dim/40 italic font-bold uppercase tracking-widest self-center mx-auto">No features added yet</p>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="md:col-span-2 pt-4">
-                                <button type="submit" className="w-full bg-accent text-white font-black py-4 rounded-xl uppercase tracking-[0.2em] text-sm hover:scale-[1.02] shadow-lg shadow-accent/20 active:scale-95 transition-all">
-                                    {isEditing ? "UPDATE PACKAGE" : "PUBLISH PACKAGE"}
+                            <div className="pt-8 flex gap-5 border-t border-slate-50">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsModalOpen(false)}
+                                    className="flex-1 py-6 rounded-[1.8rem] font-black uppercase tracking-widest text-[11px] text-slate-400 bg-slate-50 hover:bg-slate-100 transition-all border border-slate-200/50"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="flex-[2] bg-slate-900 text-white font-black py-6 rounded-[1.8rem] uppercase tracking-widest text-[11px] hover:scale-[1.02] shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)] active:scale-95 transition-all flex items-center justify-center gap-3"
+                                >
+                                    <span>{isEditing ? "Update Package" : "Publish Package"}</span>
                                 </button>
                             </div>
+                            <div className="h-4"></div>
                         </form>
                     </div>
                 </div>
             )}
+
+            <ConfirmModal
+                isOpen={confirmOpen}
+                onClose={() => setConfirmOpen(false)}
+                onConfirm={handleDelete}
+                title="Delete Service?"
+                message="Are you sure you want to stop offering this service? Existing contracts should be respected."
+            />
         </div>
     );
 }

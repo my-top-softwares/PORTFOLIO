@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import API from "@/utils/api";
 import { FiPlus, FiEdit2, FiTrash2, FiX, FiCheck, FiStar, FiImage, FiUser, FiZap } from "react-icons/fi";
+import ConfirmModal from "@/components/ConfirmModal";
 import { FaQuoteLeft } from "react-icons/fa";
 import Image from "next/image";
 
@@ -24,6 +25,10 @@ export default function TestimonialsPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [currentId, setCurrentId] = useState("");
+
+    // Confirm state
+    const [confirmOpen, setConfirmOpen] = useState(false);
+    const [deleteId, setDeleteId] = useState<string | null>(null);
 
     // Form state
     const [name, setName] = useState("");
@@ -77,14 +82,19 @@ export default function TestimonialsPage() {
         setIsModalOpen(true);
     };
 
-    const handleDelete = async (id: string) => {
-        if (window.confirm("Are you sure you want to delete this testimonial?")) {
-            try {
-                await API.delete(`/testimonials/${id}`);
-                setTestimonials(testimonials.filter(t => t._id !== id));
-            } catch (err: any) {
-                alert(err.response?.data?.message || "Failed to delete testimonial");
-            }
+    const confirmDelete = (id: string) => {
+        setDeleteId(id);
+        setConfirmOpen(true);
+    };
+
+    const handleDelete = async () => {
+        if (!deleteId) return;
+        try {
+            await API.delete(`/testimonials/${deleteId}`);
+            setTestimonials(testimonials.filter(t => t._id !== deleteId));
+            setDeleteId(null);
+        } catch (err: any) {
+            alert(err.response?.data?.message || "Failed to delete testimonial");
         }
     };
 
@@ -173,7 +183,7 @@ export default function TestimonialsPage() {
                                 <button onClick={() => handleEdit(testi)} className="p-2 rounded-lg bg-foreground/5 text-foreground hover:bg-accent hover:text-white transition-all">
                                     <FiEdit2 className="text-xs" />
                                 </button>
-                                <button onClick={() => handleDelete(testi._id)} className="p-2 rounded-lg bg-red-500/5 text-red-500 hover:bg-red-500 hover:text-white transition-all border border-red-500/10">
+                                <button onClick={() => confirmDelete(testi._id)} className="p-2 rounded-lg bg-red-500/5 text-red-500 hover:bg-red-500 hover:text-white transition-all border border-red-500/10">
                                     <FiTrash2 className="text-xs" />
                                 </button>
                             </div>
@@ -193,78 +203,126 @@ export default function TestimonialsPage() {
 
             {/* Modal */}
             {isModalOpen && (
-                <div className="fixed inset-0 z-[1000] flex items-center justify-center p-6 bg-background/80 backdrop-blur-md">
-                    <div className="bg-card-bg w-full max-w-2xl rounded-3xl p-8 border border-foreground/10 shadow-2xl animate-fade-up max-h-[90vh] overflow-y-auto custom-scrollbar">
-                        <div className="flex items-center justify-between mb-8 pb-4 border-b border-foreground/5">
-                            <h2 className="text-3xl font-black text-foreground uppercase tracking-tighter">
-                                {isEditing ? "Edit Feedback" : "New Feedback"}
+                <div className="fixed inset-0 z-[1000] flex items-start justify-center p-4 md:p-8 bg-white/80 backdrop-blur-xl animate-fade-in  pt-10 md:pt-22 ">
+                    <div className="bg-white w-full max-w-2xl rounded-[4rem] border border-black/[0.05] shadow-[0_40px_120px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col animate-zoom-in relative">
+                        <div className="px-12 py-10 border-b border-slate-50 flex justify-between items-center bg-white sticky top-0 z-10">
+                            <h2 className="text-4xl font-black text-slate-900 uppercase tracking-tighter">
+                                {isEditing ? "Refine Feedback" : "New Feedback"}
                             </h2>
-                            <button onClick={() => setIsModalOpen(false)} className="w-10 h-10 bg-foreground/5 rounded-full flex items-center justify-center text-foreground hover:bg-accent hover:text-white transition-all">
-                                <FiX />
+                            <button
+                                onClick={() => setIsModalOpen(false)}
+                                className="w-14 h-14 bg-slate-50 rounded-[1.5rem] flex items-center justify-center text-slate-400 hover:bg-slate-900 hover:text-white transition-all hover:rotate-90 duration-300 border border-slate-200/50"
+                            >
+                                <FiX size={24} />
                             </button>
                         </div>
 
-                        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="md:col-span-2">
-                                <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-text-dim mb-2 ml-1">Client Name</label>
-                                <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-foreground/5 border border-foreground/5 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-all font-medium" placeholder="e.g. Sarah J. Johnson" required />
-                            </div>
+                        <form onSubmit={handleSubmit} className="p-12 space-y-10">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div className="md:col-span-2 space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Client Full Name</label>
+                                    <input
+                                        type="text"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        className="w-full bg-slate-50 border-2 border-transparent focus:border-accent/20 focus:bg-white rounded-2xl px-8 py-5 text-sm font-bold text-slate-900 transition-all outline-none shadow-sm"
+                                        placeholder="e.g. Sarah J. Johnson"
+                                        required
+                                    />
+                                </div>
 
-                            <div className="md:col-span-2">
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-text-dim mb-2 ml-1">Position</label>
-                                        <input type="text" value={position} onChange={(e) => setPosition(e.target.value)} className="w-full bg-foreground/5 border border-foreground/5 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-all font-medium" placeholder="e.g. CMO" />
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Professional Position</label>
+                                    <input
+                                        type="text"
+                                        value={position}
+                                        onChange={(e) => setPosition(e.target.value)}
+                                        className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 focus:bg-background rounded-2xl px-6 py-4 text-sm font-bold text-foreground transition-all outline-none"
+                                        placeholder="e.g. CMO"
+                                    />
+                                </div>
+
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Company / Organization</label>
+                                    <input
+                                        type="text"
+                                        value={company}
+                                        onChange={(e) => setCompany(e.target.value)}
+                                        className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 focus:bg-background rounded-2xl px-6 py-4 text-sm font-bold text-foreground transition-all outline-none"
+                                        placeholder="e.g. Netflix"
+                                    />
+                                </div>
+
+                                <div className="md:col-span-1 space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1 flex items-center gap-2">
+                                        Client Satisfaction
+                                    </label>
+                                    <div className="flex gap-2">
+                                        {[1, 2, 3, 4, 5].map((star) => (
+                                            <button
+                                                key={star}
+                                                type="button"
+                                                onClick={() => setRating(star)}
+                                                className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${rating >= star ? 'bg-accent/10 text-accent shadow-sm border border-accent/20' : 'bg-foreground/[0.03] text-text-dim hover:bg-foreground/[0.05]'}`}
+                                            >
+                                                <FiStar className={rating >= star ? 'fill-accent' : ''} />
+                                            </button>
+                                        ))}
                                     </div>
-                                    <div>
-                                        <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-text-dim mb-2 ml-1">Company</label>
-                                        <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} className="w-full bg-foreground/5 border border-foreground/5 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-all font-medium" placeholder="e.g. Netflix" />
-                                    </div>
+                                </div>
+
+                                <div className="md:col-span-1 space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Client Avatar (URL)</label>
+                                    <input
+                                        type="text"
+                                        value={image}
+                                        onChange={(e) => setImage(e.target.value)}
+                                        className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 focus:bg-background rounded-2xl px-6 py-4 text-sm font-mono text-foreground transition-all outline-none"
+                                        placeholder="https://..."
+                                    />
+                                </div>
+
+                                <div className="md:col-span-2 space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">The Experience / Review</label>
+                                    <textarea
+                                        value={message}
+                                        onChange={(e) => setMessage(e.target.value)}
+                                        className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 focus:bg-background rounded-[2rem] px-6 py-5 text-sm font-medium text-foreground transition-all outline-none min-h-[160px] resize-none leading-relaxed"
+                                        placeholder="What did they say about your work?"
+                                        required
+                                    />
                                 </div>
                             </div>
 
-                            <div className="md:col-span-1">
-                                <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-text-dim mb-2 ml-1">Rating (1-5)</label>
-                                <div className="flex gap-2">
-                                    {[1, 2, 3, 4, 5].map((star) => (
-                                        <button
-                                            key={star}
-                                            type="button"
-                                            onClick={() => setRating(star)}
-                                            className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all ${rating >= star ? 'bg-accent/10 text-accent shadow-sm' : 'bg-foreground/5 text-text-dim hover:bg-foreground/10'}`}
-                                        >
-                                            <FiStar className={rating >= star ? 'fill-accent' : ''} />
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="md:col-span-1">
-                                <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-text-dim mb-2 ml-1">Client Photo URL</label>
-                                <input type="text" value={image} onChange={(e) => setImage(e.target.value)} className="w-full bg-foreground/5 border border-foreground/5 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-all font-medium" placeholder="https://..." />
-                            </div>
-
-                            <div className="md:col-span-2">
-                                <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-text-dim mb-2 ml-1">Testimonial Message</label>
-                                <textarea
-                                    value={message}
-                                    onChange={(e) => setMessage(e.target.value)}
-                                    className="w-full bg-foreground/5 border border-foreground/5 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-all font-medium min-h-[140px] resize-none"
-                                    placeholder="Paste the client's review here..."
-                                    required
-                                />
-                            </div>
-
-                            <div className="md:col-span-2 pt-4">
-                                <button type="submit" className="w-full bg-accent text-white font-black py-4 rounded-xl uppercase tracking-[0.2em] text-sm hover:scale-[1.02] shadow-lg shadow-accent/20 active:scale-95 transition-all flex items-center justify-center gap-3">
-                                    <FiZap className="text-lg" />
-                                    <span>{isEditing ? "UPDATE FEEDBACK" : "PUBLISH FEEDBACK"}</span>
+                            <div className="pt-8 flex gap-5 border-t border-slate-50">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsModalOpen(false)}
+                                    className="flex-1 py-6 rounded-[1.5rem] font-black uppercase tracking-widest text-[11px] text-slate-400 bg-slate-50 hover:bg-slate-100 transition-all border border-slate-200/50"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="flex-[2] bg-slate-900 text-white font-black py-6 rounded-[1.5rem] uppercase tracking-widest text-[11px] hover:scale-[1.02] shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)] active:scale-95 transition-all flex items-center justify-center gap-3"
+                                >
+                                    <FiZap size={18} className="text-accent" />
+                                    <span>{isEditing ? "Update Feedback" : "Publish Feedback"}</span>
                                 </button>
                             </div>
+                            <div className="h-4"></div>
                         </form>
                     </div>
                 </div>
             )}
+
+            <ConfirmModal
+                isOpen={confirmOpen}
+                onClose={() => setConfirmOpen(false)}
+                onConfirm={handleDelete}
+                title="Delete Feedback?"
+                message="Are you sure you want to remove this testimonial from your public profile?"
+            />
         </div>
     );
 }

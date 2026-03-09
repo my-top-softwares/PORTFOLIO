@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import API from "@/utils/api";
 import { FiPlus, FiEdit2, FiTrash2, FiX, FiCheck, FiFileText, FiCalendar, FiMapPin, FiBriefcase, FiBook } from "react-icons/fi";
+import ConfirmModal from "@/components/ConfirmModal";
 
 interface ResumeItem {
     _id: string;
@@ -22,6 +23,10 @@ export default function ResumePage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [currentId, setCurrentId] = useState("");
+
+    // Confirm state
+    const [confirmOpen, setConfirmOpen] = useState(false);
+    const [deleteId, setDeleteId] = useState<string | null>(null);
 
     // Form state
     const [title, setTitle] = useState("");
@@ -75,14 +80,19 @@ export default function ResumePage() {
         setIsModalOpen(true);
     };
 
-    const handleDelete = async (id: string) => {
-        if (window.confirm("Are you sure you want to delete this item?")) {
-            try {
-                await API.delete(`/resume/${id}`);
-                setItems(items.filter(i => i._id !== id));
-            } catch (err: any) {
-                alert(err.response?.data?.message || "Failed to delete item");
-            }
+    const confirmDelete = (id: string) => {
+        setDeleteId(id);
+        setConfirmOpen(true);
+    };
+
+    const handleDelete = async () => {
+        if (!deleteId) return;
+        try {
+            await API.delete(`/resume/${deleteId}`);
+            setItems(items.filter(i => i._id !== deleteId));
+            setDeleteId(null);
+        } catch (err: any) {
+            alert(err.response?.data?.message || "Failed to delete item");
         }
     };
 
@@ -150,7 +160,7 @@ export default function ResumePage() {
 
                     <div className="space-y-6">
                         {experiences.length > 0 ? experiences.map((item) => (
-                            <ResumeCard key={item._id} item={item} onEdit={handleEdit} onDelete={handleDelete} />
+                            <ResumeCard key={item._id} item={item} onEdit={handleEdit} confirmDelete={confirmDelete} />
                         )) : (
                             <div className="p-8 border border-dashed border-foreground/10 rounded-3xl text-center text-text-dim italic">
                                 No work experience added yet.
@@ -170,7 +180,7 @@ export default function ResumePage() {
 
                     <div className="space-y-6">
                         {education.length > 0 ? education.map((item) => (
-                            <ResumeCard key={item._id} item={item} onEdit={handleEdit} onDelete={handleDelete} />
+                            <ResumeCard key={item._id} item={item} onEdit={handleEdit} confirmDelete={confirmDelete} />
                         )) : (
                             <div className="p-8 border border-dashed border-foreground/10 rounded-3xl text-center text-text-dim italic">
                                 No education history added yet.
@@ -182,76 +192,134 @@ export default function ResumePage() {
 
             {/* Modal */}
             {isModalOpen && (
-                <div className="fixed inset-0 z-[1000] flex items-center justify-center p-6 bg-background/80 backdrop-blur-md">
-                    <div className="bg-card-bg w-full max-w-2xl rounded-3xl p-8 border border-foreground/10 shadow-2xl animate-fade-up max-h-[90vh] overflow-y-auto custom-scrollbar">
-                        <div className="flex items-center justify-between mb-8 pb-4 border-b border-foreground/5">
-                            <h2 className="text-3xl font-black text-foreground uppercase tracking-tighter">
-                                {isEditing ? "Edit Item" : "New Item"}
+                <div className="fixed inset-0 z-[1000] flex items-start justify-center p-4 md:p-8 bg-white/80 backdrop-blur-xl animate-fade-in  pt-10 md:pt-22 ">
+                    <div className="bg-white w-full max-w-2xl rounded-[4rem] border border-black/[0.05] shadow-[0_40px_120px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col animate-zoom-in relative">
+                        <div className="px-12 py-10 border-b border-slate-50 flex justify-between items-center bg-white sticky top-0 z-10">
+                            <h2 className="text-4xl font-black text-slate-900 uppercase tracking-tighter">
+                                {isEditing ? "Refine Entry" : "New Entry"}
                             </h2>
-                            <button onClick={() => setIsModalOpen(false)} className="w-10 h-10 bg-foreground/5 rounded-full flex items-center justify-center text-foreground hover:bg-accent hover:text-white transition-all">
-                                <FiX />
+                            <button
+                                onClick={() => setIsModalOpen(false)}
+                                className="w-14 h-14 bg-slate-50 rounded-[1.5rem] flex items-center justify-center text-slate-400 hover:bg-slate-900 hover:text-white transition-all hover:rotate-90 duration-300 border border-slate-200/50"
+                            >
+                                <FiX size={24} />
                             </button>
                         </div>
 
-                        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="md:col-span-2">
-                                <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-text-dim mb-2 ml-1">Resume Type (Select Category)</label>
-                                <select
-                                    value={type}
-                                    onChange={(e) => setType(e.target.value as 'experience' | 'education')}
-                                    className="w-full bg-foreground/5 border border-foreground/10 rounded-xl px-4 py-4 text-foreground font-black uppercase tracking-widest text-xs focus:outline-none focus:border-accent transition-all cursor-pointer hover:bg-foreground/10"
-                                    required
-                                >
-                                    <option value="experience">💼 Professional Experience</option>
-                                    <option value="education">🎓 Education & Academic</option>
-                                </select>
+                        <form onSubmit={handleSubmit} className="p-12 space-y-10">
+                            {/* Type Selector - Dropdown */}
+                            <div className="space-y-3">
+                                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-accent ml-1 flex items-center gap-2">
+                                    <FiBriefcase size={12} /> Entry Classification
+                                </label>
+                                <div className="relative">
+                                    <select
+                                        value={type}
+                                        onChange={(e) => setType(e.target.value as 'experience' | 'education')}
+                                        className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 focus:bg-background rounded-2xl px-6 py-5 text-sm font-black uppercase tracking-widest text-foreground transition-all outline-none appearance-none cursor-pointer hover:bg-foreground/[0.05]"
+                                        required
+                                    >
+                                        <option value="experience">💼 Work Experience</option>
+                                        <option value="education">🎓 Education & Learning</option>
+                                    </select>
+                                    <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-text-dim">
+                                        <FiPlus size={16} className="rotate-45" />
+                                    </div>
+                                </div>
                             </div>
 
-                            <div className="md:col-span-2">
-                                <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-text-dim mb-2 ml-1">Title</label>
-                                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full bg-foreground/5 border border-foreground/5 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-all font-medium" placeholder="e.g. Senior UI Designer" required />
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Position / Degree</label>
+                                    <input
+                                        type="text"
+                                        value={title}
+                                        onChange={(e) => setTitle(e.target.value)}
+                                        className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 focus:bg-background rounded-2xl px-6 py-4 text-sm font-bold text-foreground transition-all outline-none"
+                                        placeholder="e.g. Senior Designer"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Organization / School</label>
+                                    <input
+                                        type="text"
+                                        value={organization}
+                                        onChange={(e) => setOrganization(e.target.value)}
+                                        className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 focus:bg-background rounded-2xl px-6 py-4 text-sm font-bold text-foreground transition-all outline-none"
+                                        placeholder="e.g. Google"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Timeframe</label>
+                                    <input
+                                        type="text"
+                                        value={duration}
+                                        onChange={(e) => setDuration(e.target.value)}
+                                        className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 focus:bg-background rounded-2xl px-6 py-4 text-sm font-bold text-foreground transition-all outline-none"
+                                        placeholder="e.g. 2022 - Present"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Display Order</label>
+                                    <input
+                                        type="number"
+                                        value={order}
+                                        onChange={(e) => setOrder(Number(e.target.value))}
+                                        className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 focus:bg-background rounded-2xl px-6 py-4 text-sm font-bold text-foreground transition-all outline-none"
+                                    />
+                                </div>
                             </div>
 
-                            <div className="md:col-span-2">
-                                <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-text-dim mb-2 ml-1">Organization</label>
-                                <input type="text" value={organization} onChange={(e) => setOrganization(e.target.value)} className="w-full bg-foreground/5 border border-foreground/5 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-all font-medium" placeholder="e.g. Google Creative Lab" required />
-                            </div>
-
-                            <div>
-                                <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-text-dim mb-2 ml-1">Duration</label>
-                                <input type="text" value={duration} onChange={(e) => setDuration(e.target.value)} className="w-full bg-foreground/5 border border-foreground/5 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-all font-medium" placeholder="e.g. 2022 - Present" required />
-                            </div>
-
-                            <div>
-                                <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-text-dim mb-2 ml-1">Order (Sort)</label>
-                                <input type="number" value={order} onChange={(e) => setOrder(Number(e.target.value))} className="w-full bg-foreground/5 border border-foreground/5 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-all font-medium" />
-                            </div>
-
-                            <div className="md:col-span-2">
-                                <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-text-dim mb-2 ml-1">Description</label>
+                            <div className="space-y-3">
+                                <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Accomplishments</label>
                                 <textarea
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
-                                    className="w-full bg-foreground/5 border border-foreground/5 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-all font-medium min-h-[120px] resize-none"
-                                    placeholder="Briefly describe your responsibilities or achievements..."
+                                    className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 focus:bg-background rounded-[2rem] px-6 py-5 text-sm font-medium text-foreground transition-all outline-none min-h-[150px] resize-none leading-relaxed"
+                                    placeholder="Describe your role and impact..."
                                     required
                                 />
                             </div>
 
-                            <div className="md:col-span-2 pt-4">
-                                <button type="submit" className="w-full bg-accent text-white font-black py-4 rounded-xl uppercase tracking-[0.2em] text-sm hover:scale-[1.02] shadow-lg shadow-accent/20 active:scale-95 transition-all">
-                                    {isEditing ? "UPDATE RESUME ITEM" : "PUBLISH RESUME ITEM"}
+                            <div className="pt-8 flex gap-5 border-t border-slate-50">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsModalOpen(false)}
+                                    className="flex-1 py-6 rounded-[1.8rem] font-black uppercase tracking-widest text-[11px] text-slate-400 bg-slate-50 hover:bg-slate-100 transition-all border border-slate-200/50"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="flex-[2] bg-slate-900 text-white font-black py-6 rounded-[1.8rem] uppercase tracking-widest text-[11px] hover:scale-[1.02] shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)] active:scale-95 transition-all"
+                                >
+                                    {isEditing ? "Update Entry" : "Save Entry"}
                                 </button>
                             </div>
+                            <div className="h-4"></div>
                         </form>
                     </div>
                 </div>
             )}
+
+            <ConfirmModal
+                isOpen={confirmOpen}
+                onClose={() => setConfirmOpen(false)}
+                onConfirm={handleDelete}
+                title="Delete Entry?"
+                message="Are you sure you want to remove this entry from your professional record?"
+            />
         </div>
     );
 }
 
-function ResumeCard({ item, onEdit, onDelete }: { item: ResumeItem, onEdit: (i: ResumeItem) => void, onDelete: (id: string) => void }) {
+function ResumeCard({ item, onEdit, confirmDelete }: { item: ResumeItem, onEdit: (i: ResumeItem) => void, confirmDelete: (id: string) => void }) {
     return (
         <div className="bg-card-bg p-6 rounded-3xl border border-foreground/5 shadow-sm group hover:shadow-xl hover:border-accent/10 transition-all relative overflow-hidden">
             <div className="flex justify-between items-start mb-4">
@@ -272,7 +340,7 @@ function ResumeCard({ item, onEdit, onDelete }: { item: ResumeItem, onEdit: (i: 
                     <button onClick={() => onEdit(item)} className="w-8 h-8 rounded-lg bg-foreground/5 flex items-center justify-center text-foreground hover:bg-accent hover:text-white transition-all text-sm">
                         <FiEdit2 />
                     </button>
-                    <button onClick={() => onDelete(item._id)} className="w-8 h-8 rounded-lg bg-red-500/5 flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white transition-all text-sm border border-red-500/10">
+                    <button onClick={() => confirmDelete(item._id)} className="w-8 h-8 rounded-lg bg-red-500/5 flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white transition-all text-sm border border-red-500/10">
                         <FiTrash2 />
                     </button>
                 </div>
