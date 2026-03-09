@@ -3,12 +3,7 @@ import connectDB from "@/lib/db";
 import User from "@/lib/models/User";
 import { adminProtect } from "@/lib/auth";
 
-type Params = Promise<{ id: string }>;
-
-// @desc    Get single user
-// @route   GET /api/users/:id
-// @access  Private/Admin
-export async function GET(req: NextRequest, { params }: { params: Params }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const admin = await adminProtect(req);
     if (!admin) {
@@ -30,7 +25,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 // @desc    Delete a user
 // @route   DELETE /api/users/:id
 // @access  Private/Admin
-export async function DELETE(req: NextRequest, { params }: { params: Params }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const admin = await adminProtect(req);
     if (!admin) {

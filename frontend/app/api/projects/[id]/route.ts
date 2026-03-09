@@ -6,12 +6,11 @@ import { adminProtect } from "@/lib/auth";
 import { writeFile } from "fs/promises";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
-
-type Params = Promise<{ id: string }>;
+import mongoose from "mongoose";
 
 export async function GET(
     req: NextRequest,
-    { params }: { params: Params }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const { id } = await params;
     await connectDB();
@@ -27,7 +26,7 @@ export async function GET(
 
 export async function PUT(
     req: NextRequest,
-    { params }: { params: Params }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const { id } = await params;
     const admin = await adminProtect(req);
@@ -39,11 +38,11 @@ export async function PUT(
         const project = await Project.findById(id);
         if (!project) return NextResponse.json({ message: "Project not found" }, { status: 404 });
 
-        // Update fields
-        project.title = (formData.get("title") as string) || project.title;
-        project.description = (formData.get("description") as string) || project.description;
-        project.category = (formData.get("category") as string) || project.category;
-        project.link = (formData.get("link") as string) || project.link;
+        const categoryId = formData.get("category") as string;
+        if (categoryId) {
+            project.category = new mongoose.Types.ObjectId(categoryId) as any;
+        }
+        project.link = (formData.get("link") as string) || (project.link as string);
 
         if (formData.has("inGallery")) {
             project.inGallery = formData.get("inGallery") === "true";
@@ -66,7 +65,7 @@ export async function PUT(
         } else if (formData.get("mainMediaUrl")) {
             project.mainMedia = {
                 url: formData.get("mainMediaUrl") as string,
-                type: (formData.get("mainMediaType") as string) || "image"
+                type: (formData.get("mainMediaType") as "image" | "video") || "image"
             };
         }
 
@@ -97,7 +96,7 @@ export async function PUT(
 
 export async function DELETE(
     req: NextRequest,
-    { params }: { params: Params }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const { id } = await params;
     const admin = await adminProtect(req);

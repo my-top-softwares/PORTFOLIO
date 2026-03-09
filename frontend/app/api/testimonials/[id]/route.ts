@@ -3,12 +3,7 @@ import connectDB from "@/lib/db";
 import Testimonial from "@/lib/models/Testimonial";
 import { adminProtect } from "@/lib/auth";
 
-type Params = Promise<{ id: string }>;
-
-// @desc    Get single testimonial
-// @route   GET /api/testimonials/:id
-// @access  Public
-export async function GET(req: NextRequest, { params }: { params: Params }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     await connectDB();
     try {
@@ -25,7 +20,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 // @desc    Update a testimonial
 // @route   PUT /api/testimonials/:id
 // @access  Private/Admin
-export async function PUT(req: NextRequest, { params }: { params: Params }) {
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const admin = await adminProtect(req);
     if (!admin) {
@@ -50,7 +45,7 @@ export async function PUT(req: NextRequest, { params }: { params: Params }) {
 // @desc    Delete a testimonial
 // @route   DELETE /api/testimonials/:id
 // @access  Private/Admin
-export async function DELETE(req: NextRequest, { params }: { params: Params }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const admin = await adminProtect(req);
     if (!admin) {

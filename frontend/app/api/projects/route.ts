@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
         } else if (formData.get("mainMediaUrl")) {
             mainMedia = {
                 url: formData.get("mainMediaUrl") as string,
-                type: (formData.get("mainMediaType") as string) || "image"
+                type: (formData.get("mainMediaType") as "image" | "video") || "image"
             };
         }
 

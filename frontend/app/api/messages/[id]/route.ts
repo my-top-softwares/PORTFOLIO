@@ -3,13 +3,11 @@ import connectDB from "@/lib/db";
 import Message from "@/lib/models/Message";
 import { adminProtect } from "@/lib/auth";
 
-// @desc    Update a message status (mark as read)
-// @route   PUT /api/messages/:id
-// @access  Private/Admin
 export async function PUT(
     req: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
+    const { id } = await params;
     const admin = await adminProtect(req);
     if (!admin) {
         return NextResponse.json({ message: "Not authorized as an admin" }, { status: 401 });
@@ -17,7 +15,7 @@ export async function PUT(
 
     await connectDB();
     try {
-        const message = await Message.findById(params.id);
+        const message = await Message.findById(id);
         if (message) {
             message.isRead = !message.isRead;
             await message.save();
@@ -35,8 +33,9 @@ export async function PUT(
 // @access  Private/Admin
 export async function DELETE(
     req: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
+    const { id } = await params;
     const admin = await adminProtect(req);
     if (!admin) {
         return NextResponse.json({ message: "Not authorized as an admin" }, { status: 401 });
@@ -44,7 +43,7 @@ export async function DELETE(
 
     await connectDB();
     try {
-        const message = await Message.findByIdAndDelete(params.id);
+        const message = await Message.findByIdAndDelete(id);
         if (message) {
             return NextResponse.json({ message: "Message removed" });
         } else {

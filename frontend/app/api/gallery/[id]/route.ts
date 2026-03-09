@@ -6,11 +6,9 @@ import { writeFile } from "fs/promises";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 
-type Params = Promise<{ id: string }>;
-
 export async function PUT(
     req: NextRequest,
-    { params }: { params: Params }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const { id } = await params;
     const admin = await adminProtect(req);
@@ -54,7 +52,7 @@ export async function PUT(
 
 export async function DELETE(
     req: NextRequest,
-    { params }: { params: Params }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const { id } = await params;
     const admin = await adminProtect(req);

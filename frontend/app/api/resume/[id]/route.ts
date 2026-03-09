@@ -3,13 +3,8 @@ import connectDB from "@/lib/db";
 import Resume from "@/lib/models/Resume";
 import { adminProtect } from "@/lib/auth";
 
-type Params = Promise<{ id: string }>;
-
-// @desc    Get single resume item
-// @route   GET /api/resume/:id
-// @access  Public
-export async function GET(req: NextRequest, { params }: { params: Params }) {
-    const { id } = await params;
+export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+    const { id = "" } = await params;
     await connectDB();
     try {
         const resumeItem = await Resume.findById(id);
@@ -25,8 +20,8 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 // @desc    Update a resume item
 // @route   PUT /api/resume/:id
 // @access  Private/Admin
-export async function PUT(req: NextRequest, { params }: { params: Params }) {
-    const { id } = await params;
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+    const { id = "" } = await params;
     const admin = await adminProtect(req);
     if (!admin) {
         return NextResponse.json({ message: "Not authorized as an admin" }, { status: 401 });
@@ -50,8 +45,8 @@ export async function PUT(req: NextRequest, { params }: { params: Params }) {
 // @desc    Delete a resume item
 // @route   DELETE /api/resume/:id
 // @access  Private/Admin
-export async function DELETE(req: NextRequest, { params }: { params: Params }) {
-    const { id } = await params;
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+    const { id = "" } = await params;
     const admin = await adminProtect(req);
     if (!admin) {
         return NextResponse.json({ message: "Not authorized as an admin" }, { status: 401 });
