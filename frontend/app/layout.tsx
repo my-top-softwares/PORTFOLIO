@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
     title: "Amina | UI & UX Designer",
@@ -20,6 +21,7 @@ export default function RootLayout({
         <html lang="en" className="scroll-smooth" suppressHydrationWarning>
             <body className="antialiased font-outfit overflow-x-hidden transition-colors duration-500" suppressHydrationWarning>
                 <ThemeProvider>
+                    <Toaster position="top-center" reverseOrder={false} />
                     {/* Global Background Decorations - Adjust for theme sensitivity if needed */}
                     <div className="fixed inset-0 pointer-events-none -z-50 overflow-hidden">
                         <div className="absolute top-[10%] right-[-10%] w-[800px] h-[800px] bg-accent/20 rounded-full blur-[160px] animate-pulse"></div>

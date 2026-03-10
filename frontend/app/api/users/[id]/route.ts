@@ -22,6 +22,47 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
     }
 }
 
+// @desc    Update a user
+// @route   PUT /api/users/:id
+// @access  Private/Admin
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const admin = await adminProtect(req);
+    if (!admin) {
+        return NextResponse.json({ message: "Not authorized as an admin" }, { status: 401 });
+    }
+
+    await connectDB();
+    try {
+        const user = await User.findById(id);
+        if (!user) {
+            return NextResponse.json({ message: "User not found" }, { status: 404 });
+        }
+
+        const { name, email, password, role, isActive } = await req.json();
+
+        user.name = name || user.name;
+        user.email = email || user.email;
+        user.role = role || user.role;
+        user.isActive = isActive !== undefined ? isActive : user.isActive;
+
+        if (password) {
+            user.password = password;
+        }
+
+        const updatedUser = await user.save();
+        return NextResponse.json({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            role: updatedUser.role,
+            isActive: updatedUser.isActive,
+        });
+    } catch (error: any) {
+        return NextResponse.json({ message: error.message }, { status: 500 });
+    }
+}
+
 // @desc    Delete a user
 // @route   DELETE /api/users/:id
 // @access  Private/Admin

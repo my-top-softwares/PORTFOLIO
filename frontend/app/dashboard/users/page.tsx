@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import API from "@/utils/api";
+import toast from "react-hot-toast";
 import { FiUsers, FiPlus, FiEdit2, FiTrash2, FiX, FiCheck, FiUser, FiMail, FiLock, FiShield, FiActivity } from "react-icons/fi";
 import ConfirmModal from "@/components/ConfirmModal";
 
@@ -81,14 +82,16 @@ export default function UsersPage() {
 
             if (isEditing && editId) {
                 await API.put(`/users/${editId}`, userData);
+                toast.success("User updated successfully");
             } else {
                 await API.post("/users", userData);
+                toast.success("User added successfully");
             }
             fetchUsers();
             setIsModalOpen(false);
             resetForm();
         } catch (error: any) {
-            alert(error.response?.data?.message || "Operation failed");
+            toast.error(error.response?.data?.message || "Operation failed");
         }
     };
 
@@ -101,10 +104,11 @@ export default function UsersPage() {
         if (!deleteId) return;
         try {
             await API.delete(`/users/${deleteId}`);
+            toast.success("User deleted successfully");
             fetchUsers();
             setDeleteId(null);
         } catch (error: any) {
-            alert(error.response?.data?.message || "Deletion failed");
+            toast.error(error.response?.data?.message || "Deletion failed");
         }
     };
 
@@ -203,7 +207,7 @@ export default function UsersPage() {
                         <form onSubmit={handleSubmit} className="p-12 space-y-10">
                             <div className="space-y-6">
                                 <div className="space-y-3">
-                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Full Legal Name</label>
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">FullName</label>
                                     <div className="relative">
                                         <input
                                             type="text"
@@ -218,7 +222,7 @@ export default function UsersPage() {
                                 </div>
 
                                 <div className="space-y-3">
-                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Email Identifier</label>
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Email </label>
                                     <div className="relative">
                                         <input
                                             type="email"
@@ -234,7 +238,7 @@ export default function UsersPage() {
 
                                 <div className="space-y-3">
                                     <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">
-                                        {isEditing ? "New Authentication Key (Leave blank to keep current)" : "Authentication Key"}
+                                        {isEditing ? "Enter New password" : "Password"}
                                     </label>
                                     <div className="relative">
                                         <input
@@ -251,25 +255,13 @@ export default function UsersPage() {
 
                                 <div className="grid grid-cols-2 gap-6">
                                     <div className="space-y-3">
-                                        <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Access Level</label>
+                                        <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">Admin</label>
                                         <select
                                             value={role}
                                             onChange={(e) => setRole(e.target.value as any)}
                                             className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 rounded-2xl px-6 py-4 text-xs font-black uppercase tracking-widest text-foreground transition-all outline-none cursor-pointer"
                                         >
-                                            <option value="employee">Employee</option>
                                             <option value="admin">Administrator</option>
-                                        </select>
-                                    </div>
-                                    <div className="space-y-3">
-                                        <label className="text-[10px] font-black uppercase tracking-widest text-text-dim ml-1">System Status</label>
-                                        <select
-                                            value={isActive ? "true" : "false"}
-                                            onChange={(e) => setIsActive(e.target.value === "true")}
-                                            className="w-full bg-foreground/[0.03] border-2 border-transparent focus:border-accent/30 rounded-2xl px-6 py-4 text-xs font-black uppercase tracking-widest text-foreground transition-all outline-none cursor-pointer"
-                                        >
-                                            <option value="true">Authorized</option>
-                                            <option value="false">Revoked</option>
                                         </select>
                                     </div>
                                 </div>
@@ -288,7 +280,7 @@ export default function UsersPage() {
                                     className="flex-[2] bg-slate-900 text-white font-black py-6 rounded-[1.8rem] uppercase tracking-widest text-[11px] hover:scale-[1.02] shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)] active:scale-95 transition-all flex items-center justify-center gap-3"
                                 >
                                     <FiCheck size={18} className="text-accent" />
-                                    <span>{isEditing ? "Update Credentials" : "Confirm Entry"}</span>
+                                    <span>{isEditing ? "Update " : "Create"}</span>
                                 </button>
                             </div>
                             <div className="h-4"></div>
