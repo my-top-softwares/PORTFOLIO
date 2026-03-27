@@ -61,7 +61,7 @@ export default function AboutPage() {
                     {/* About Image Group */}
                     <div className="lg:w-1/2 relative">
                         <div className="relative w-full max-w-[480px] aspect-[4/5] mx-auto glass p-6 rounded-[60px] animate-float">
-                            <div className="relative w-full h-full rounded-[48px] overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000 group">
+                            <div className="relative w-full h-full rounded-[48px] overflow-hidden  transition-all duration-1000 group">
                                 <Image
                                     src="/myimage.jpeg"
                                     alt="About Profile"
